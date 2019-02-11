@@ -1,0 +1,34 @@
+name        = Scholarly rep theme.
+description = Responsive Zen subtheme.
+
+core        = 7.x
+screenshot  = screenshot.jpg
+
+stylesheets[all][] = css/styles.css
+stylesheets[all][] = css/drupal.css
+stylesheets[all][] = css/font-awesome-4.6.3/css/font-awesome.min.css
+
+
+scripts[] = js/cbpHorizontalMenu.js
+scripts[] = js/scripts.js
+
+
+
+regions[header]         = Header
+regions[navigation]     = Navigation bar
+regions[highlighted]    = Highlighted
+regions[help]           = Help
+regions[content_top]    = Content top
+regions[sidebar_first]  = Sidebar first
+regions[sidebar_second] = Sidebar second
+regions[feature]        = Feature
+regions[content]        = Content
+regions[content_bottom] = Content bottom
+regions[footer]         = Footer
+
+; The page_top and page_bottom regions are hidden, which means they will not
+; show up on the blocks administration page. But they are required in order for
+; the html.tpl.php to work properly, so do not delete them.
+
+regions[page_top]       = Page top
+regions[page_bottom]    = Page bottom
