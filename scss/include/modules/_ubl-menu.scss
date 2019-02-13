@@ -1,0 +1,190 @@
+
+// site menu (fold out menu)
+#ublmenu {
+	
+	width: 100%;
+	margin-top: 20px;
+	border-bottom: 1px solid #fff;
+	background-color: $LEIblauw;
+	font-family: $Vestula;
+	overflow: hidden;
+	
+	nav ul {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		
+		
+		li {
+			a {
+				font-family: $Vestula;
+				font-weight: bold;
+				font-size: $base-font-size;
+				padding: 0 15px;
+				line-height: 3.5rem;
+				color: #eee;
+				
+				&:hover {
+					color: #fff;
+				}
+				
+		        .fa {
+		            width: 1.25rem;	
+		            font-size: 1.25rem;
+		            // line-height: 3.5rem;
+		        }
+			}	
+		
+			&.cbp-hropen a,
+			&.cbp-hropen > a:hover {
+				color: #fff;
+				background: $LEIblauw4;
+			}
+		
+			&.cbp-hropen .cbp-hrsub {
+				padding-bottom: 3em;
+				@include box-shadow(rgba(#000,0.5) 0 2px 2px 0);
+			}
+		
+			.cbp-hrsub-inner > div a {
+				line-height: 2em;
+			}		
+		}	
+	}
+	
+	
+	/* sub-menu canvas */
+	.cbp-hrsub {
+		background: $LEIblauw4;
+		
+		h4 {
+			color: $gray3;
+			padding: 2em 0 0.6em;
+			margin: 0;
+			font-size: 160%;
+			font-weight: 300;
+		}
+		
+		form {
+			
+			label {
+				display: block;
+				color: white;
+			}
+			
+			& >  div {
+				margin: .5em 0;
+			}
+			
+			[type='submit'] {
+				margin-top: 1em; 
+			}
+		}		
+	}
+	
+	
+	.cbp-placeholder {
+		@include fa-after('\f0d7', 1em, .3em, middle) {
+			color: $LEIblauw3;
+		};
+	}
+
+	
+	@media screen and ( max-width: map-get($breakpoints, 'medium') ) {
+		
+		nav {
+			border: none;
+			
+			ul li {
+				border-bottom: 1px solid $LEIblauw4;
+		        min-height: 3.5em;
+			}	
+		
+			.cbp-hrsub h4 {
+				padding-top: 0.6em;
+			}
+			
+			.cbp-hrsub-inner {
+				padding: 0 15px;
+			}
+		
+			.cbp-hrsub-inner > div {
+				width: 100%;
+				float: none;
+				padding: 0 15px;
+			}
+		}	
+	
+		.ubl-centercontent {
+			padding: 0;
+		}
+	
+		.ubl-menu-search {
+			float: none;
+			
+			form {
+				padding-left: 20px;
+				padding-right: 20px;
+			}
+		}
+	}
+}
+
+
+// inline menu search form
+.ubl-menu-search {
+	
+	padding: 0;
+	
+	form {
+		display: flex;
+		height: 100%;
+		margin: 0;
+
+		div {
+			display: inline-block;
+			height: 2rem;
+			margin-top: auto;
+			margin-bottom: auto;	
+			margin-right: 2px;
+		}	
+
+		input, button, select {
+			height: 100%;
+			border: none;
+			min-height: 0;
+			padding: 0 10px;
+			line-height: 2rem;
+		} 
+	
+		input {
+			@include border-radius( 0 0 0 0 );
+			@include input-placeholder { color: #999; }
+		}
+	
+		button {
+			@include border-radius( 0 3px 3px 0 );
+			background-color: #999 !important;
+			color: white !important;
+			.fa {
+				line-height: 1rem;
+				font-size: 1rem; 
+			}	
+		}	
+	
+		select {
+			width: 150px;
+			@include appearance(none);
+			@include border-radius( 3px 0 0 3px );
+			@include ellipsis(nowrap);
+			background: url("../img/selectbox_arrow.png") right center no-repeat #f8f8f8;
+			padding-right: 30px;
+		}	
+	}
+}
+
+
+
+
+
+

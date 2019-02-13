@@ -1,32 +1,24 @@
-var cbpHorizontalMenu = (function($) {
 
-	var a, b, c, d, e, f, g,h;
-
+var cbpHorizontalMenu = (function() {
+	var b = $("#cbp-hrmenu > ul > li"), g = b.children("a.cbp-placeholder"), c = $("body"), d = -1;
 	function f() {
-		b = $("#cbp-hrmenu > ul > li");
-		g = $('#cbp-hrmenu > ul > li').children("a.cbp-placeholder");
-		c = $("body");
-		d = -1;
-
-		g.bind("click", a);
-		b.bind("click", function(h) {
+		g.on("click", a);
+		b.on("click", function(h) {
 			h.stopPropagation()
 		})
-
 	}
 	function a(j) {
 		if (d !== -1) {
 			b.eq(d).removeClass("cbp-hropen")
 		}
-		i = $(j.currentTarget).parent("li");
-		h = i.index();
+		var i = $(j.currentTarget).parent("li"), h = i.index();
 		if (d === h) {
 			i.removeClass("cbp-hropen");
 			d = -1
 		} else {
 			i.addClass("cbp-hropen");
 			d = h;
-			c.unbind("click", e);
+			c.off("click").on("click", e)
 		}
 		return false
 	}
@@ -37,4 +29,4 @@ var cbpHorizontalMenu = (function($) {
 	return {
 		init : f
 	}
-})(jQuery);
+})();

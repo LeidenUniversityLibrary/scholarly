@@ -1,0 +1,280 @@
+
+// ====================================================================
+// layout styles, should only contain rules relating to the structure
+// ====================================================================
+
+* {
+	@include boxsizing;
+}
+
+.ubl-centercontent {
+	@include clearfix;
+	margin-left: auto;
+	margin-right: auto;
+	
+	@include mappy-bp(medium) {
+		max-width: 1140px;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+}
+
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 
+	layout styles
+*/
+
+// Once display == 'none', jQuery can see that we are mobile
+#mobcheck {
+	display: none;
+}
+
+body {
+	background-color: $gray4;	
+	margin: 0;
+	padding: 0;
+}
+
+
+// Set a global variable
+$footer-bg-overlap : 60px;
+
+#themain {
+	@include clearfix;
+	background-color: $gray6;
+    @include background-image(linear-gradient(rgba($gray4,1), rgba($gray4,1)));
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: 100% $footer-bg-overlap;
+}
+	
+
+.ubl-content {
+	@include clearfix;
+	@include padding-trailer(3);
+	@include padding-leader(1);
+	padding-left: 20px;
+	padding-right: 20px;
+	background-color: #fff;
+	border-bottom: solid 1px #ccc;
+	
+	// a nice z offset for larger screens
+	@include mappy-bp(medium) {
+		padding-left:3em;
+		padding-right:3em;
+		margin: 16px 0;
+		@include box-shadow(rgba(#000,0.2) 0 0 5px 1px);
+		border-bottom: none;
+	}
+
+	@include mappy-bp(large) {
+	
+		// shrink on desktop when there is a sidebar
+		
+		.ubl-sidebar ~ & {
+			width: calc(75% - 40px); // vgap between content and sidebar
+		}
+	
+		.ubl-sidebar-right ~ & {
+			float: left;
+		}
+
+		.ubl-sidebar-left ~ & {
+			float: right;
+		}
+	}
+		
+}
+
+// a bar alongside ubl-content, left or right
+.ubl-sidebar {
+	@include clearfix;
+	padding: 20px;
+	
+	@include mappy-bp(large) {
+	
+		padding-top: 0;
+		padding-bottom: 2 * $footer-bg-overlap; // if ubl-sidebar is taller than ubl-content it must push the footer down
+		padding-left: 0;
+		padding-right: 0;
+
+		width: 25%;
+		
+		&.ubl-sidebar-left {	float: left; }
+		&.ubl-sidebar-right { float: right; }
+	}
+	
+	h3 {
+		@include rhythm-padding( .25 );
+	    padding-left: 1em;
+	    padding-right: 1em;
+	    margin-bottom: 1em;
+	    background-color: $LEIblauw4;
+	    color: white;
+	}
+	
+	ul {
+		list-style-type: none;
+		padding: 0;
+	}
+	
+	li {
+		@include rhythm-padding(.25);
+		border-bottom: solid 1px #ddd;
+	}
+	
+}
+
+
+// marker class
+.ubl-box {}
+
+// a box alongside other content (.ubl-box)
+.ubl-sidebox {
+	
+	@include clearfix;
+	
+	@include mappy-bp(large) {
+	
+		width: calc(30% - 40px);
+		
+		&.ubl-sidebox-right {
+			float: right;
+			margin-left: 40px;
+		}
+	
+		&.ubl-sidebox-left {
+			float: left;
+			margin-right: 40px;
+		}
+		
+		& ~ * {
+			display: block;
+			width: 70%;
+		}
+		
+	}	
+
+	.ubl-sidebox-header {
+		color: white;
+		// small arrow left bottom
+		@include arrowheader;
+		margin-top: 0;
+	}
+	
+	ul {
+		list-style-type: none;
+		padding: 0;
+	}
+	
+	li {
+		@include rhythm-padding(.25);
+		border-bottom: solid 1px #ddd;
+	}
+	
+}
+
+
+#theheader {
+	
+	padding: 0;
+	background-color: #fff; 
+	
+	#thetitle {
+		padding: 20px 20px 0 20px;
+	} 
+	
+	.ubl-logo {
+	
+		float: left;
+		margin: 0 75px 0 0;
+		padding: 12px 0;
+		max-width: 90%;	
+	
+		img {
+			display: block;
+			height: 64px;
+		}
+	}
+	
+	h1 {
+		white-space: nowrap;
+		display: table;
+		margin: 0;
+		line-height: 30px;
+		height: 75px;
+		font-family: $Crimson;
+		font-size: 18px;
+		font-weight: normal;
+		color: #999;
+		
+		//@include ellipsis(nowrap);
+		
+		em {
+			display: block;
+			font-size: 200%;
+			font-style: normal;
+			color: #000;
+		}
+	}
+}
+
+
+#thetopmenu {
+	
+	font-family: $Vestula;
+	
+	text-align: right;
+	
+	ul {
+		@include rhythm-margins(.5);
+	}
+	
+	li {
+		display: inline-block;
+		vertical-align: middle;
+		a {
+			padding: 0 1em;
+			color: #666;
+			border-left: solid 1px #ccc;
+		}	
+		
+		&:first-child a { border-left: none;}
+		
+	}
+}
+
+
+#thefooter {
+	padding: 28px 15px 60px 15px;
+	background: $gray4;
+	text-align: center;
+}
+
+.ubl-friend {
+	
+	a {
+		//color: #1F448D;
+		color: $LEIblauw2;
+	}
+	
+	img {
+		vertical-align: middle;
+	}
+}
+
+.ubl-footer-nav {
+	@include rhythm-margins(1);
+}
+
+
+
+
+		

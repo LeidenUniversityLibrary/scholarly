@@ -1,0 +1,104 @@
+
+// ====================================================================
+// mixins
+// ==================================================================== 
+
+// Redefined here because kube.css overrides the prefered default 	
+@mixin clearfix() {
+	overflow: hidden;
+	zoom: 1;
+	&:after {
+	    content: '';
+	    display: table;
+	    clear: both;
+	}
+	display: flow-root;
+}
+
+
+@mixin boxsizing($bs-type: $defined-boxsizing-type) {
+	-webkit-box-sizing: $bs-type;
+	-moz-box-sizing: $bs-type;
+	box-sizing: $bs-type;
+}
+
+
+
+@mixin fa-before($code, $fontsize: 1em, $gapsize: .3em, $valign: middle) {
+	&::before {
+		content: $code;
+		font-family: FontAwesome;
+		font-size: $fontsize;
+		font-style: normal;
+		margin-right: $gapsize;
+		vertical-align: $valign;
+		// allow more properties to be set in a content block 
+		@content;
+	}		
+}
+
+
+// pre- or postfix a FontAwesome icon http://fontawesome.io/cheatsheet/
+//
+@mixin fa-after($code, $fontsize: 1em, $gapsize: .3em, $valign: middle) {
+	&::after {
+		content: $code;
+		font-family: FontAwesome;
+		font-size: $fontsize;
+		font-style: normal;		
+		margin-left: $gapsize;
+		vertical-align: $valign;
+		// allow more properties to be set in a content block
+		@content;
+	}		
+}
+
+@mixin vertical-align($position: relative) {
+	display: block;
+	position: $position;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+	line-height: 1;
+}
+
+@mixin type-scale($scale, $map: $type-scale) {
+	$font-size: map-fetch($map, $scale font-size);
+	$base-lines: map-fetch($map, $scale base-lines);
+	@include adjust-font-size-to($font-size, $base-lines);
+}
+
+
+
+@function map-fetch($map, $keys) {
+	$key: nth($keys, 1);
+	$length: length($keys);
+	$value: map-get($map, $key);
+	@if ($length > 1) {
+		$rest: ();
+		@for $i from 2 through $length {
+			$rest: append($rest, nth($keys, $i))
+		}
+		@return map-fetch($value, $rest)
+	} @else {
+		@return $value;
+	}
+}
+
+// small arrow at left bottom pointing down 
+@mixin arrowheader {
+	&::after {
+	    border-left: 8px solid transparent;
+	    border-right: 8px solid transparent;
+	    border-top: 8px solid #001158;
+	    bottom: -8px;
+	    content: "";
+	    height: 0;
+	    left: 1.125em;
+	    position: absolute;
+	    width: 0;
+	}
+}
+
+

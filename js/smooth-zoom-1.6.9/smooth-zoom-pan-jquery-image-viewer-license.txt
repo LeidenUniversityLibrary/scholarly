@@ -1,0 +1,29 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+LICENSE CERTIFICATE : Envato Marketplace Item
+==============================================
+
+This document certifies the purchase of:
+ONE REGULAR LICENSE
+as defined in the standard terms and conditions on the Envato Marketplaces.
+
+Licensor's Author Username: VF
+Licensee: Richard Osseweyer
+
+For the item:
+Smooth Zoom Pan - jQuery Image Viewer
+
+http://codecanyon.net/item/smooth-zoom-pan-jquery-image-viewer/511142
+Item ID: 511142
+
+Item Purchase Code: 3e2be9f7-2705-4e43-93b1-14cd8b46ef54
+
+Purchase Date: 2014-04-16 08:53:18 UTC
+
+For any queries related to this document or license please contact Envato Support via http://support.envato.com/index.php?/Live/Tickets/Submit
+
+Envato Pty. Ltd. (ABN 11 119 159 741)
+PO Box 16122, Collins Street West, VIC 8007, Australia
+
+==== THIS IS NOT A TAX RECEIPT OR INVOICE ====

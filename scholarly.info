@@ -4,15 +4,13 @@ description = Responsive Zen subtheme.
 core        = 7.x
 screenshot  = screenshot.jpg
 
+stylesheets[all][] = css/font-awesome-4.7.0/css/font-awesome.min.css
 stylesheets[all][] = css/styles.css
-stylesheets[all][] = css/drupal.css
-stylesheets[all][] = css/font-awesome-4.6.3/css/font-awesome.min.css
-
+stylesheets[all][] = css/main.css
+stylesheets[all][] = css/imageblock.css
 
 scripts[] = js/cbpHorizontalMenu.js
 scripts[] = js/scripts.js
-
-
 
 regions[header]         = Header
 regions[navigation]     = Navigation bar

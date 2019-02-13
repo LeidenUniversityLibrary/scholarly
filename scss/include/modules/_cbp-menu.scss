@@ -1,0 +1,76 @@
+
+/* general cbp horizontal menu styles */
+
+/* first level ul style */
+.cbp-hrmenu > ul,
+.cbp-hrmenu .cbp-hrsub-inner {
+	margin: 0 auto;
+}
+
+.cbp-hrmenu > ul > li {
+	display: inline-block;
+}
+
+.cbp-hrmenu > ul > li > a {
+	display: inline-block;
+}
+
+/* sub-menu */
+.cbp-hrmenu .cbp-hrsub {
+	background: #fff; // default color
+	display: none;
+	position: absolute;
+	z-index: 10;
+	width: 100%;
+	left: 0;
+}
+
+.cbp-hropen .cbp-hrsub {
+	display: block;
+}
+
+.cbp-hrmenu .cbp-hrsub-inner > div {
+	width: 33%;
+	float: left;
+	padding: 0 1em 0;
+}
+
+.cbp-hrmenu .cbp-hrsub-inner:before,
+.cbp-hrmenu .cbp-hrsub-inner:after {
+	content: " ";
+	display: table;
+}
+
+.cbp-hrmenu .cbp-hrsub-inner:after {
+	clear: both;
+}
+
+
+@media screen and ( max-width: map-get($breakpoints, 'medium') ) {
+	
+	.cbp-hrmenu > ul,
+	.cbp-hrmenu .cbp-hrsub-inner {
+		width: 100%;
+		padding: 0;
+	}
+
+	.cbp-hrmenu .cbp-hrsub-inner > div {
+		width: 100%;
+		float: none;
+	}
+
+	.cbp-hrmenu > ul > li {
+		display: block;
+	}
+
+	.cbp-hrmenu > ul > li > a {
+		display: block;
+	}	
+	
+	.cbp-hrmenu .cbp-hrsub { 
+		position: relative;
+	}
+
+}
+
+

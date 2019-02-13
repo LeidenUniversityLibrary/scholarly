@@ -45,7 +45,7 @@ function scholarly_menu_link($variables) {
     }
     //Inject block content when url query contains block
     if (isset($element['#original_link']['options']['query']['block'])) {
-      $output = render_block_content(
+      $output = _scholarly_render_block_content(
         $element['#original_link']['options']['query']['block'],
         $element['#original_link']['options']['query']['delta']);
     }
@@ -56,7 +56,7 @@ function scholarly_menu_link($variables) {
       $menu_name == 'main-menu') {
       return '<li>' . $output . $sub_menu . '</li>' .
       '<li class="dc-menu-search">' .
-      render_block_content('islandora_collection_search', 'islandora_collection_search') . '</li>';
+        _scholarly_render_block_content('islandora_collection_search', 'islandora_collection_search') . '</li>';
     }
     return '<li classes="'.$classes.'">' . $output . $sub_menu . '</li>';
 }
@@ -80,7 +80,7 @@ function scholarly_form_alter(&$form, &$form_state, $form_id) {
 /**
  * Helper function to find and render a block.
  */
-function render_block_content($module, $delta) {
+function _scholarly_render_block_content($module, $delta) {
   $output = '';
   if ($block = block_load($module, $delta)) {
     if ($build = module_invoke($module, 'block_view', $delta)) {
