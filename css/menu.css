@@ -1,0 +1,39 @@
+/* Menu elements */
+
+.dc-centercontent .menu > li > .cbp-hrsub {
+  display: none;
+  height: 0;
+}
+
+.dc-sidebar .cbp-hrsub li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.dc-sidebar .cbp-hrsub li a:before {
+  opacity: 0.6;
+  position: absolute;
+  left: 16px;
+  content: '\2022';
+  font-size: 1em;
+}
+
+.dc-sidebar .expanded:before {
+  opacity: 0.6;
+  position: absolute;
+  right: 0;
+  float: right;
+  content: '▾';
+  font-size: 1em;
+}
+
+.dc-sidebar .expanded.toggled:before {
+  opacity: 0.6;
+  position: absolute;
+  right: 0;
+  float: right;
+  content: '▴';
+  font-size: 1em;
+}
+
+

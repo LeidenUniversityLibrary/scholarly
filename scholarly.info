@@ -8,6 +8,7 @@ stylesheets[all][] = css/font-awesome-4.7.0/css/font-awesome.min.css
 stylesheets[all][] = css/styles.css
 stylesheets[all][] = css/main.css
 stylesheets[all][] = css/imageblock.css
+stylesheets[all][] = css/menu.css
 
 scripts[] = js/cbpHorizontalMenu.js
 scripts[] = js/scripts.js
