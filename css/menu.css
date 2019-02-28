@@ -36,4 +36,21 @@
   font-size: 1em;
 }
 
+.dc-menu {
+  width: 100%;
+  margin-top: 2em;
+  border-bottom: 1px solid #fff !important;
+  background-color: #7f88ab !important;
+  font-family: "Vestula" !important;
+}
+
+@media all and (min-width: 48em) {
+  #edit-islandora-simple-search-query {
+    width: 180px;
+  }
+  .dc-menu-search #edit-collection-select {
+    width: 350px
+  }
+}
+
 
