@@ -684,33 +684,88 @@ input, textarea, select {
 
 .block-islandora-solr li {
   margin-left: 0 !important;
+}
+
+.block-islandora-solr label {
   border-bottom: dotted 1px #C9C9C9;
 }
 
 .block-islandora-solr li,
-.block-islandora-solr a {
-  border-bottom: dotted 1px #C9C9C9;
+.block-islandora-solr label > a {
 }
 
-.block-islandora-solr .islandora-solr-facet-wrapper div a {
-  width: 215px;
+.block-islandora-solr .islandora-solr-facet-wrapper label > a {
+  max-width: 180px;
   display: inline-block;
   text-overflow: ellipsis;
   overflow: hidden;
   font-size: 13px;
+  font-weight: initial;
 }
 
 span.plusminus {
-  display: none;
   border: 0 !important;
+  display: inline-block;
+  margin-right: 5px;
 }
 
-.block-islandora-solr .count {
+span.plusminus a {
+  position: relative;
+  text-indent: -9999px;
   float: right;
+  width: 14px;
+
+}
+
+span.plusminus a.minus::after {
+  content: "\f00d";
+  font-family: "FontAwesome";
+  font-size: 1em;
+  font-style: normal;
+  margin-left: .3em;
+  vertical-align: middle;
+  position: absolute;
+  display: block;
+  opacity: .9;
+  text-indent: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 14px;
+}
+
+span.plusminus a.minus::after::hover,
+span.plusminus a.plus::after:hover {
+  opacity: 1;
+}
+
+span.plusminus a.plus::after {
+  content: "\f00c";
+  font-family: "FontAwesome";
+  font-size: 1em;
+  font-style: normal;
+  opacity: .9;
+  margin-left: .3em;
+  vertical-align: middle;
+  position: absolute;
+  display: block;
+  text-indent: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 16px;
 }
 
 .block-islandora-solr a.soft-limit {
   border: 0 !important;
+}
+
+#dc-facet-keywords .count {
+  display: inline-block;
+  vertical-align: top;
+  color: #888;
 }
 
 
