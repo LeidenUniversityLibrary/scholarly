@@ -184,7 +184,7 @@ body {
   .dc-sidebar-right ~ .dc-content {
     float: left;
   }
-  .ubl-sidebar-left ~ .ubl-content {
+  .dc-sidebar-left ~ .dc-content {
     float: right;
   }
 }
@@ -219,20 +219,18 @@ body {
     padding-right: 0;
     width: 25%;
   }
-  .dc-sidebar.ubl-sidebar-left {
+  .dc-sidebar.dc-sidebar-left {
     float: left;
   }
-  .dc-sidebar.ubl-sidebar-right {
+  .dc-sidebar.dc-sidebar-right {
     float: right;
   }
 }
 .dc-sidebar h3 {
-  padding-top: 0.375em;
-  padding-bottom: 0.375em;
-  padding-left: 1em;
-  padding-right: 1em;
-  margin-bottom: 1em;
-  background-color: #8088AC;
+  padding: 4px 12px;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  background-color: #7F88AB;
   color: white;
 }
 .dc-sidebar ul {
@@ -265,11 +263,11 @@ body {
   .dc-sidebox {
     width: calc(30% - 40px);
   }
-  .dc-sidebox.ubl-sidebox-right {
+  .dc-sidebox.dc-sidebox-right {
     float: right;
     margin-left: 40px;
   }
-  .dc-sidebox.ubl-sidebox-left {
+  .dc-sidebox.dc-sidebox-left {
     float: left;
     margin-right: 40px;
   }
@@ -278,7 +276,7 @@ body {
     width: 70%;
   }
 }
-.dc-sidebox .ubl-sidebox-header {
+.dc-sidebox .dc-sidebox-header {
   color: white;
   margin-top: 0;
 }
@@ -373,8 +371,12 @@ body {
 }
 
 a {
-  color: #B27F2B;
+  color: #001158;
   text-decoration: none;
+}
+
+a:visited {
+  color: #012168;
 }
 
 h1 {
@@ -584,7 +586,7 @@ input, textarea, select {
     float: none;
     padding: 0 15px;
   }
-  #themenu .ubl-centercontent {
+  #themenu .dc-centercontent {
     padding: 0;
   }
   #themenu .dc-menu-search {
@@ -672,6 +674,43 @@ input, textarea, select {
 
 .dc-menu-search .form-type-textfield {
   vertical-align: bottom;
+}
+
+.block-islandora-solr * {
+  font-family: Vestula,Arial,Sans-Serif;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.block-islandora-solr li {
+  margin-left: 0 !important;
+  border-bottom: dotted 1px #C9C9C9;
+}
+
+.block-islandora-solr li,
+.block-islandora-solr a {
+  border-bottom: dotted 1px #C9C9C9;
+}
+
+.block-islandora-solr .islandora-solr-facet-wrapper div a {
+  width: 215px;
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 13px;
+}
+
+span.plusminus {
+  display: none;
+  border: 0 !important;
+}
+
+.block-islandora-solr .count {
+  float: right;
+}
+
+.block-islandora-solr a.soft-limit {
+  border: 0 !important;
 }
 
 
