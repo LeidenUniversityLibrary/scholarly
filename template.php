@@ -130,10 +130,11 @@ function scholarly_preprocess_page(&$vars, $hook) {
 }
 
 function scholarly_pager($variables) {
+  dsm($variables);
   $tags = $variables['tags'];
   $element = $variables['element'];
   $parameters = $variables['parameters'];
-  $quantity = 10;
+  $quantity = 5;
   global $pager_page_array, $pager_total;
 
   // Calculate various markers within this pager piece:
@@ -163,10 +164,10 @@ function scholarly_pager($variables) {
   }
   // End of generation loop preparation.
 
-  $li_first = theme('pager_first', array('text' => (isset($tags[0]) ? $tags[0] : t('« first')), 'element' => $element, 'parameters' => $parameters));
-  $li_previous = theme('pager_previous', array('text' => (isset($tags[1]) ? $tags[1] : t('‹ previous')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
-  $li_next = theme('pager_next', array('text' => (isset($tags[3]) ? $tags[3] : t('next ›')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
-  $li_last = theme('pager_last', array('text' => (isset($tags[4]) ? $tags[4] : t('last »')), 'element' => $element, 'parameters' => $parameters));
+  $li_first = theme('pager_first', array('text' => (isset($tags[0]) ? $tags[0] : t('«')), 'element' => $element, 'parameters' => $parameters));
+  $li_previous = theme('pager_previous', array('text' => (isset($tags[1]) ? $tags[1] : t('‹')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
+  $li_next = theme('pager_next', array('text' => (isset($tags[3]) ? $tags[3] : t('›')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
+  $li_last = theme('pager_last', array('text' => (isset($tags[4]) ? $tags[4] : t('»')), 'element' => $element, 'parameters' => $parameters));
 
   if ($pager_total[$element] > 1) {
     if ($li_first) {
@@ -184,12 +185,6 @@ function scholarly_pager($variables) {
 
     // When there is more than one page, create the pager list.
     if ($i != $pager_max) {
-      if ($i > 1) {
-        $items[] = array(
-          'class' => array('pager-ellipsis'),
-          'data' => '…',
-        );
-      }
       // Now generate the actual pager piece.
       for (; $i <= $pager_last && $i <= $pager_max; $i++) {
         if ($i < $pager_current) {
@@ -210,12 +205,6 @@ function scholarly_pager($variables) {
             'data' => theme('pager_next', array('text' => $i, 'element' => $element, 'interval' => ($i - $pager_current), 'parameters' => $parameters)),
           );
         }
-      }
-      if ($i < $pager_max) {
-        $items[] = array(
-          'class' => array('pager-ellipsis'),
-          'data' => '…',
-        );
       }
     }
     // End generation.

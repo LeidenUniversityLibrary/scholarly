@@ -1,0 +1,45 @@
+.islandora-solr-content .item-list {
+  margin: 24px 0;
+  font-size: 14px; }
+.pager ul {
+  display: flex;
+  margin: 0; }
+.pager li {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.pager.align-center ul {
+  justify-content: center; }
+.pager span,
+.pager a {
+  border-radius: 3px;
+  display: inline-block;
+  padding: 8px 12px;
+  line-height: 1;
+  white-space: nowrap;
+  border: 1px solid transparent; }
+.pager a {
+  text-decoration: none;
+  color: #313439;
+}
+.pager li.pager-current {
+  border: 1px solid #e0e1e1;
+  width: 32px;
+  height: 32px;
+  padding: 16px;
+  border-radius: 3px;
+  display: inline-block;
+  padding: 8px 12px !important;
+  line-height: 1;
+  white-space: nowrap;
+}
+.pager a:hover {
+  color: rgba(0, 0, 0, 0.5);
+  border-color: #e0e1e1; }
+.pager span,
+.pager li.active a {
+  color: rgba(0, 0, 0, 0.5);
+  border-color: #e0e1e1;
+  cursor: text; }
+.pager.upper {
+  font-size: 12px; }
