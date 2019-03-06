@@ -46,13 +46,18 @@
 .pager.upper {
   font-size: 12px; }
 
-.pager-last a {
+.pager-last a,
+.pager-first a,
+.pager-previous a,
+.pager-next a {
   position: relative;
   text-indent: -9999px;
 }
 
-.pager-last a::before {
-  content: "\f101";
+.pager-last a::before,
+.pager-first a::before,
+.pager-previous a::before,
+.pager-next a::before {
   font-family: "Font Awesome 5 Pro";
   font-size: 14px;
   font-weight: 900;
@@ -61,8 +66,24 @@
   display: block;
   text-indent: 0;
   top: 8px;
-  left: 0;
+  left: 5px;
   right: 0;
   bottom: 0;
   width: 16px;
+}
+
+.pager-last a::before {
+  content: "\f101";
+}
+
+.pager-next a::before {
+  content: "\f105";
+}
+
+.pager-previous a::before {
+  content: "\f104";
+}
+
+.pager-first a::before {
+  content: "\f100";
 }

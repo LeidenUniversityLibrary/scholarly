@@ -727,7 +727,7 @@ span.plusminus {
 span.plusminus a {
   position: relative;
   text-indent: -9999px;
-  float: right;
+  float: left;
   width: 14px;
 
 }
