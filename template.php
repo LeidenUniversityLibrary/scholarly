@@ -167,7 +167,7 @@ function scholarly_pager($variables) {
   $li_first = theme('pager_first', array('text' => (isset($tags[0]) ? $tags[0] : t('«')), 'element' => $element, 'parameters' => $parameters));
   $li_previous = theme('pager_previous', array('text' => (isset($tags[1]) ? $tags[1] : t('‹')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
   $li_next = theme('pager_next', array('text' => (isset($tags[3]) ? $tags[3] : t('›')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
-  $li_last = theme('pager_last', array('text' => (isset($tags[4]) ? $tags[4] : t('»')), 'element' => $element, 'parameters' => $parameters));
+  $li_last = theme('pager_last', array('text' => (isset($tags[4]) ? $tags[4] : t('››')), 'element' => $element, 'parameters' => $parameters));
 
   if ($pager_total[$element] > 1) {
     if ($li_first) {

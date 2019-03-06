@@ -1,6 +1,7 @@
 .islandora-solr-content .item-list {
   margin: 24px 0;
-  font-size: 14px; }
+  font-size: 14px;
+  color: #012168; }
 .pager ul {
   display: flex;
   margin: 0; }
@@ -12,6 +13,7 @@
   justify-content: center; }
 .pager span,
 .pager a {
+  color: #012168;
   border-radius: 3px;
   display: inline-block;
   padding: 8px 12px;
@@ -43,3 +45,24 @@
   cursor: text; }
 .pager.upper {
   font-size: 12px; }
+
+.pager-last a {
+  position: relative;
+  text-indent: -9999px;
+}
+
+.pager-last a::before {
+  content: "\f101";
+  font-family: "Font Awesome 5 Pro";
+  font-size: 14px;
+  font-weight: 900;
+  vertical-align: middle;
+  position: absolute;
+  display: block;
+  text-indent: 0;
+  top: 8px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 16px;
+}
