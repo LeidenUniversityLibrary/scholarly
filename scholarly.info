@@ -5,12 +5,12 @@ core        = 7.x
 screenshot  = screenshot.jpg
 
 stylesheets[all][] = css/font-awesome-4.7.0/css/font-awesome.min.css
+stylesheets[all][] = css/kube.css
 stylesheets[all][] = css/styles.css
 stylesheets[all][] = css/main.css
 stylesheets[all][] = css/imageblock.css
 stylesheets[all][] = css/pager.css
 stylesheets[all][] = css/searchresults.css
-stylesheets[all][] = css/kube.css
 
 scripts[] = js/cbpHorizontalMenu.js
 scripts[] = js/scripts.js
