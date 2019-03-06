@@ -9,6 +9,7 @@ stylesheets[all][] = css/styles.css
 stylesheets[all][] = css/main.css
 stylesheets[all][] = css/imageblock.css
 stylesheets[all][] = css/pager.css
+stylesheets[all][] = css/searchresults.css
 
 scripts[] = js/cbpHorizontalMenu.js
 scripts[] = js/scripts.js
