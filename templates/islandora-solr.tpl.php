@@ -13,35 +13,28 @@
 <?php if (empty($results)): ?>
   <p class="no-results"><?php print t('Sorry, but your search returned no results.'); ?></p>
 <?php else: ?>
-  <table class="dc-results islandora islandora-solr-search-results">
-    <tbody>
+  <div class="dc-results islandora islandora-solr-search-results">
     <?php $row_result = 0; ?>
     <?php foreach($results as $key => $result): ?>
       <!-- Search result -->
       <?php $contentmodelclass = strtolower(implode(' ', preg_replace(array('/info:fedora/','#/islandora:#','#[/:]#'), '', $result['content_models']))); ?>
-      <tr class="islandora-solr-search-result clear-block <?php print $row_result % 2 == 0 ? 'odd' : 'even'; print ' ' . $contentmodelclass ?>">
+      <div class="row ubl-resultrow islandora-solr-search-result clear-block <?php print $row_result % 2 == 0 ? 'odd' : 'even'; print ' ' . $contentmodelclass ?>">
 
           <!-- Thumbnail -->
-          <td>
-
+          <figure class="col col-3">
               <?php print $result['thumbnail']; ?>
-
-          </td>
+          </figure>
           <!-- Metadata -->
-          <td class="solr-fields islandora-inline-metadata">
+          <div class="col col-9 solr-fields islandora-inline-metadata">
             <?php foreach($result['solr_doc'] as $key => $value): ?>
-              <dt class="solr-label <?php print $value['class']; ?>">
-                <?php print $value['label']; ?>
-              </dt>
               <dd class="solr-value <?php print $value['class']; ?>">
                 <?php print $value['value']; ?>
               </dd>
             <?php endforeach; ?>
-          </td>
+          </div>
 
-      </tr>
+      </div>
     <?php $row_result++; ?>
     <?php endforeach; ?>
-    </tbody>
-  </table>
+  </div>
 <?php endif; ?>

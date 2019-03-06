@@ -130,7 +130,6 @@ function scholarly_preprocess_page(&$vars, $hook) {
 }
 
 function scholarly_pager($variables) {
-  dsm($variables);
   $tags = $variables['tags'];
   $element = $variables['element'];
   $parameters = $variables['parameters'];

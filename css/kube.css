@@ -141,12 +141,6 @@ body {
   color: #313439;
   background-color: transparent; }
 
-a {
-  color: #3794de; }
-
-a:hover {
-  color: #f03c69; }
-
 h1.title, h1, h2, h3, h4, h5, h6 {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-weight: bold;
@@ -1261,8 +1255,6 @@ button:hover,
 .pager a {
   padding-left: 16px;
   padding-right: 16px;
-  border-radius: 64px;
-  border-color: rgba(0, 0, 0, 0.1); }
 
 .pager li {
   flex-basis: 50%; }

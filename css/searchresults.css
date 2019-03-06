@@ -1,0 +1,52 @@
+#islandora-solr-top {
+  display: block;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 4px 0 12px;
+}
+
+tr.islandora-solr-search-result {
+  background-color: inherit;
+  border-bottom: 0;
+}
+
+.islandora-solr-search-result dd {
+  margin-top: 0;
+}
+
+.islandora-solr-search-result .solr-label {
+  display: none;
+}
+
+.solr-fields dt, .solr-fields dd {
+  border-top: none;
+}
+
+.mods-titleinfo-title-custom-ms a {
+  margin-top: 0;
+  font-size: 18px;
+  line-height: 28px;
+  font-family: vestula,arial,sans-serif;
+  font-weight: 700;
+  color: #0d0d0e;
+  text-rendering: optimizeLegibility;
+  margin-bottom: 16px;
+}
+
+dd.mods-origininfo-encoding-w3cdtf-keydate-yes-dateissued-s {
+  margin-bottom: 8px;
+  font-family: Vestula,Arial,Sans-Serif;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
+  color: #999;
+}
+
+dd.mods-genre-authority-local-s {
+  font-family: Vestula,Arial,Sans-Serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #999;
+  font-weight: bold;
+}

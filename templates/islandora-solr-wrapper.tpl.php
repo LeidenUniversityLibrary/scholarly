@@ -65,11 +65,6 @@ $grid_view = url($path, array('query'=> $parameters_grid));
 </div>
 <div class="islandora-solr-content">
   <?php print $solr_pager; ?>
-  <ul class="dc-searchresults-tools">
-    <li><a class="dc-searchresults-btn-grid" title="show grid" href="<?php print $grid_view; ?>"><span>show grid</span></a></li>
-    <li><a class="dc-searchresults-btn-list" title="show list" href="<?php print $list_view; ?>"><span>show list</span></a></li>
-    <li><a class="dc-searchresults-btn-save" title="save search" href="#"><span>save search</span></a></li>
-  </ul>
   <?php print $results; ?>
   <?php print $solr_debug; ?>
   <?php print $solr_pager; ?>
