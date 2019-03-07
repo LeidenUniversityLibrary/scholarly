@@ -1,3 +1,10 @@
+.dc-searchresults-pager {
+  border-bottom: solid 1px #C9C9C9;
+  padding-bottom: 8px !important;
+  margin: 24px 0;
+  font-size: 14px;
+}
+
 .islandora-solr-content .item-list {
   margin: 24px 0;
   font-size: 14px;
