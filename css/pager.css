@@ -1,7 +1,14 @@
-.islandora-solr-content .item-list {
+.islandora-solr-content .item-list:first-of-type .dc-searchresults-pager {
+  border-bottom: solid 1px #C9C9C9;
+  padding-bottom: 8px !important;
   margin: 24px 0;
   font-size: 14px;
-  color: #012168; }
+}
+
+.islandora-solr-content .item-list {
+  font-size: 14px;
+  color: #012168;
+}
 .pager ul {
   display: flex;
   margin: 0; }

@@ -23,15 +23,17 @@ tr.islandora-solr-search-result {
   border-top: none;
 }
 
-.mods-titleinfo-title-custom-ms a {
+.mods-titleinfo-title-custom-ms {
   margin-top: 0;
   font-size: 18px;
   line-height: 28px;
   font-family: vestula,arial,sans-serif;
   font-weight: 700;
-  color: #0d0d0e;
+  color: #001158;
   text-rendering: optimizeLegibility;
   margin-bottom: 16px;
+  display: inline-block;
+  width: auto;
 }
 
 dd.mods-origininfo-encoding-w3cdtf-keydate-yes-dateissued-s {
@@ -41,6 +43,18 @@ dd.mods-origininfo-encoding-w3cdtf-keydate-yes-dateissued-s {
   font-size: 14px;
   line-height: 20px;
   color: #999;
+  display: inline-block;
+  width: auto;
+  padding-left: 0;
+  white-space: nowrap;
+}
+
+dd.mods-origininfo-encoding-w3cdtf-keydate-yes-dateissued-s::before {
+  content: "(";
+}
+
+dd.mods-origininfo-encoding-w3cdtf-keydate-yes-dateissued-s::after {
+  content: ")";
 }
 
 dd.mods-genre-authority-local-s {
@@ -50,3 +64,35 @@ dd.mods-genre-authority-local-s {
   color: #999;
   font-weight: bold;
 }
+
+dd.mods-name-personal-authorrole-namepart-custom-ms {
+  width: auto;
+}
+
+.islandora-solr-search-results > .row {
+  margin: 24px 0;
+  padding: 12px 0;
+  border-bottom: dotted 1px #C9C9C9;
+}
+
+.islandora-solr-search-results figure {
+  margin: 0 0 16px 0;
+}
+
+.mods-name-personal-authorrole-namepart-custom-ms {
+  color: #B27F2B;
+  margin-bottom: 8px;
+  font-family: Vestula,Arial,Sans-Serif;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
+  display: inline-block;
+  width: auto;
+}
+
+.islandora-solr-search-results .ubl-resultrow:last-of-type {
+  margin-bottom: 10px;
+}
+
+
+
