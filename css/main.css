@@ -613,11 +613,11 @@ input, textarea, select {
   }
 }
 
-.dc-menu-search {
+#cbp-hrmenu li.dc-menu-search {
   padding: 0;
   float: right;
-  display: block !important;
-  margin: 11px 16px !important;
+  display: block;
+  margin: 11px 16px;
 }
 
 .dc-menu-search form {
@@ -719,7 +719,7 @@ input, textarea, select {
 }
 
 span.plusminus {
-  border: 0 !important;
+  border: 0;
   display: inline-block;
   margin-right: 5px;
 }
@@ -774,7 +774,7 @@ span.plusminus a.plus::after {
 }
 
 .block-islandora-solr a.soft-limit {
-  border: 0 !important;
+  border: 0;
 }
 
 #dc-facet-keywords .count {
