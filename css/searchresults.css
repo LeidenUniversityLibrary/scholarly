@@ -94,5 +94,13 @@ dd.mods-name-personal-authorrole-namepart-custom-ms {
   margin-bottom: 10px;
 }
 
+.islandora-solr-facet-wrapper a.soft-limit::after {
+  content: "";
+  font-family: "Font Awesome 5 Pro";
+  font-size: 1em;
+  font-style: normal;
+  margin-left: .3em;
+  vertical-align: middle;
+}
 
 
