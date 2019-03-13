@@ -46,7 +46,6 @@ print render($block['content']);
 </div>
 <div class="dc-box">
 <?php if($display_metadata === 1): ?>
-  <H3><?php print t('Description'); ?></H3>
   <?php print $description; ?>
   <?php print $metadata; ?>
 </div>
