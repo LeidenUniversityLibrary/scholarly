@@ -366,3 +366,24 @@ function scholarly_preprocess_islandora_ead(&$variables) {
   $variables['description'] = islandora_retrieve_description_markup($islandora_object);
 }
 
+/**
+ * Implements hook_process_islandora_solr_search_navigation_block().
+ */
+function scholarly_process_islandora_solr_search_navigation_block(&$variables) {
+  if ($variables['prev_link']) {
+    $variables['prev_link'] = format_string('<a href="@link">< Prev</a>', array(
+      '@link' => $variables['prev_link'],
+      '@text' => $variables['prev_text'],
+    ));
+  }
+  $variables['return_link'] = format_string('<a href="@link">Results</a>', array(
+    '@link' => $variables['return_link'],
+    '@text' => $variables['return_text'],
+  ));
+  if ($variables['next_link']) {
+    $variables['next_link'] = format_string('<a href="@link">Next ></a>', array(
+      '@link' => $variables['next_link'],
+      '@text' => $variables['next_text'],
+    ));
+  }
+}
