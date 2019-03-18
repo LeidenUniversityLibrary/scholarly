@@ -800,6 +800,10 @@ span.plusminus a.plus::after {
   color: #888;
 }
 
+.dc-webexpositions:first-of-type {
+  clear: right;
+  width: 100%;
+}
 
 
 
