@@ -22,8 +22,8 @@ function uvl_replace_icon($link, $icon) {
 ?>
 
 
-  <div id="islandora-solr-search-prev-link"><?php print uvl_replace_icon($prev_link, 'arrow-left'); ?></div>
-  <div id="islandora-solr-search-return-link"><?php print uvl_replace_icon($return_link, 'arrow-up'); ?></div>
-  <div id="islandora-solr-search-next-link"><?php print uvl_replace_icon($next_link, 'arrow-right'); ?></div>
+<div id="islandora-solr-search-prev-link"><?php print uvl_replace_icon($prev_link, 'arrow-left'); ?></div>
+<div id="islandora-solr-search-return-link"><?php print uvl_replace_icon($return_link, 'arrow-up'); ?></div>
+<div id="islandora-solr-search-next-link"><?php print uvl_replace_icon($next_link, 'arrow-right'); ?></div>
 
 
