@@ -36,6 +36,10 @@
   font-size: 1em;
 }
 
+.dc-sidebar li.last {
+  border-bottom: none;
+}
+
 .dc-menu {
   width: 100%;
   margin-top: 2em;
@@ -52,5 +56,6 @@
     width: 350px
   }
 }
+
 
 
