@@ -103,4 +103,79 @@ dd.mods-name-personal-authorrole-namepart-custom-ms {
   vertical-align: middle;
 }
 
+.dc-searchresults-tools {
+  background-color: #eee;
+  list-style-type: none;
+  text-align: right;
+  font-size: 1.3em;
+  line-height: 1.25em;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.dc-searchresults-tools li {
+  margin: 0 !important;
+  display: inline-block;
+}
+
+.dc-searchresults-tools a {
+  display: block;
+  padding-top: 0.40625em;
+  padding-bottom: 0.40625em;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #666;
+}
+
+.dc-searchresults-tools a:hover {
+  color: #333;
+}
+
+.dc-searchresults-tools li span {
+  display: none;
+}
+
+.dc-searchresults-tools .dc-searchresults-btn-grid::after {
+  content: "";
+  font-family: "Font Awesome 5 Pro";
+  font-size: 1em;
+  margin-left: 0.3em;
+  vertical-align: middle;
+}
+
+.dc-searchresults-tools .dc-searchresults-btn-list::after {
+  content: "";
+  font-family: "Font Awesome 5 Pro";
+  font-size: 1em;
+  margin-left: 0.3em;
+  vertical-align: middle;
+}
+
+.solr-grid-caption a {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  color: #012168;
+  zoom: 1;
+  letter-spacing: normal;
+  word-spacing: normal;
+  vertical-align: top;
+  margin: 0;
+  font-size: 18px;
+  line-height: 28px;
+  font-family: vestula,arial,sans-serif;
+  font-weight: 700;
+  color: #001158;
+  text-rendering: optimizeLegibility;
+}
+
+.islandora-solr-search-result figure img,
+.solr-grid-thumb a img {
+  width: 123px;
+  height: 174px;
+  border: 1px solid #EEE;
+  border-radius: 5px;
+}
+
 
