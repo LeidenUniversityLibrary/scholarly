@@ -25,22 +25,24 @@
 
   /* Your code goes here. */
     $entity = $row->_field_data['nid']['entity'];
-    $image_uri = file_create_url($entity->field_image_block[LANGUAGE_NONE][0]['uri']);
-    $image_alt = file_create_url($entity->field_image_block[LANGUAGE_NONE][0]['alt']);
+    if (isset($entity->field_image_block[LANGUAGE_NONE][0]['uri'])) {
+      $image_uri = file_create_url($entity->field_image_block[LANGUAGE_NONE][0]['uri']);
+      $image_alt = file_create_url($entity->field_image_block[LANGUAGE_NONE][0]['alt']);
+    }
     ?>
 
     <div class="ubl-hero" style="background-image: url(<?php print(file_create_url($image_uri)) ?>)">
-
+        <?php if (isset($image_uri) && isset($image_alt)) : ?>
       <img src="<?php print(file_create_url($image_uri)) ?>" alt="<?php print $image_alt ?>" class="ubl-hero-image">
-
+       <?php endif; ?>
       <div class="ubl-centercontent">
 
         <div class="ubl-hero-lead">
           <h1><?php print $entity->title ?></h1>
           <p>
-            <a href="<?php print $entity->field_link[LANGUAGE_NONE][0]['url']; ?>">
-              <?php print $entity->field_body[LANGUAGE_NONE][0]['safe_value']; ?>
-              <i><?php print $entity->field_link[LANGUAGE_NONE][0]['title']; ?></i>
+            <a href="<?php isset($entity->field_link[LANGUAGE_NONE][0]['url']) ? print $entity->field_link[LANGUAGE_NONE][0]['url'] : print ''; ?>">
+              <?php print isset($entity->field_body[LANGUAGE_NONE][0]['safe_value']) ? $entity->field_body[LANGUAGE_NONE][0]['safe_value'] : print ''; ?>
+              <i><?php isset($entity->field_link[LANGUAGE_NONE][0]['title']) ? print $entity->field_link[LANGUAGE_NONE][0]['title'] : print ''; ?></i>
             </a>
           </p>
         </div>
