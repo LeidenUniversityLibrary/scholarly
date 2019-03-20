@@ -5,9 +5,25 @@
   height: 0;
 }
 
-.dc-sidebar .cbp-hrsub li:last-child {
+.dc-sidebar .menu .cbp-hrsub-inner li:last-of-type {
   border-bottom: none;
   padding-bottom: 0;
+}
+
+.dc-sidebar ul {
+  margin: 0;
+}
+
+.dc-sidebar ul li {
+  margin: 0;
+}
+
+.dc-sidebar ul.menu {
+
+}
+
+.dc-sidebar .cbp-hrsub-inner {
+  margin: 0;
 }
 
 .dc-sidebar .cbp-hrsub li a:before {
