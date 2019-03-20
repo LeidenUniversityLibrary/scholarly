@@ -31,7 +31,7 @@
     }
     ?>
 
-    <div class="ubl-hero" style="background-image: url(<?php print(file_create_url($image_uri)) ?>)">
+    <div class="ubl-hero" style="background-image: url(<?php isset($image_uri) ? print(file_create_url($image_uri)) : print('') ?>)">
         <?php if (isset($image_uri) && isset($image_alt)) : ?>
       <img src="<?php print(file_create_url($image_uri)) ?>" alt="<?php print $image_alt ?>" class="ubl-hero-image">
        <?php endif; ?>

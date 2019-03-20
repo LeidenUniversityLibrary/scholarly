@@ -19,27 +19,32 @@
  */
 ?>
 <?php if ($found):
-  if (!(empty($solr_fields) && variable_get('islandora_solr_metadata_omit_empty_values', FALSE))):?>
-    <section <?php $print ? print('class="dc-metadata islandora islandora-metadata"') : print('class="dc-metadata islandora islandora-metadata"');?>>
-      <!-- Metadata -->
-      <div class="fieldset-wrapper">
-          <?php $row_field = 0; ?>
-          <?php foreach($solr_fields as $solr_field => $value): ?>
-          <dl title="<?php print $value['display_label']; ?>">
-              <dt class="<?php print $row_field == 0 ? ' first' : ''; ?>"><?php print $value['display_label']; ?></dt>
-              <dd class="<?php print $row_field == 0 ? ' first' : ''; ?>"><?php print check_markup(implode("\n", $value['value']), 'islandora_solr_metadata_filtered_html'); ?></dd>
-              <?php $row_field++; ?>
-          </dl>
-          <?php endforeach; ?>
-      </div>
-    </section>
+if (!(empty($solr_fields) && variable_get('islandora_solr_metadata_omit_empty_values',
+    FALSE))): ?>
+      <section <?php $print ? print('class="dc-metadata islandora islandora-metadata"') : print('class="dc-metadata islandora islandora-metadata"'); ?>>
+          <!-- Metadata -->
+          <div class="fieldset-wrapper">
+            <?php $row_field = 0; ?>
+            <?php foreach ($solr_fields as $solr_field => $value): ?>
+                <dl title="<?php print $value['display_label']; ?>">
+                    <dt class="<?php print $row_field == 0 ? ' first' : ''; ?>"><?php print $value['display_label']; ?></dt>
+                    <dd class="<?php print $row_field == 0 ? ' first' : ''; ?>"><?php print check_markup(implode("\n",
+                        $value['value']),
+                        'islandora_solr_metadata_filtered_html'); ?></dd>
+                  <?php $row_field++; ?>
+                </dl>
+            <?php endforeach; ?>
+          </div>
+      </section>
   <?php endif; ?>
 <?php else: ?>
-  <section <?php $print ? print('class="dc-metadata islandora islandora-metadata"') : print('class="dc-metadata islandora islandora-metadata"');?>>
-    <legend><span class="fieldset-legend"><?php print t('Details'); ?></span></legend>
-    <?php //XXX: Hack in markup for message. ?>
-    <div class="messages--warning messages warning">
-      <?php print $not_found_message; ?>
-    </div>
-  </section>
+    <section <?php $print ? print('class="dc-metadata islandora islandora-metadata"') : print('class="dc-metadata islandora islandora-metadata"'); ?>>
+        <legend><span
+                    class="fieldset-legend"><?php print t('Details'); ?></span>
+        </legend>
+      <?php //XXX: Hack in markup for message. ?>
+        <div class="messages--warning messages warning">
+          <?php print $not_found_message; ?>
+        </div>
+    </section>
 <?php endif; ?>
