@@ -23,9 +23,8 @@
       </div>
     <?php endif; ?>
   </div>
-  <div class="islandora-compound-object-metadata">
-    <?php print $description; ?>
     <?php print $metadata; ?>
-  </div>
+  <?php print $description; ?>
+
 </div>
 
