@@ -82,3 +82,107 @@
   font-weight: initial;
 }
 
+.islandora-compound-object-content-wrapper {
+  float: left;
+  margin-right: 9%;
+}
+
+.islandora-compound-object-object .islandora-metadata dd,
+.islandora-compound-object-object .islandora-metadata dt {
+  border-top: none;
+}
+
+.islandora-compound-object-object .author {
+  margin: 12px 0;
+  font-family: Vestula,Arial,Sans-Serif;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 32px;
+  color: #999;
+}
+
+.islandora-compound-object-object .author .name {
+  color: #B27F2B;
+}
+
+h3 {
+  margin-top: 24px;
+}
+
+.islandora-compound-object-content img {
+  display: block;
+  -moz-box-shadow: rgba(0,0,0,0.4) 0 0 4px 0;
+  -webkit-box-shadow: rgba(0,0,0,0.4) 0 0 4px 0;
+  box-shadow: rgba(0,0,0,0.4) 0 0 4px 0;
+  margin: 12px 0;
+}
+
+.islandora-compound-object-object dd,
+.islandora-compound-object-object dt {
+  margin-left: 0;
+}
+
+.islandora-compound-object-object .genre {
+  font-family: Vestula,Arial,Sans-Serif;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 16px;
+}
+
+.islandora-compound-object-object .abstract {
+  clear: both;
+  padding: 24px 0 0 0;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.islandora-compound-object-object .topics {
+  margin: 24px 0;
+  font-family: Vestula,Arial,Sans-Serif;
+}
+
+.topics .tag {
+  background: #7F88AB;
+  color: #fff;
+  font-weight: bold;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-right: 3px;
+  font-size: 13px;
+  line-height: 18px;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.islandora-compound-object-object dl dt {
+  margin: 8px 0 0 0;
+  font-size: 12px;
+  line-height: 20px;
+  color: #B27F2B;
+  font-weight: 700;
+  text-transform: lowercase;
+}
+
+.islandora-compound-object-object dl {
+  margin: 0 0;
+  padding: 4px 0;
+  border-top: dotted 1px #C9C9C9;
+  font-family: Vestula,Arial,Sans-Serif;
+}
+
+.islandora-compound-object-object dl dd {
+  padding: 0;
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  line-height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.islandora-compound-object-object p {
+  margin: 0;
+  padding: 0;
+}
+

@@ -19,32 +19,39 @@
  */
 ?>
 <?php if ($found):
-if (!(empty($solr_fields) && variable_get('islandora_solr_metadata_omit_empty_values',
-    FALSE))): ?>
+  if (!(empty($solr_fields) && variable_get('islandora_solr_metadata_omit_empty_values',
+      FALSE))): ?>
       <section <?php $print ? print('class="dc-metadata islandora islandora-metadata"') : print('class="dc-metadata islandora islandora-metadata"'); ?>>
           <!-- Metadata -->
           <div class="fieldset-wrapper">
-              <?php
-                $selection = [
-                  'mods_name_personal_AuthorRole_namePart_custom_ms' => $solr_fields['mods_name_personal_AuthorRole_namePart_custom_ms']['value'],
-                  'mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s' => $solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value'],
-                  'mods_titleInfo_title_ms' => $solr_fields['mods_titleInfo_title_ms']['value'],
-                  'mods_genre_ms' => $solr_fields['mods_genre_ms']['value'],
-                  'mods_abstract_ms' => $solr_fields['mods_abstract_ms']['value'],
-                  'mods_subject_topic_ms' => $solr_fields['mods_subject_topic_ms']['value'],
-                ];
-              ?>
+            <?php
+            $selection = [
+              'mods_name_personal_AuthorRole_namePart_custom_ms' => $solr_fields['mods_name_personal_AuthorRole_namePart_custom_ms']['value'],
+              'mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s' => $solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value'],
+              'mods_titleInfo_title_ms' => $solr_fields['mods_titleInfo_title_ms']['value'],
+              'mods_genre_ms' => $solr_fields['mods_genre_ms']['value'],
+              'mods_abstract_ms' => $solr_fields['mods_abstract_ms']['value'],
+              'mods_subject_topic_ms' => $solr_fields['mods_subject_topic_ms']['value'],
+            ];
+            ?>
               <dd class="first author">
-                <?php print check_plain(implode("\n", $selection['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s'])) ?>
-                (<?php print check_plain(implode("\n",
-                  $selection['mods_name_personal_AuthorRole_namePart_custom_ms'])); ?>)
+                <span class="name">
+                  <?php print check_plain(implode("\n",
+                    $selection['mods_name_personal_AuthorRole_namePart_custom_ms'])) ?>
+                </span>
+                  <span class="year">(<?php print substr(check_plain(implode("\n",
+                      $selection['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s'])),
+                      0, 4); ?>)
+                  </span>
               </dd>
               <dd class="title">
-                <?php print check_plain(implode("\n",
-                  $selection['mods_titleInfo_title_ms'])) ?>
+                  <h3>
+                    <?php print check_plain(implode("\n",
+                      $selection['mods_titleInfo_title_ms'])) ?>
+                  </h3>
               </dd>
               <dd class="genre">
-                <?php print check_plain(implode("\n",
+                <?php print check_plain(implode(" | ",
                   $selection['mods_genre_ms'])) ?>
               </dd>
               <dd class="abstract">
@@ -52,23 +59,26 @@ if (!(empty($solr_fields) && variable_get('islandora_solr_metadata_omit_empty_va
                   $selection['mods_abstract_ms'])) ?>
               </dd>
               <dd class="topics">
-                <?php print check_plain(implode(" | ",
-                  $selection['mods_subject_topic_ms'])) ?>
+                <?php
+                  foreach ($selection['mods_subject_topic_ms'] as $tag) {
+                      print '<div class="tag">' . check_plain($tag) . '</div>';
+                  }
+                ?>
               </dd>
             <?php
             // Loop though all other fields and print values.
             ?>
             <?php $row_field = 0; ?>
             <?php foreach ($solr_fields as $solr_field => $value): ?>
-            <?php if (!array_key_exists($solr_field, $selection)): ?>
-                <dl title="<?php print $value['display_label']; ?>">
-                    <dt class="<?php print $row_field == 0 ? ' first' : ''; ?>"><?php print $value['display_label']; ?></dt>
-                    <dd class="<?php print $row_field == 0 ? ' first' : ''; ?>"><?php print check_markup(implode("\n",
-                        $value['value']),
-                        'islandora_solr_metadata_filtered_html'); ?></dd>
-                  <?php $row_field++; ?>
-                </dl>
-                <?php endif; ?>
+              <?php if (!array_key_exists($solr_field, $selection)): ?>
+                    <dl title="<?php print $value['display_label']; ?>">
+                        <dt class="<?php print $row_field == 0 ? ' first' : ''; ?>"><?php print $value['display_label']; ?></dt>
+                        <dd class="<?php print $row_field == 0 ? ' first' : ''; ?>"><?php print check_markup(implode("\n",
+                            $value['value']),
+                            'islandora_solr_metadata_filtered_html'); ?></dd>
+                      <?php $row_field++; ?>
+                    </dl>
+              <?php endif; ?>
             <?php endforeach; ?>
           </div>
       </section>
