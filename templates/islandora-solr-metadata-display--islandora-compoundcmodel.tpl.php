@@ -26,14 +26,15 @@
           <div class="fieldset-wrapper">
             <?php
             $selection = [
-              'mods_name_personal_AuthorRole_namePart_custom_ms' => $solr_fields['mods_name_personal_AuthorRole_namePart_custom_ms']['value'],
-              'mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s' => $solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value'],
-              'mods_titleInfo_title_ms' => $solr_fields['mods_titleInfo_title_ms']['value'],
-              'mods_genre_ms' => $solr_fields['mods_genre_ms']['value'],
-              'mods_abstract_ms' => $solr_fields['mods_abstract_ms']['value'],
-              'mods_subject_topic_ms' => $solr_fields['mods_subject_topic_ms']['value'],
+              'mods_name_personal_AuthorRole_namePart_custom_ms' => !empty($solr_fields['mods_name_personal_AuthorRole_namePart_custom_ms']['value']) ? $solr_fields['mods_name_personal_AuthorRole_namePart_custom_ms']['value'] : NULL,
+              'mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s' => !empty($solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value']) ? $solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value'] : NULL,
+              'mods_titleInfo_title_ms' => !empty($solr_fields['mods_titleInfo_title_ms']['value']) ? $solr_fields['mods_titleInfo_title_ms']['value'] : NULL,
+              'mods_genre_ms' => !empty($solr_fields['mods_genre_ms']['value']) ? $solr_fields['mods_genre_ms']['value'] : NULL,
+              'mods_abstract_ms' => !empty($solr_fields['mods_abstract_ms']['value']) ? $solr_fields['mods_abstract_ms']['value'] : NULL,
+              'mods_subject_topic_ms' => !empty($solr_fields['mods_subject_topic_ms']['value']) ? $solr_fields['mods_subject_topic_ms']['value'] : NULL,
             ];
             ?>
+              <?php if (!empty($selection['mods_name_personal_AuthorRole_namePart_custom_ms']) && !empty($selection['mods_name_personal_AuthorRole_namePart_custom_ms'])): ?>
               <dd class="first author">
                 <span class="name">
                   <?php print check_plain(implode("\n",
@@ -44,27 +45,36 @@
                       0, 4); ?>)
                   </span>
               </dd>
+              <?php endif; ?>
+              <?php if (!empty($selection['mods_titleInfo_title_ms'])): ?>
               <dd class="title">
                   <h3>
                     <?php print check_plain(implode("\n",
                       $selection['mods_titleInfo_title_ms'])) ?>
                   </h3>
               </dd>
+              <?php endif; ?>
+              <?php if (!empty($selection['mods_genre_ms'])): ?>
               <dd class="genre">
                 <?php print check_plain(implode(" | ",
                   $selection['mods_genre_ms'])) ?>
               </dd>
+                <?php endif; ?>
+                <?php if (!empty($selection['mods_abstract_ms'])): ?>
               <dd class="abstract">
                 <?php print check_plain(implode("\n",
                   $selection['mods_abstract_ms'])) ?>
               </dd>
-              <dd class="topics">
+            <?php endif; ?>
+            <?php if (!empty($selection['mods_subject_topic_ms'])): ?>
+                <dd class="topics">
                 <?php
                   foreach ($selection['mods_subject_topic_ms'] as $tag) {
                       print '<div class="tag">' . check_plain($tag) . '</div>';
                   }
                 ?>
               </dd>
+            <?php endif; ?>
             <?php
             // Loop though all other fields and print values.
             ?>
