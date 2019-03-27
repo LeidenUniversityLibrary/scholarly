@@ -691,6 +691,7 @@ input, textarea, select {
   border-radius: 0 3px 3px 0;
   background-color: #999 !important;
   color: white !important;
+  vertical-align: top;
 }
 .dc-menu-search form button .fa {
   line-height: 1rem;
@@ -716,9 +717,6 @@ input, textarea, select {
   display: none;
 }
 
-.dc-menu-search .form-type-textfield {
-  vertical-align: bottom;
-}
 
 .block-islandora-solr * {
   font-family: Vestula,Arial,Sans-Serif;

@@ -178,4 +178,12 @@ dd.mods-name-personal-authorrole-namepart-custom-ms {
   border-radius: 5px;
 }
 
+.islandora-solr-search-result .mods-abstract-ms span {
+  color: #666;
+}
+
+.islandora-solr-search-result .mods-abstract-ms a {
+  font-weight: bold;
+  color: #666;
+}
 
