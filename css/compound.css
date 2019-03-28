@@ -47,7 +47,7 @@
   margin-top: 0;
 }
 
-#block-views-58fda38e2111cb9c7dbea57150bbc9b3 a::after {
+#block-views-58fda38e2111cb9c7dbea57150bbc9b3 a::before {
   content: "";
   font-family: "Font Awesome 5 Pro";
   font-size: 1em;
@@ -55,6 +55,7 @@
   margin-left: .3em;
   vertical-align: baseline;
   font-weight: 300;
+  margin-right: 8px;
 }
 
 @media (min-width: 48em) {

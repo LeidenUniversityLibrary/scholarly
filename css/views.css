@@ -214,7 +214,7 @@
 }
 
 .view-children-of-compound-view .views-field-PID .field-content a::before {
-  content: "";
+  content: "\f019";
   font-family: "Font Awesome 5 Pro";
   font-size: 1em;
   font-style: normal;
@@ -223,6 +223,10 @@
   color: #333;
   font-size: 12px;
   font-weight: 900;
+}
+
+.view-children-of-compound-view .views-field-PID .field-content a:hover {
+  opacity: 0.8;
 }
 
 
