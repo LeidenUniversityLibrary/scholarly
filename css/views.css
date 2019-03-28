@@ -1,4 +1,4 @@
-/* Default views settings */
+/* Common views settings */
 
 #block-views-1a404823daef2367d076c5b9545b5a2a h3.dc-section-header,
 #block-views-ddfcce4b55d4cf61c68458ff893eb2ed h3.dc-section-header,
@@ -19,7 +19,9 @@
   width: calc(50% - 1%);
   float: left;
 }
-.dc-webexpositions #block-views-1a404823daef2367d076c5b9545b5a2a,
+
+.dc-webexpositions #block-views-ddfcce4b55d4cf61c68458ff893eb2ed,
+.front #block-views-1a404823daef2367d076c5b9545b5a2a,
 .dc-webexpositions #block-views-e873d6908e4ed0c25d42fbb1ac7dd61f {
   margin-left: 0;
 }

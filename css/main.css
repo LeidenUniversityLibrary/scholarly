@@ -821,6 +821,19 @@ span.plusminus a.plus::after {
   line-height: 20px;
 }
 
+.see-all-items {
+  font-weight: bold;
+  font-family: Vestula, Arial, Sans-Serif;
+}
+
+.see-all-items::before {
+  content: "";
+  font-family: "Font Awesome 5 Pro";
+  font-size: 1em;
+  font-style: normal;
+  margin-right: .3em;
+  vertical-align: middle;
+}
 
 
 
