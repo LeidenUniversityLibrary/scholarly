@@ -251,7 +251,7 @@ body {
     padding-bottom: 120px;
     padding-left: 0;
     padding-right: 0;
-    width: 25%;
+    /*width: 25%;*/
   }
   .dc-sidebar.dc-sidebar-left {
     float: left;
