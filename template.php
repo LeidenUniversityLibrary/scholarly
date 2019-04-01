@@ -127,6 +127,12 @@ function scholarly_preprocess_node(&$vars) {
 function scholarly_preprocess_page(&$vars, $hook) {
   // Unsets the ugly drupal message.
   unset($vars['page']['content']['system_main']['default_message']);
+
+  // Unset Persistant URL block when at collection page.
+  if (isset($vars['page']['content']['system_main']['islandora_basic_collection_display']) &&
+  isset($vars['page']['sidebar_second']['views_58fda38e2111cb9c7dbea57150bbc9b3'])) {
+    unset($vars['page']['sidebar_second']['views_58fda38e2111cb9c7dbea57150bbc9b3']);
+  }
 }
 
 function scholarly_pager($variables) {
@@ -262,24 +268,27 @@ function scholarly_preprocess_item_list(&$vars) {
 
 function scholarly_preprocess_islandora_objects_subset(&$variables){
 
-  // Only act on a collection page
+  // Only act on a collection page.
   if (strpos(arg(2), 'collection:') !== false) {
     $pid = arg(2);
-    // Check query if a content type is filled for this pid
+    // Check query if a content type is filled for this pid.
     $query = new EntityFieldQuery();
     $query->entityCondition('entity_type', 'node')
       ->entityCondition('bundle', 'collection')
       ->propertyCondition('status', NODE_PUBLISHED)
-      ->fieldCondition('field_pid', 'value', $pid, '=')
+      ->fieldCondition('field_collection_id', 'value', $pid, '=')
       ->range(0, 1);
     $result = $query->execute();
 
-    // Check if there is a node
+    // Check if there is a node.
     if (isset($result['node'])) {
+      $node = reset($result['node']);
       // If we have a node disable this display.
-      unset($variables['content']);
-      unset($variables['pager']);
-      unset($variables['display_links']);
+      $variables['sidebar-first'] = [];
+      $variables['pager'] = [];
+      $variables['display_links']= [];
+      $variables['content'] = node_view(node_load($node->nid));
+      $variables['content']['#objects'] = [];
     }
   }
 
