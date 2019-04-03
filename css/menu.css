@@ -60,12 +60,12 @@
   border-bottom: none;
 }
 
-.dc-menu {
+#page .dc-menu {
   width: 100%;
   margin-top: 2em;
-  border-bottom: 1px solid #fff !important;
-  background-color: #7f88ab !important;
-  font-family: "Vestula" !important;
+  border-bottom: 1px solid #fff;
+  background-color: #7f88ab;
+  font-family: "Vestula";
 }
 
 @media all and (min-width: 48em) {

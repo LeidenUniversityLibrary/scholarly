@@ -113,8 +113,8 @@ dd.mods-name-personal-authorrole-namepart-custom-ms {
   padding-left: 0;
 }
 
-.dc-searchresults-tools li {
-  margin: 0 !important;
+#block-system-main .islandora-solr-content .dc-searchresults-tools li {
+  margin: 0;
   display: inline-block;
 }
 
