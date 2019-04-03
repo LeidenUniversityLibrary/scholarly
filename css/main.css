@@ -251,13 +251,13 @@ body {
     padding-bottom: 120px;
     padding-left: 0;
     padding-right: 0;
-    /*width: 25%;*/
   }
   .dc-sidebar.dc-sidebar-left {
     float: left;
   }
   .dc-sidebar.dc-sidebar-right {
     float: right;
+    width: 25%;
   }
 }
 .dc-sidebar h3 {
