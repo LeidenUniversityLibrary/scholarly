@@ -31,7 +31,11 @@
   position: absolute;
   left: 16px;
   content: '\2022';
-  font-size: 1em;
+  font-size: 1.5em;
+}
+
+.not-front .dc-sidebar .cbp-hrsub li a:before {
+  left: 2px;
 }
 
 .dc-sidebar .expanded:before {
