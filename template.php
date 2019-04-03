@@ -133,6 +133,32 @@ function scholarly_preprocess_page(&$vars, $hook) {
   isset($vars['page']['sidebar_second']['views_58fda38e2111cb9c7dbea57150bbc9b3'])) {
     unset($vars['page']['sidebar_second']['views_58fda38e2111cb9c7dbea57150bbc9b3']);
   }
+
+  // Remove page elements when there is a node found representing a Islandora collection.
+  if (isset($vars['page']['content']['system_main']['islandora_basic_collection_display'])) {
+    if (strpos(arg(2), 'collection:') !== false) {
+      $pid = !empty(arg(2)) ? arg(2) : FALSE;
+      // Check query if a collection content type is filled for this pid.
+      $result = _scholarly_query_collection_nodes($pid);
+      // Check if there is a corresponding node.
+      if (isset($result['node'])) {
+        // unset various elements in page vars.
+        if(isset($vars['page']['sidebar_first']['islandora_solr_basic_facets'])) {
+          unset($vars['page']['sidebar_first']['islandora_solr_basic_facets']);
+        }
+//        if(isset($vars['page']['sidebar_first']['uvl_blocks_uvl_blocks_parent_collections'])) {
+//          unset($vars['page']['sidebar_first']['uvl_blocks_uvl_blocks_parent_collections']);
+//        }
+//        if(isset($vars['page']['content']['system_main']['islandora_basic_collection_display'])) {
+//          unset($vars['page']['content']['system_main']['islandora_basic_collection_display']);
+//        }
+
+
+
+
+      }
+    }
+  }
 }
 
 function scholarly_pager($variables) {
@@ -267,19 +293,11 @@ function scholarly_preprocess_item_list(&$vars) {
 }
 
 function scholarly_preprocess_islandora_objects_subset(&$variables){
-
   // Only act on a collection page.
-  if (strpos(arg(2), 'collection:') !== false) {
-    $pid = arg(2);
-    // Check query if a content type is filled for this pid.
-    $query = new EntityFieldQuery();
-    $query->entityCondition('entity_type', 'node')
-      ->entityCondition('bundle', 'collection')
-      ->propertyCondition('status', NODE_PUBLISHED)
-      ->fieldCondition('field_collection_id', 'value', $pid, '=')
-      ->range(0, 1);
-    $result = $query->execute();
-
+  if (strpos(arg(2), 'collection') !== false) {
+    $pid = !empty(arg(2)) ? arg(2) : false;
+    // Check query if a collection content type is filled for this pid.
+    $result = _scholarly_query_collection_nodes($pid);
     // Check if there is a node.
     if (isset($result['node'])) {
       $node = reset($result['node']);
@@ -291,7 +309,6 @@ function scholarly_preprocess_islandora_objects_subset(&$variables){
       $variables['content']['#objects'] = [];
     }
   }
-
 }
 
 function scholarly_preprocess_islandora_book_page(&$variables) {
@@ -308,7 +325,7 @@ function scholarly_preprocess_islandora_book_page(&$variables) {
   $variables['metadata'] = islandora_retrieve_metadata_markup($islandora_object);
   $variables['description'] = islandora_retrieve_description_markup($islandora_object);
 
-  $params = array();
+  $params = [];
 
   if (isset($islandora_object['JP2']) && islandora_datastream_access(ISLANDORA_VIEW_OBJECTS, $islandora_object['JP2'])) {
     // Get token to allow access to XACML protected datastreams.
@@ -395,4 +412,36 @@ function scholarly_process_islandora_solr_search_navigation_block(&$variables) {
       '@text' => $variables['next_text'],
     ));
   }
+}
+
+/**
+ * Helper function to query (sub)collection nodes by Islandora object identifier.
+ *
+ * @param string $pid
+ *   Islandora object identifier.
+ *
+ * @return array
+ *   Node data.
+ */
+function _scholarly_query_collection_nodes($pid) {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'collection')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->fieldCondition('field_collection_id', 'value', $pid, '=')
+    ->range(0, 1);
+  $result = $query->execute();
+
+  // Query subcollection content types when there are no collection nodes found.
+  if (empty($result)) {
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'subcollection')
+      ->propertyCondition('status', NODE_PUBLISHED)
+      ->fieldCondition('field_collection_identifier', 'value', $pid, '=')
+      ->range(0, 1);
+    $result = $query->execute();
+  }
+
+  return $result;
 }
