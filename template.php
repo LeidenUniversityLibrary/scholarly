@@ -109,7 +109,7 @@ function scholarly_preprocess_node(&$vars) {
   $node = $vars['node'];
 
   if ($vars['view_mode'] == 'teaser') {
-    // Adding hook suggestions
+    // Adding hook suggestions.
     switch ($node->type) {
       case 'more_item':
         $vars['theme_hook_suggestions'][] = 'node__more__teaser';
@@ -146,16 +146,6 @@ function scholarly_preprocess_page(&$vars, $hook) {
         if(isset($vars['page']['sidebar_first']['islandora_solr_basic_facets'])) {
           unset($vars['page']['sidebar_first']['islandora_solr_basic_facets']);
         }
-//        if(isset($vars['page']['sidebar_first']['uvl_blocks_uvl_blocks_parent_collections'])) {
-//          unset($vars['page']['sidebar_first']['uvl_blocks_uvl_blocks_parent_collections']);
-//        }
-//        if(isset($vars['page']['content']['system_main']['islandora_basic_collection_display'])) {
-//          unset($vars['page']['content']['system_main']['islandora_basic_collection_display']);
-//        }
-
-
-
-
       }
     }
   }
@@ -407,8 +397,14 @@ function scholarly_process_islandora_solr_search_navigation_block(&$variables) {
     '@text' => $variables['return_text'],
   ));
   if ($variables['next_link']) {
+    // Extract link from <a> tag.
+    $a = new SimpleXMLElement($variables['next_link']);
+    // Fallback when no hyperlink address found.
+    if (empty($a['href'])) {
+      $a['href'] = $variables['next_link'];
+    }
     $variables['next_link'] = format_string('<a href="@link">Next ></a>', array(
-      '@link' => $variables['next_link'],
+      '@link' => $a['href'],
       '@text' => $variables['next_text'],
     ));
   }
