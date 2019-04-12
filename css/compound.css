@@ -187,3 +187,7 @@ h3 {
   padding: 0;
 }
 
+#islandora-solr-search-prev-link a.disabled {
+  display: none;
+}
+
