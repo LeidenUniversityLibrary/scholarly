@@ -125,7 +125,7 @@ function scholarly_preprocess_node(&$vars) {
  * Implements hook_preprocess_page().
  */
 function scholarly_preprocess_page(&$vars, $hook) {
-  // Unsets the ugly drupal message.
+  // Unset Drupal message.
   unset($vars['page']['content']['system_main']['default_message']);
 
   // Unset Persistant URL block when at collection page.
@@ -372,7 +372,6 @@ function scholarly_preprocess_islandora_ead(&$variables) {
   $islandora_object = $variables['object'];
   $variables['islandora_object'] = $islandora_object;
 
-  $repository = $islandora_object->repository;
   module_load_include('inc', 'islandora', 'includes/datastream');
   module_load_include('inc', 'islandora', 'includes/utilities');
   module_load_include('inc', 'islandora', 'includes/metadata');
