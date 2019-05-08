@@ -21,6 +21,10 @@
   display: none;
 }
 
+#block-islandora-solr-search-navigation .content A.disabled {
+  color: #b3b3b3;
+}
+
 .islandora-pdf-metadata dt,
 .islandora-pdf-metadata dd {
   text-align: left;

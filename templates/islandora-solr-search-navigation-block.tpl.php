@@ -10,10 +10,10 @@
  *
  */
 
-function uvl_replace_icon($link, $icon) {
-  $iconhtml = '><span>$1</span><i class="fa fa-' . $icon . '" aria-hidden="true"></i><';
+function uvl_replace_icon($link, $icon, $text) {
+  $iconhtml = '><span>' . $text . '</span><i class="fa fa-' . $icon . '" aria-hidden="true"></i><';
   if ($link) {
-    return preg_replace('/>(.+)</', $iconhtml, $link);
+    return preg_replace('/>.+</', $iconhtml, $link);
   }
   else {
     return "<A href=\"#\" class=\"disabled\"$iconhtml/A>";
@@ -22,8 +22,8 @@ function uvl_replace_icon($link, $icon) {
 ?>
 
 
-<div id="islandora-solr-search-prev-link"><?php print uvl_replace_icon($prev_link, 'arrow-left'); ?></div>
-<div id="islandora-solr-search-return-link"><?php print uvl_replace_icon($return_link, 'arrow-up'); ?></div>
-<div id="islandora-solr-search-next-link"><?php print uvl_replace_icon($next_link, 'arrow-right'); ?></div>
+<div id="islandora-solr-search-prev-link"><?php print uvl_replace_icon($prev_link, 'arrow-left', '< Prev'); ?></div>
+<div id="islandora-solr-search-return-link"><?php print uvl_replace_icon($return_link, 'arrow-up', 'Results'); ?></div>
+<div id="islandora-solr-search-next-link"><?php print uvl_replace_icon($next_link, 'arrow-right', 'Next >'); ?></div>
 
 
