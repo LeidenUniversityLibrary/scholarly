@@ -267,6 +267,11 @@ body {
   background-color: #7F88AB;
   color: white;
 }
+.dc-sidebar .islandora-solr-facet-wrapper h3 {
+  background-color: transparent;
+  color: #0d0d0e;
+  padding: 0;
+}
 .dc-sidebar ul {
   list-style-type: none;
   padding: 0;
