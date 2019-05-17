@@ -194,11 +194,8 @@
   margin-left: -20px;
 }
 
-.view-children-of-compound-view .views-field-PID {
+.view-children-of-compound-view .field-content a.download {
   float: right;
-}
-
-.view-children-of-compound-view .views-field-PID .field-content a {
   background: #e0e1e1;
   line-height: 18px;
   padding: 0 10px;
@@ -215,7 +212,7 @@
   font-size: 0;
 }
 
-.view-children-of-compound-view .views-field-PID .field-content a::before {
+.view-children-of-compound-view .field-content a.download::before {
   content: "\f019";
   font-family: "Font Awesome 5 Pro";
   font-size: 1em;
