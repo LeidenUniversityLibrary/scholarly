@@ -174,8 +174,10 @@ dd.mods-name-personal-authorrole-namepart-custom-ms {
 .solr-grid-thumb a img {
   width: 123px;
   height: 174px;
-  border: 1px solid #EEE;
-  border-radius: 5px;
+  display: block;
+  -moz-box-shadow: rgba(0,0,0,0.4) 0 0 4px 0;
+  -webkit-box-shadow: rgba(0,0,0,0.4) 0 0 4px 0;
+  box-shadow: rgba(0,0,0,0.4) 0 0 4px 0;
 }
 
 .islandora-solr-search-result .mods-abstract-ms span {
