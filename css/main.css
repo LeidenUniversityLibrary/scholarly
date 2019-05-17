@@ -843,6 +843,57 @@ span.plusminus a.plus::after {
   vertical-align: middle;
 }
 
+.ubl-embargo {
+    font-family: Vestula, Arial, Sans-Serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #999;
+    font-weight: bold
+}
+
+.ubl-embargo:before {
+    font-family: "Font Awesome 5 Pro";
+    margin-right: 3px;
+    font-weight: normal
+}
+
+.ubl-embargo.ubl-embargo-localonly:before {
+    color: #35beb1;
+    content: '\f14c';
+    font-weight: 900
+}
+
+.ubl-embargo.ubl-embargo-full-eternal:before {
+    color: #f03c69;
+    content: '\f111';
+    font-weight: 900
+}
+
+.ubl-embargo.ubl-embargo-full-temporary:before {
+    color: #f03c69;
+    content: '\f017';
+    font-weight: 900
+}
+
+.ubl-embargo.ubl-embargo-partial-eternal:before {
+    color: #f03c69;
+    content: '\f042';
+    font-weight: 900
+}
+
+.ubl-embargo.ubl-embargo-partial-temporary:before {
+    color: #f7ba45;
+    content: '\f017';
+    font-weight: 900
+}
+
+.ubl-embargo.ubl-embargo-none:before {
+    color: #35beb1;
+    content: '\f058';
+    font-weight: 900
+}
+
+
 
 
 
