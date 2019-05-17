@@ -272,6 +272,9 @@ body {
   color: #0d0d0e;
   padding: 0;
 }
+.dc-sidebar .islandora-solr-query-wrap .item-list H3 {
+  display: none;
+}
 .dc-sidebar ul {
   list-style-type: none;
   padding: 0;
