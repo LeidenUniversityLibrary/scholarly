@@ -27,9 +27,7 @@
           <!-- Metadata -->
           <div class="col col-9 solr-fields islandora-inline-metadata">
             <?php foreach($result['solr_doc'] as $key => $value): ?>
-              <dd class="solr-value <?php print $value['class']; ?>">
-                <?php print trim($value['value'], " \t\n\r"); ?>
-              </dd>
+              <dd class="solr-value <?php print $value['class']; ?>"><?php print trim($value['value'], " \t\n\r"); ?></dd>
             <?php endforeach; ?>
           </div>
 
