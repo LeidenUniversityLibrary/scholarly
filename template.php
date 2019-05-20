@@ -382,6 +382,78 @@ function scholarly_preprocess_islandora_ead(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Adds embargo specific values to results array so embargo information can be
+ * displayed in the solr search results.
+ */
+function scholarly_preprocess_islandora_solr(&$variables) {
+  if (!isset($variables['results'])) {
+    return;
+  }
+  $fieldsep = variable_get('islandora_solr_search_field_value_separator', ', ');
+  $derive_embargodate = function($solrdoc, $fieldsep) {
+    if (isset($solrdoc['related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt'])) {
+      $dates = $solrdoc['related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt'];
+      $dates = explode($fieldsep, trim($dates['value'], " \t\n\r"));
+      rsort($dates);
+      $date = preg_replace('/^(\d\d\d\d-\d\d-\d\d).*$/', '$1', $dates[0]);
+      $today = date("Y-m-d");
+      if (strcmp($date, $today) > 0) {
+        return $date;
+      }
+    }
+    return FALSE;
+  };
+  foreach ($variables['results'] as $key => $result) {
+    if (isset($result['solr_doc']['related_mods_accessCondition_type_ms']['value'])) {
+      $accessCondType = $result['solr_doc']['related_mods_accessCondition_type_ms']['value'];
+      $displayvalue = 'under embargo';
+      $displayclass = 'ubl-embargo-full-eternal';
+      $values = explode($fieldsep, trim($accessCondType, " \t\n\r"));
+      $values = array_unique($values);
+      if (count($values) == 1) {
+          switch ($values[0]) {
+          case 'info:eu-repo/semantics/openAccess':
+            $displayvalue = 'no restrictions';
+            $displayclass = 'ubl-embargo-none';
+            break;
+          case 'info:eu-repo/semantics/closedAccess':
+            $displayvalue = 'under embargo';
+            $displayclass = 'ubl-embargo-full-eternal';
+            break;
+          case 'info:eu-repo/semantics/embargoedAccess':
+            $embargodate = $derive_embargodate($result['solr_doc'], $fieldsep);
+            if ($embargodate === FALSE) {
+              $displayvalue = 'no retrictions';
+              $displayclass = 'ubl-embargo-none';
+            }
+            else {
+              $displayvalue = 'under embargo';
+              $displayclass = 'ubl-embargo-full-temporary';
+              $displayvalue .= ' until ' . $embargodate;
+            }
+            break;
+        }
+      }
+      else {
+         $displayvalue = 'some chapters under embargo';
+         $displayclass = 'ubl-embargo-partial-eternal';
+         $embargodate = $derive_embargodate($result['solr_doc'], $fieldsep);
+         if (in_array('info:eu-repo/semantics/closedAccess', $values) === FALSE && $embargodate === FALSE) {
+           $displayvalue = 'no retrictions';
+           $displayclass = 'ubl-embargo-none';
+         }
+         elseif (in_array('info:eu-repo/semantics/closedAccess', $values) === FALSE && $embargodate !== FALSE) {
+           $displayvalue .= ' until ' . $embargodate;
+         }
+      }
+      $variables['results'][$key]['embargo'] = array('value' => $displayvalue, 'class' => $displayclass);
+    }
+  }
+}
+
+/**
  * Helper function to query (sub)collection nodes by Islandora object identifier.
  *
  * @param string $pid
