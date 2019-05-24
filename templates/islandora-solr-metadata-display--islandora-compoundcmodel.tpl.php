@@ -30,6 +30,7 @@
               'mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s' => !empty($solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value']) ? $solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value'] : NULL,
               'mods_titleInfo_title_custom_ms' => !empty($solr_fields['mods_titleInfo_title_custom_ms']['value']) ? $solr_fields['mods_titleInfo_title_custom_ms']['value'] : NULL,
               'mods_genre_authority_local_s' => !empty($solr_fields['mods_genre_authority_local_s']['value']) ? $solr_fields['mods_genre_authority_local_s']['value'] : NULL,
+              'mods_name_personal_affiliation_department_ms' => !empty($solr_fields['mods_name_personal_affiliation_department_ms']['value']) ? $solr_fields['mods_name_personal_affiliation_department_ms']['value'] : NULL,
               'mods_abstract_ms' => !empty($solr_fields['mods_abstract_ms']['value']) ? $solr_fields['mods_abstract_ms']['value'] : NULL,
               'mods_subject_topic_ms' => !empty($solr_fields['mods_subject_topic_ms']['value']) ? $solr_fields['mods_subject_topic_ms']['value'] : NULL,
             ];
@@ -52,7 +53,12 @@
               <?php endif; ?>
               <?php if (!empty($selection['mods_genre_authority_local_s'])): ?>
               <dd class="genre">
-                <?php print check_markup($selection['mods_genre_authority_local_s'][0], 'islandora_solr_metadata_filtered_html') ?>
+                <?php $text = check_markup($selection['mods_genre_authority_local_s'][0], 'islandora_solr_metadata_filtered_html');
+                      $text .= ' | ';
+                      $text .= check_markup($selection['mods_name_personal_affiliation_department_ms'][0], 'islandora_solr_metadata_filtered_html');
+                      $text = preg_replace('!</?p[^>]*?>!i', '', $text); 
+                      print $text;
+                ?>
               </dd>
                 <?php endif; ?>
                 <?php if (!empty($selection['mods_abstract_ms'])): ?>
