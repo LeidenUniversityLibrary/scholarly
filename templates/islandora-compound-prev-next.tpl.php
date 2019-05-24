@@ -50,7 +50,7 @@
          <?php print $sibling['title']; ?>
        </li> 
      <?php endif; ?>
-     <li class="ubl-file-remarks <?php print $sibling['embargo_class']; ?>">
+     <li class="ubl-file-remarks ubl-embargo <?php print $sibling['embargo_class']; ?>">
        <?php print $sibling['embargo_text']; ?> 
      </li>
      <?php if (isset($sibling['doi'], $sibling['doi_url'])): ?>
