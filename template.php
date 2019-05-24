@@ -462,6 +462,7 @@ function scholarly_preprocess_islandora_compound_prev_next(&$variables) {
     $fieldsep = variable_get('islandora_solr_search_field_value_separator', ', ');
     foreach ($qp->islandoraSolrResult['response']['objects'] as $solrobj) {
       $pid = $solrobj['PID'];
+      unset($datastream);
       if (isset($solrobj['solr_doc']['mods_accessCondition_info:eu-repo/semantics/embargoedAccess_displayLabel_ms'])) {
         $embargodate = _scholarly_derive_embargodate($solrobj['solr_doc'], $fieldsep);
         if ($embargodate === FALSE) {
@@ -495,7 +496,8 @@ function scholarly_preprocess_islandora_compound_prev_next(&$variables) {
             $filetype = 'pdf';
             foreach (array('PDFA', 'PDF', 'OBJ') as $preferred_datastream) {
               if (isset($object[$preferred_datastream])) {
-                if (islandora_datastream_access(ISLANDORA_VIEW_OBJECTS, $object[$preferred_datastream])) {
+                $hasaccess = islandora_datastream_access(ISLANDORA_VIEW_OBJECTS, $object[$preferred_datastream]);
+                if ($hasaccess) {
                   $datastream = $preferred_datastream;
                   $filename = preg_replace('/^\s*(.*?)(?:\.pdf)?\s*$/i', "$1.$filetype", $object->label);
                 }
