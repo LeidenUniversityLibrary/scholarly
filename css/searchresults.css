@@ -189,3 +189,20 @@ dd.mods-name-personal-authorrole-namepart-custom-ms {
   color: #666;
 }
 
+.toggle-wrapper.truncation-toggle-processed BR {
+  display: none;
+}
+
+A.toggler.truncation-toggle-processed {
+  color: #012168;
+  white-space: nowrap;
+  font-weight: normal;
+}
+
+A.toggler.truncation-toggle-processed::before {
+  content: '[';
+}
+
+A.toggler.truncation-toggle-processed::after {
+  content: ']';
+}
