@@ -1,16 +1,12 @@
 /* Menu elements */
 
-.dc-centercontent .menu > li > .cbp-hrsub {
-  display: none;
-  height: 0;
-}
-
 .dc-sidebar .menu .cbp-hrsub-inner li:last-of-type {
   border-bottom: none;
   padding-bottom: 0;
 }
 
 .dc-sidebar ul {
+  list-style-type: none;
   margin: 0;
 }
 
@@ -19,19 +15,15 @@
 }
 
 .dc-sidebar ul.menu {
+  padding: 0.5em 0 0.8em 0;
+}
 
+.dc-sidebar ul.menu > li:last-of-type {
+  border: none;
 }
 
 .dc-sidebar .cbp-hrsub-inner {
   margin: 0;
-}
-
-.dc-sidebar .cbp-hrsub li a:before {
-  opacity: 0.6;
-  position: absolute;
-  left: 0px;
-  content: '\2022';
-  font-size: 1.5em;
 }
 
 .not-front .dc-sidebar .cbp-hrsub li a:before {
@@ -39,20 +31,18 @@
 }
 
 .dc-sidebar .expanded:before {
+  font-family: 'FontAwesome';
   opacity: 0.6;
-  position: absolute;
-  right: 0;
   float: right;
-  content: '▾';
+  content: '\f0d7';
   font-size: 1em;
 }
 
 .dc-sidebar .expanded.toggled:before {
+  font-family: 'FontAwesome';
   opacity: 0.6;
-  position: absolute;
-  right: 0;
   float: right;
-  content: '▴';
+  content: '\f0d8';
   font-size: 1em;
 }
 
