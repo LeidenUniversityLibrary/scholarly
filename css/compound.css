@@ -117,6 +117,11 @@
   border: 0;
 }
 
+#block-islandora-compound-object-compound-navigation .islandora-compound > LI > UL > LI.ubl-file-view {
+  width: calc(100% - 35px);
+  word-break: break-word;
+}
+
 #block-islandora-compound-object-compound-navigation .islandora-compound .ubl-embargo-none {
   display: none;
 }
