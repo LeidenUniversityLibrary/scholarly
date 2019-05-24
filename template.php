@@ -19,6 +19,9 @@ function scholarly_menu_link($variables) {
     }
 
     $options = array('attributes' => $element['#attributes']);
+    if (isset($element['#localized_options']['query'])) {
+      $options['query'] = $element['#localized_options']['query'];
+    }
     if (url_is_external($element['#href'])) {
       $options['attributes']['target'] = '_blank';
     }
