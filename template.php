@@ -391,6 +391,7 @@ function scholarly_preprocess_islandora_ead(&$variables) {
  * displayed in the solr search results.
  */
 function scholarly_preprocess_islandora_solr(&$variables) {
+  drupal_set_title(t("Search results"));
   if (!isset($variables['results'])) {
     return;
   }
