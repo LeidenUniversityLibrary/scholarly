@@ -37,7 +37,7 @@ tr.islandora-solr-search-result {
 }
 
 dd.mods-origininfo-encoding-w3cdtf-keydate-yes-dateissued-s {
-  margin-bottom: 8px;
+  margin-bottom: 0;
   font-family: Vestula,Arial,Sans-Serif;
   font-weight: bold;
   font-size: 14px;
