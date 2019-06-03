@@ -122,10 +122,6 @@
   word-break: break-word;
 }
 
-#block-islandora-compound-object-compound-navigation .islandora-compound .ubl-embargo-none {
-  display: none;
-}
-
 #block-islandora-compound-object-compound-navigation .islandora-compound .ubl-file-embargo .ubl-file-view {
   color: #999;
 }
