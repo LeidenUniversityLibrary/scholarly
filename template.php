@@ -569,16 +569,5 @@ function _scholarly_query_collection_nodes($pid) {
     ->range(0, 1);
   $result = $query->execute();
 
-  // Query subcollection content types when there are no collection nodes found.
-  if (empty($result)) {
-    $query = new EntityFieldQuery();
-    $query->entityCondition('entity_type', 'node')
-      ->entityCondition('bundle', 'subcollection')
-      ->propertyCondition('status', NODE_PUBLISHED)
-      ->fieldCondition('field_collection_identifier', 'value', $pid, '=')
-      ->range(0, 1);
-    $result = $query->execute();
-  }
-
   return $result;
 }
