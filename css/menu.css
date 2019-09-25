@@ -30,7 +30,7 @@
   left: 2px;
 }
 
-.dc-sidebar .expanded:before {
+.dc-sidebar A.expanded:before {
   font-family: 'FontAwesome';
   opacity: 0.6;
   float: right;
@@ -65,5 +65,20 @@
   }
 }
 
-
-
+.parentcollection H3,
+.parentcollection UL.menu LI:not(.active-trail) {
+  display: none;
+}
+.parentcollection UL.menu LI.active {
+  display: none;
+}
+.parentcollection UL.menu LI.active-trail A::before {
+  content: "Back to ";
+}
+.parentcollection UL.menu LI::before,
+.parentcollection UL.menu LI:not(.active-trail) A::before {
+  display: none;
+}
+.parentcollection UL.menu {
+  padding: 0;
+}

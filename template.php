@@ -61,7 +61,7 @@ function scholarly_menu_link($variables) {
       '<li class="dc-menu-search">' .
         _scholarly_render_block_content('islandora_collection_search', 'islandora_collection_search') . '</li>';
     }
-    return '<li classes="'.$classes.'">' . $output . $sub_menu . '</li>';
+    return '<li class="'.$classes.'">' . $output . $sub_menu . '</li>';
 }
 
 /**
