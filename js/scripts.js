@@ -9,6 +9,21 @@
           $(this).toggleClass('toggled');
         });
 
+        var shouldCollapse = false;
+        $('a.cbp-placeholder').each(function () {
+          if (!shouldCollapse) {
+            shouldCollapse = ($(this).next().find('LI.leaf').size() > 5);
+          }
+        });
+        if (shouldCollapse) {
+          $('a.cbp-placeholder').each(function () {
+            shouldCollapse = ($(this).next().find('LI.leaf.active').size() === 0);
+            if (shouldCollapse) {
+              $(this).next().css('height', 'auto').slideToggle(0.0);
+              $(this).toggleClass('toggled');
+            }
+          });
+        }
 
         $(".cbp-hrsub").each(function () {
 
