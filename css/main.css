@@ -254,6 +254,7 @@ body {
   }
   .dc-sidebar.dc-sidebar-left {
     float: left;
+    max-width: 25%;
   }
   .dc-sidebar.dc-sidebar-right {
     float: right;
