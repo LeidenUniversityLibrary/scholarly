@@ -518,9 +518,9 @@ function scholarly_preprocess_islandora_compound_prev_next(&$variables) {
             } 
           }
           if (isset($datastream)) {
-            $baseurl = 'islandora/object/' . $object->id . '/datastream/';
-            $variables['siblings_detailed'][$pid]['download_url'] = "$baseurl$datastream/download/$filename";
-            $variables['siblings_detailed'][$pid]['view_url'] = "$baseurl$datastream/view";
+            $baseurl = 'access/' . $object->id . '/';
+            $variables['siblings_detailed'][$pid]['download_url'] = "{$baseurl}download";
+            $variables['siblings_detailed'][$pid]['view_url'] = "{$baseurl}view";
             $variables['siblings_detailed'][$pid]['view_class'] = "ubl-file ubl-file-$filetype";
           }
           else {
