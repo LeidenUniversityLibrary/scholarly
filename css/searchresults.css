@@ -37,7 +37,7 @@ tr.islandora-solr-search-result {
 }
 
 dd.mods-origininfo-encoding-w3cdtf-keydate-yes-dateissued-s {
-  margin-bottom: 8px;
+  margin-bottom: 0;
   font-family: Vestula,Arial,Sans-Serif;
   font-weight: bold;
   font-size: 14px;
@@ -172,10 +172,12 @@ dd.mods-name-personal-authorrole-namepart-custom-ms {
 
 .islandora-solr-search-result figure img,
 .solr-grid-thumb a img {
-  width: 123px;
-  height: 174px;
-  border: 1px solid #EEE;
-  border-radius: 5px;
+  max-width: 123px;
+  max-height: 174px;
+  display: block;
+  -moz-box-shadow: rgba(0,0,0,0.4) 0 0 4px 0;
+  -webkit-box-shadow: rgba(0,0,0,0.4) 0 0 4px 0;
+  box-shadow: rgba(0,0,0,0.4) 0 0 4px 0;
 }
 
 .islandora-solr-search-result .mods-abstract-ms span {
@@ -187,3 +189,20 @@ dd.mods-name-personal-authorrole-namepart-custom-ms {
   color: #666;
 }
 
+.toggle-wrapper.truncation-toggle-processed BR {
+  display: none;
+}
+
+A.toggler.truncation-toggle-processed {
+  color: #012168;
+  white-space: nowrap;
+  font-weight: normal;
+}
+
+A.toggler.truncation-toggle-processed::before {
+  content: '[';
+}
+
+A.toggler.truncation-toggle-processed::after {
+  content: ']';
+}

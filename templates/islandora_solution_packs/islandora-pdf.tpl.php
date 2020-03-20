@@ -17,6 +17,7 @@
       </div>
     <?php endif; ?>
   </div>
+  <?php if (FALSE): ?>
   <?php
   //Render the compound navigation block
   $block = module_invoke('islandora_compound_object', 'block_view', 'compound_navigation');
@@ -55,5 +56,6 @@
       <?php print $metadata; ?>
     </div>
   </div>
+  <?php endif; ?>
 </div>
 </section>

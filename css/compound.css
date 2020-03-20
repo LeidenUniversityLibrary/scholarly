@@ -21,6 +21,10 @@
   display: none;
 }
 
+#block-islandora-solr-search-navigation .content A.disabled {
+  color: #b3b3b3;
+}
+
 .islandora-pdf-metadata dt,
 .islandora-pdf-metadata dd {
   text-align: left;
@@ -59,7 +63,8 @@
 }
 
 @media (min-width: 48em) {
-  .dc-sidebar #block-views-children-of-compound-view-block {
+  .dc-sidebar #block-islandora-compound-object-compound-navigation,
+  .dc-sidebar #block-islandora-in-collections-block-islandora-in-collections {
     margin: 16px 24px;
     width: calc(100% - 5px);
     margin-right: auto;
@@ -70,17 +75,131 @@
   }
 }
 
-.dc-sidebar #block-views-children-of-compound-view-block h3 {
+.dc-sidebar #block-islandora-compound-object-compound-navigation h3,
+.dc-sidebar #block-islandora-in-collections-block-islandora-in-collections h3 {
   margin-bottom: 0;
 }
 
-.dc-sidebar #block-views-children-of-compound-view-block .content {
+.dc-sidebar #block-islandora-compound-object-compound-navigation .content,
+.dc-sidebar #block-islandora-in-collections-block-islandora-in-collections .content {
   background: #fff;
   padding: 12px;
 }
 
-#block-views-children-of-compound-view-block .views-field views-field-mods-titleInfo-title-custom-ms {
-  font-weight: initial;
+#block-islandora-compound-object-compound-navigation .ubl-file-pdf::before {
+    content: "\f1c1";
+}
+
+#block-islandora-compound-object-compound-navigation .ubl-file-generic::before {
+    content: "\f15b";
+}
+
+#block-islandora-compound-object-compound-navigation .ubl-file::before {
+    font-family: "Font Awesome 5 Pro";
+    font-size: 1em;
+    font-style: normal;
+    margin-right: .3em;
+    vertical-align: top;
+    color: #f03c69;
+    float: left
+}
+
+#block-islandora-compound-object-compound-navigation .islandora-compound > LI:last-child {
+  border: 0;
+}
+
+#block-islandora-compound-object-compound-navigation .islandora-compound > LI > UL {
+  padding-left: 1.25rem;
+}
+
+#block-islandora-compound-object-compound-navigation .islandora-compound > LI > UL > LI {
+  padding: 0 0 0.5rem 0;
+  border: 0;
+}
+
+#block-islandora-compound-object-compound-navigation .islandora-compound > LI > UL > LI.ubl-file-view {
+  width: calc(100% - 35px);
+  word-break: break-word;
+}
+
+#block-islandora-compound-object-compound-navigation .islandora-compound .ubl-file-embargo .ubl-file-view {
+  color: #999;
+}
+
+#block-islandora-compound-object-compound-navigation .islandora-compound .ubl-file-remarks {
+  font-size: 0.9em;
+  line-height: 1em;
+  color: #999;
+  font-style: normal;
+}
+
+#block-islandora-compound-object-compound-navigation .islandora-compound .ubl-file-doi {
+  font-size: 0.9em;
+}
+
+#block-islandora-compound-object-compound-navigation .islandora-compound .ubl-file-doi .ubl-external-link::after {
+  content: "\f14c";
+  font-family: "Font Awesome 5 Pro";
+  font-size: 0.9em;
+  font-style: normal;
+  margin-left: .3em;
+  vertical-align: baseline;
+  font-weight: 300;
+}
+
+#block-islandora-compound-object-compound-navigation .ubl-file-download {
+  margin: 0;
+  color: transparent;
+  overflow: hidden;
+  font-size: 0;
+  float: right;
+}
+
+#block-islandora-compound-object-compound-navigation .ubl-file-download A {
+  float: right;
+  background: #e0e1e1;
+  line-height: 18px;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-weight: 500;
+  text-decoration: none;
+  vertical-align: middle;
+  margin: 0;
+  display: block;
+  color: transparent;
+  overflow: hidden;
+  font-size: 0;
+}
+
+#block-islandora-compound-object-compound-navigation .ubl-file-download A::before {
+  content: "\f019";
+  font-family: "Font Awesome 5 Pro";
+  font-size: 1em;
+  font-style: normal;
+  margin-right: 0;
+  vertical-align: top;
+  color: #333;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.islandora-compound-prev-next {
+  margin: 0;
+}
+
+.dc-sidebar #block-islandora-in-collections-block-islandora-in-collections p {
+  margin-top: 0;
+}
+
+.dc-sidebar #block-islandora-in-collections-block-islandora-in-collections ul {
+  list-style-type: disc;
+  padding: 0 0 1rem 1.5rem;
+}
+
+.dc-sidebar #block-islandora-in-collections-block-islandora-in-collections ul li {
+  border: 0;
+  padding: 0;
 }
 
 .islandora-compound-object-content-wrapper {
@@ -100,10 +219,18 @@
   font-size: 20px;
   line-height: 32px;
   color: #999;
+  display: flex;
 }
 
 .islandora-compound-object-object .author .name {
   color: #B27F2B;
+}
+
+.islandora-compound-object-object .author .year {
+  padding-left: 0.3rem;
+}
+.islandora-compound-object-object .author .year P {
+  display: inline-block;
 }
 
 h3 {
@@ -144,7 +271,6 @@ h3 {
 
 .topics .tag {
   background: #7F88AB;
-  color: #fff;
   font-weight: bold;
   margin-top: 2px;
   margin-bottom: 2px;
@@ -157,13 +283,16 @@ h3 {
   display: inline-block;
 }
 
+.topics .tag A {
+  color: #fff;
+}
+
 .islandora-compound-object-object dl dt {
   margin: 8px 0 0 0;
   font-size: 12px;
   line-height: 20px;
   color: #B27F2B;
   font-weight: 700;
-  text-transform: lowercase;
 }
 
 .islandora-compound-object-object dl {

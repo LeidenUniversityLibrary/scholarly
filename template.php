@@ -19,6 +19,9 @@ function scholarly_menu_link($variables) {
     }
 
     $options = array('attributes' => $element['#attributes']);
+    if (isset($element['#localized_options']['query'])) {
+      $options['query'] = $element['#localized_options']['query'];
+    }
     if (url_is_external($element['#href'])) {
       $options['attributes']['target'] = '_blank';
     }
@@ -58,7 +61,7 @@ function scholarly_menu_link($variables) {
       '<li class="dc-menu-search">' .
         _scholarly_render_block_content('islandora_collection_search', 'islandora_collection_search') . '</li>';
     }
-    return '<li classes="'.$classes.'">' . $output . $sub_menu . '</li>';
+    return '<li class="'.$classes.'">' . $output . $sub_menu . '</li>';
 }
 
 /**
@@ -382,31 +385,170 @@ function scholarly_preprocess_islandora_ead(&$variables) {
 }
 
 /**
- * Implements hook_process_islandora_solr_search_navigation_block().
+ * Implements hook_preprocess_HOOK().
+ *
+ * Adds embargo specific values to results array so embargo information can be
+ * displayed in the solr search results.
  */
-function scholarly_process_islandora_solr_search_navigation_block(&$variables) {
-  if ($variables['prev_link']) {
-    $variables['prev_link'] = format_string('<a href="@link">< Prev</a>', array(
-      '@link' => $variables['prev_link'],
-      '@text' => $variables['prev_text'],
-    ));
+function scholarly_preprocess_islandora_solr(&$variables) {
+  drupal_set_title(t("Search results"));
+  if (!isset($variables['results'])) {
+    return;
   }
-  $variables['return_link'] = format_string('<a href="@link">Results</a>', array(
-    '@link' => $variables['return_link'],
-    '@text' => $variables['return_text'],
-  ));
-  if ($variables['next_link']) {
-    // Extract link from <a> tag.
-    $a = new SimpleXMLElement($variables['next_link']);
-    // Fallback when no hyperlink address found.
-    if (empty($a['href'])) {
-      $a['href'] = $variables['next_link'];
+  $fieldsep = variable_get('islandora_solr_search_field_value_separator', ', ');
+  foreach ($variables['results'] as $key => $result) {
+    if (isset($result['solr_doc']['related_mods_accessCondition_type_ms']['value'])) {
+      $accessCondType = $result['solr_doc']['related_mods_accessCondition_type_ms']['value'];
+      $displayvalue = 'closed access';
+      $displayclass = 'ubl-embargo-full-eternal';
+      $values = explode($fieldsep, trim($accessCondType, " \t\n\r"));
+      $values = array_unique($values);
+      if (count($values) == 1) {
+          switch ($values[0]) {
+          case 'info:eu-repo/semantics/openAccess':
+            $displayvalue = 'open access';
+            $displayclass = 'ubl-embargo-none';
+            break;
+          case 'info:eu-repo/semantics/closedAccess':
+            $displayvalue = 'closed access';
+            $displayclass = 'ubl-embargo-full-eternal';
+            break;
+          case 'info:eu-repo/semantics/embargoedAccess':
+            $embargodate = _scholarly_derive_embargodate($result['solr_doc'], $fieldsep);
+            if ($embargodate === FALSE) {
+              $displayvalue = 'open access';
+              $displayclass = 'ubl-embargo-none';
+            }
+            else {
+              $displayvalue = 'under embargo';
+              $displayclass = 'ubl-embargo-full-temporary';
+              $displayvalue .= ' until ' . $embargodate;
+            }
+            break;
+        }
+      }
+      else {
+         $displayvalue = 'some documents under embargo';
+         $displayclass = 'ubl-embargo-partial-eternal';
+         $embargodate = _scholarly_derive_embargodate($result['solr_doc'], $fieldsep);
+         if (in_array('info:eu-repo/semantics/closedAccess', $values) === FALSE && $embargodate === FALSE) {
+           $displayvalue = 'open access';
+           $displayclass = 'ubl-embargo-none';
+         }
+         elseif (in_array('info:eu-repo/semantics/closedAccess', $values) === FALSE && $embargodate !== FALSE) {
+           $displayvalue .= ' until ' . $embargodate;
+         }
+      }
+      $variables['results'][$key]['embargo'] = array('value' => $displayvalue, 'class' => $displayclass);
     }
-    $variables['next_link'] = format_string('<a href="@link">Next ></a>', array(
-      '@link' => $a['href'],
-      '@text' => $variables['next_text'],
-    ));
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Adds embargo specific values to results array so embargo information can be
+ * displayed in the solr search results.
+ */
+function scholarly_preprocess_islandora_compound_prev_next(&$variables) {
+  module_load_include('inc', 'islandora_solr', 'includes/utilities');
+  $qp = new IslandoraSolrQueryProcessor();
+
+  $parent_id = islandora_solr_lesser_escape($variables['parent_pid']);
+  $relcomp = variable_get('islandora_solr_compound_relationship_field', 'RELS_EXT_isConstituentOf_uri_ms');
+  $query = "$relcomp:($parent_id) OR $relcomp:(" . islandora_solr_lesser_escape('info:fedora/') . "$parent_id)";
+  $qp->buildQuery("*:*");
+  $qp->solrStart = 0;
+  $qp->solrParams['facet'] = 'false';
+  $qp->solrParams['fq'] = array($query);
+  $qp->executeQuery(FALSE);
+  if (isset($qp->islandoraSolrResult['response']['numFound']) && $qp->islandoraSolrResult['response']['numFound'] > 0) {
+    $fieldsep = variable_get('islandora_solr_search_field_value_separator', ', ');
+    foreach ($qp->islandoraSolrResult['response']['objects'] as $solrobj) {
+      $pid = $solrobj['PID'];
+      unset($datastream);
+      if (isset($solrobj['solr_doc']['mods_accessCondition_info:eu-repo/semantics/embargoedAccess_displayLabel_ms'])) {
+        $embargodate = _scholarly_derive_embargodate($solrobj['solr_doc'], $fieldsep);
+        if ($embargodate === FALSE) {
+          $variables['siblings_detailed'][$pid]['embargo_text'] = 'open access'; 
+          $variables['siblings_detailed'][$pid]['embargo_class'] = 'ubl-embargo-none'; 
+        }
+        else {
+          $variables['siblings_detailed'][$pid]['embargo_text'] = 'under embargo until ' . $embargodate; 
+          $variables['siblings_detailed'][$pid]['embargo_class'] = 'ubl-embargo-full-temporary'; 
+        }
+      }
+      elseif (isset($solrobj['solr_doc']['mods_accessCondition_info:eu-repo/semantics/openAccess_displayLabel_ms'])) {
+        $variables['siblings_detailed'][$pid]['embargo_text'] = 'open access'; 
+        $variables['siblings_detailed'][$pid]['embargo_class'] = 'ubl-embargo-none'; 
+      }
+      else {
+        $variables['siblings_detailed'][$pid]['embargo_text'] = 'closed access'; 
+        $variables['siblings_detailed'][$pid]['embargo_class'] = 'ubl-embargo-full-eternal'; 
+      }
+      if (isset($solrobj['solr_doc']['mods_identifier_doi_s'])) {
+        $doi = $solrobj['solr_doc']['mods_identifier_doi_s']; 
+        $variables['siblings_detailed'][$pid]['doi'] = $doi; 
+        $doi_url = preg_replace('!^\s*(?:doi:|https?://(?:dx\.)?doi.org/)(.*)$!', "https://doi.org/$1", $doi);
+        $variables['siblings_detailed'][$pid]['doi_url'] = $doi_url; 
+      }
+      if (isset($solrobj['solr_doc']['RELS_EXT_hasModel_uri_ms'])) {
+        $object = islandora_object_load($pid);
+        if ($object) {
+          $cmodels = $solrobj['solr_doc']['RELS_EXT_hasModel_uri_ms'];
+          if (in_array('info:fedora/islandora:sp_pdf', $cmodels)) {
+            $filetype = 'pdf';
+            foreach (array('PDFA', 'PDF', 'OBJ') as $preferred_datastream) {
+              if (isset($object[$preferred_datastream])) {
+                $hasaccess = islandora_datastream_access(ISLANDORA_VIEW_OBJECTS, $object[$preferred_datastream]);
+                if ($hasaccess) {
+                  $datastream = $preferred_datastream;
+                  $filename = preg_replace('/^\s*(.*?)(?:\.pdf)?\s*$/i', "$1.$filetype", $object->label);
+                }
+                break;
+              }
+            }
+          }
+          else {
+            $filetype = 'generic';
+            if (islandora_datastream_access(ISLANDORA_VIEW_OBJECTS, $object['OBJ'])) {
+              $datastream = 'OBJ';
+              // TODO: include extension?
+              $filename = trim($object->label);
+            } 
+          }
+          if (isset($datastream)) {
+            $baseurl = 'access/' . $object->id . '/';
+            $variables['siblings_detailed'][$pid]['download_url'] = "{$baseurl}download";
+            $variables['siblings_detailed'][$pid]['view_url'] = "{$baseurl}view";
+            $variables['siblings_detailed'][$pid]['view_class'] = "ubl-file ubl-file-$filetype";
+          }
+          else {
+            $variables['siblings_detailed'][$pid]['view_class'] = "ubl-file ubl-file-$filetype ubl-file-embargo";
+          }
+        }
+      }
+    }
+  }
+}
+
+function _scholarly_derive_embargodate($solrdoc, $fieldsep) {
+  if (isset($solrdoc['related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt'])) {
+    $dates = $solrdoc['related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt']['value'];
+  }
+  elseif (isset($solrdoc['mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt'])) {
+    $dates = $solrdoc['mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt'][0];
+  }
+  if (isset($dates)) {
+    $dates = explode($fieldsep, trim($dates, " \t\n\r"));
+    rsort($dates);
+    $date = preg_replace('/^(\d\d\d\d-\d\d-\d\d).*$/', '$1', $dates[0]);
+    $today = date("Y-m-d");
+    if (strcmp($date, $today) > 0) {
+      return $date;
+    }
+  }
+  return FALSE;
 }
 
 /**
@@ -426,17 +568,6 @@ function _scholarly_query_collection_nodes($pid) {
     ->fieldCondition('field_collection_id', 'value', $pid, '=')
     ->range(0, 1);
   $result = $query->execute();
-
-  // Query subcollection content types when there are no collection nodes found.
-  if (empty($result)) {
-    $query = new EntityFieldQuery();
-    $query->entityCondition('entity_type', 'node')
-      ->entityCondition('bundle', 'subcollection')
-      ->propertyCondition('status', NODE_PUBLISHED)
-      ->fieldCondition('field_collection_identifier', 'value', $pid, '=')
-      ->range(0, 1);
-    $result = $query->execute();
-  }
 
   return $result;
 }

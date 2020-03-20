@@ -1,16 +1,12 @@
 /* Menu elements */
 
-.dc-centercontent .menu > li > .cbp-hrsub {
-  display: none;
-  height: 0;
-}
-
 .dc-sidebar .menu .cbp-hrsub-inner li:last-of-type {
   border-bottom: none;
   padding-bottom: 0;
 }
 
 .dc-sidebar ul {
+  list-style-type: none;
   margin: 0;
 }
 
@@ -19,41 +15,35 @@
 }
 
 .dc-sidebar ul.menu {
+  padding: 0.5em 0 0.8em 0;
+}
 
+.dc-sidebar ul.menu > li:last-of-type {
+  border: none;
 }
 
 .dc-sidebar .cbp-hrsub-inner {
   margin: 0;
 }
 
-.dc-sidebar .cbp-hrsub li a:before {
-  opacity: 0.6;
-  position: absolute;
-  left: 0px;
-  content: '\2022';
-  font-size: 1.5em;
-}
-
 .not-front .dc-sidebar .cbp-hrsub li a:before {
   left: 2px;
 }
 
-.dc-sidebar .expanded:before {
+.dc-sidebar A.expanded:before {
+  font-family: 'FontAwesome';
   opacity: 0.6;
-  position: absolute;
-  right: 0;
   float: right;
-  content: '▾';
+  content: '\f0d7';
   font-size: 1em;
 }
 
 .dc-sidebar .expanded.toggled:before {
+  font-family: 'FontAwesome';
   opacity: 0.6;
-  position: absolute;
-  right: 0;
   float: right;
-  content: '▴';
-  font-size: 1em;
+  content: '\f0da';
+  font-size: 1.1em;
 }
 
 .dc-sidebar li.last {
@@ -62,9 +52,7 @@
 
 #page .dc-menu {
   width: 100%;
-  margin-top: 2em;
   border-bottom: 1px solid #fff;
-  background-color: #7f88ab;
   font-family: "Vestula";
 }
 
@@ -77,5 +65,20 @@
   }
 }
 
-
-
+.parentcollection H3,
+.parentcollection UL.menu LI:not(.active-trail) {
+  display: none;
+}
+.parentcollection UL.menu LI.active {
+  display: none;
+}
+.parentcollection UL.menu LI.active-trail A::before {
+  content: "Back to ";
+}
+.parentcollection UL.menu LI::before,
+.parentcollection UL.menu LI:not(.active-trail) A::before {
+  display: none;
+}
+.parentcollection UL.menu {
+  padding: 0;
+}

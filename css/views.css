@@ -4,6 +4,7 @@
 #block-views-ddfcce4b55d4cf61c68458ff893eb2ed h3.dc-section-header,
 #block-views-74c71cefccaed90d9d3a38bda62be30c h3.dc-section-header,
 #block-views-bc11114f20007d1ee8e83a69f092e14d h3.dc-section-header,
+#block-uvl-blocks-uvl-blocks-featured-search h3.dc-section-header,
 .front .dc-webexpositions h3.dc-section-header {
   border-top: solid 4px #5c6791;
   padding-top: 8px;
@@ -27,8 +28,14 @@
 }
 
 .views-field-mods-name-AuthorRole-namePart-custom-ms,
-.views-field-mods-name-personal-AuthorRole-namePart-custom-ms {
+.views-field-mods-name-personal-AuthorRole-namePart-custom-ms,
+.views-field-mods-name-AuthorRole-namePart-custom-ms A,
+.views-field-mods-name-personal-AuthorRole-namePart-custom-ms A {
   color: #B27F2B;
+}
+
+.views-field-mods-originInfo-encoding-w3cdtf-keyDate-yes-dateIssued-s A {
+  color: #999;
 }
 
 .view-featured-items .views-row,
@@ -194,11 +201,8 @@
   margin-left: -20px;
 }
 
-.view-children-of-compound-view .views-field-PID {
+.view-children-of-compound-view .field-content a.download {
   float: right;
-}
-
-.view-children-of-compound-view .views-field-PID .field-content a {
   background: #e0e1e1;
   line-height: 18px;
   padding: 0 10px;
@@ -215,7 +219,7 @@
   font-size: 0;
 }
 
-.view-children-of-compound-view .views-field-PID .field-content a::before {
+.view-children-of-compound-view .field-content a.download::before {
   content: "\f019";
   font-family: "Font Awesome 5 Pro";
   font-size: 1em;
