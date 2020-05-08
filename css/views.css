@@ -16,8 +16,10 @@
 #block-views-74c71cefccaed90d9d3a38bda62be30c,
 #block-views-ed7567d16380c74d018041dcc1a29321,
 #block-views-e873d6908e4ed0c25d42fbb1ac7dd61f {
+/* LvS: removed because of removed second view
   margin-left: 2%;
   width: calc(50% - 1%);
+*/
   float: left;
 }
 
