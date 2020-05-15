@@ -402,7 +402,7 @@ function scholarly_preprocess_islandora_solr(&$variables) {
       $displayvalue = 'closed access';
       $displayclass = 'ubl-embargo-full-eternal';
       $values = explode($fieldsep, trim($accessCondType, " \t\n\r"));
-      $values = array_unique($values);
+      $values = array_filter(array_unique($values), function($v) { return $v !== 'use and reproduction'; });
       if (count($values) == 1) {
           switch ($values[0]) {
           case 'info:eu-repo/semantics/openAccess':
@@ -467,24 +467,27 @@ function scholarly_preprocess_islandora_compound_prev_next(&$variables) {
     foreach ($qp->islandoraSolrResult['response']['objects'] as $solrobj) {
       $pid = $solrobj['PID'];
       unset($datastream);
-      if (isset($solrobj['solr_doc']['mods_accessCondition_info:eu-repo/semantics/embargoedAccess_displayLabel_ms'])) {
-        $embargodate = _scholarly_derive_embargodate($solrobj['solr_doc'], $fieldsep);
-        if ($embargodate === FALSE) {
+      $variables['siblings_detailed'][$pid]['embargo_text'] = 'closed access'; 
+      $variables['siblings_detailed'][$pid]['embargo_class'] = 'ubl-embargo-full-eternal'; 
+      if (isset($solrobj['solr_doc']['mods_accessCondition_type_custom_ms'])) {
+        if (in_array('info:eu-repo/semantics/closedAccess', $solrobj['solr_doc']['mods_accessCondition_type_custom_ms'])) {
+          // this is the default...
+        }
+        elseif (in_array('info:eu-repo/semantics/embargoedAccess', $solrobj['solr_doc']['mods_accessCondition_type_custom_ms'])) {
+          $embargodate = _scholarly_derive_embargodate($solrobj['solr_doc'], $fieldsep);
+          if ($embargodate === FALSE) {
+            $variables['siblings_detailed'][$pid]['embargo_text'] = 'open access'; 
+            $variables['siblings_detailed'][$pid]['embargo_class'] = 'ubl-embargo-none'; 
+          }
+          else {
+            $variables['siblings_detailed'][$pid]['embargo_text'] = 'under embargo until ' . $embargodate; 
+            $variables['siblings_detailed'][$pid]['embargo_class'] = 'ubl-embargo-full-temporary'; 
+          }
+        }
+        elseif (in_array('info:eu-repo/semantics/openAccess', $solrobj['solr_doc']['mods_accessCondition_type_custom_ms'])) {
           $variables['siblings_detailed'][$pid]['embargo_text'] = 'open access'; 
           $variables['siblings_detailed'][$pid]['embargo_class'] = 'ubl-embargo-none'; 
         }
-        else {
-          $variables['siblings_detailed'][$pid]['embargo_text'] = 'under embargo until ' . $embargodate; 
-          $variables['siblings_detailed'][$pid]['embargo_class'] = 'ubl-embargo-full-temporary'; 
-        }
-      }
-      elseif (isset($solrobj['solr_doc']['mods_accessCondition_info:eu-repo/semantics/openAccess_displayLabel_ms'])) {
-        $variables['siblings_detailed'][$pid]['embargo_text'] = 'open access'; 
-        $variables['siblings_detailed'][$pid]['embargo_class'] = 'ubl-embargo-none'; 
-      }
-      else {
-        $variables['siblings_detailed'][$pid]['embargo_text'] = 'closed access'; 
-        $variables['siblings_detailed'][$pid]['embargo_class'] = 'ubl-embargo-full-eternal'; 
       }
       if (isset($solrobj['solr_doc']['mods_identifier_doi_s'])) {
         $doi = $solrobj['solr_doc']['mods_identifier_doi_s']; 
