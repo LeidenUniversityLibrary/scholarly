@@ -3,6 +3,7 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* import own dependencies 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 @import "https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i";
 @font-face {
   font-family: 'Vestula';
@@ -47,7 +48,7 @@
  */@font-face{font-family:'Font Awesome 5 Pro';font-style:normal;font-weight:300;src:url("fontawesome-pro-5.3.1-web/webfonts/fa-light-300.eot");src:url("fontawesome-pro-5.3.1-web/webfonts/fa-light-300.eot?#iefix") format("embedded-opentype"),url("fontawesome-pro-5.3.1-web/webfonts/fa-light-300.woff2") format("woff2"),url("fontawesome-pro-5.3.1-web/webfonts/fa-light-300.woff") format("woff"),url("fontawesome-pro-5.3.1-web/webfonts/fa-light-300.ttf") format("truetype"),url("fontawesome-pro-5.3.1-web/webfonts/fa-light-300.svg#fontawesome") format("svg")}.fal{font-family:'Font Awesome 5 Pro';font-weight:300}/*!
  * Font Awesome Pro 5.3.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license (Commercial License)
- */@font-face{font-family:'Font Awesome 5 Pro';font-style:normal;font-weight:900;src:url("fontawesome-pro-5.3.1-web/webfonts/fa-solid-900.eot");src:url("fontawesome-pro-5.3.1-web/webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"),url("fontawesome-pro-5.3.1-web/webfonts/fa-solid-900.woff2") format("woff2"),url("fontawesome-pro-5.3.1-web/webfonts/fa-solid-900.woff") format("woff"),url("fontawesome-pro-5.3.1-web/webfonts/fa-solid-900.ttf") format("truetype"),url("fontawesome-pro-5.3.1-web/webfonts/fa-solid-900.svg#fontawesome") format("svg")}.fa,.fas{font-family:'Font Awesome 5 Pro';font-weight:900}body{font-family:georgia,serif}h1.title,h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{font-family:vestula,arial,sans-serif}button,.button{font-family:vestula,arial,sans-serif}input,textarea,select{font-family:vestula,arial,sans-serif}.cbp-hrmenu>ul,.cbp-hrmenu .cbp-hrsub-inner{margin:0 auto}.cbp-hrmenu>ul>li{display:inline-block}.cbp-hrmenu>ul>li>a{display:inline-block}.cbp-hrmenu .cbp-hrsub{background:#fff;display:none;position:absolute;z-index:10;width:100%;left:0}.cbp-hropen .cbp-hrsub{display:block}.cbp-hrmenu .cbp-hrsub-inner>div{width:33%;float:left;padding:0 1em 0}.cbp-hrmenu .cbp-hrsub-inner:before,.cbp-hrmenu .cbp-hrsub-inner:after{content:" ";display:table}.cbp-hrmenu .cbp-hrsub-inner:after{clear:both}.cbp-hrsub-inner button{background:#666;border:solid 2px #aaa;border-radius:3px}@media screen and (max-width: 768px){.cbp-hrmenu>ul,.cbp-hrmenu .cbp-hrsub-inner{width:100%;padding:0}.cbp-hrmenu .cbp-hrsub-inner>div{width:100%;float:none}.cbp-hrmenu>ul>li{display:block}.cbp-hrmenu>ul>li>a{display:block}.cbp-hrmenu .cbp-hrsub{position:relative}}#ublmenu{width:100%;border-bottom:1px solid #fff;background-color:#001158;font-family:Vestula,Arial,Sans-Serif;overflow:hidden}#ublmenu nav ul{margin:0;padding:0;list-style-type:none}#ublmenu nav ul li a{font-family:Vestula,Arial,Sans-Serif;font-weight:bold;font-size:16px;padding:0 15px;line-height:3.5rem;color:#eee}#ublmenu nav ul li a:hover{color:#fff}#ublmenu nav ul li a .fa{width:1.25rem;font-size:1.25rem}#ublmenu nav ul li.cbp-hropen a,#ublmenu nav ul li.cbp-hropen>a:hover{color:#fff;background:#7F88AB}#ublmenu nav ul li.cbp-hropen .cbp-hrsub{padding-bottom:3em;-moz-box-shadow:rgba(0,0,0,0.5) 0 2px 2px 0;-webkit-box-shadow:rgba(0,0,0,0.5) 0 2px 2px 0;box-shadow:rgba(0,0,0,0.5) 0 2px 2px 0}#ublmenu nav ul li .cbp-hrsub-inner>div a{line-height:2em}#ublmenu .cbp-hrsub{background:#7F88AB}#ublmenu .cbp-hrsub h4{color:#C9C9C9;padding:2em 0 0.6em;margin:0;font-size:160%;font-weight:300}#ublmenu .cbp-hrsub form label{display:block;color:white}#ublmenu .cbp-hrsub form>div{margin:.5em 0}#ublmenu .cbp-hrsub form [type='submit']{margin-top:1em}#ublmenu .cbp-placeholder::after{content:"";font-family:"Font Awesome 5 Pro";font-size:1em;font-style:normal;margin-left:.3em;vertical-align:middle;opacity:.7}@media screen and (max-width: 768px){#ublmenu nav{border:none}#ublmenu nav ul li{border-bottom:1px solid #7F88AB;min-height:3.5em}#ublmenu nav .cbp-hrsub h4{padding-top:0.6em}#ublmenu nav .cbp-hrsub-inner{padding:0 15px}#ublmenu nav .cbp-hrsub-inner>div{width:100%;float:none;padding:0 15px}#ublmenu .ubl-centercontent{padding:0}#ublmenu .ubl-menu-search{float:none}#ublmenu .ubl-menu-search form{padding-left:20px;padding-right:20px}}.ubl-menu-search{padding:0}.ubl-menu-search form{display:flex;height:100%;margin:0}.ubl-menu-search form div{display:inline-block;height:2rem;margin-top:auto;margin-bottom:auto;margin-right:2px}.ubl-menu-search form input,.ubl-menu-search form button,.ubl-menu-search form select{height:100%;border:none;min-height:0;padding:0 10px;line-height:2rem}.ubl-menu-search form input{-moz-border-radius:0 0 0 0;-webkit-border-radius:0;border-radius:0 0 0 0}.ubl-menu-search form input:-moz-placeholder{color:#999}.ubl-menu-search form input::-moz-placeholder{color:#999}.ubl-menu-search form input:-ms-input-placeholder{color:#999}.ubl-menu-search form input::-webkit-input-placeholder{color:#999}.ubl-menu-search form button{-moz-border-radius:0 3px 3px 0;-webkit-border-radius:0;border-radius:0 3px 3px 0;background-color:#999 !important;color:white !important}.ubl-menu-search form button .fa{line-height:1rem;font-size:1rem}.ubl-menu-search form select{width:150px;-moz-appearance:none;-webkit-appearance:none;-moz-border-radius:3px 0 0 3px;-webkit-border-radius:3px;border-radius:3px 0 0 3px;white-space:nowrap;overflow:hidden;-ms-text-overflow:ellipsis;-o-text-overflow:ellipsis;text-overflow:ellipsis;background:url("../img/selectbox_arrow.png") right center no-repeat #f8f8f8;padding-right:30px}
+ */@font-face{font-family:'Font Awesome 5 Pro';font-style:normal;font-weight:900;src:url("fontawesome-pro-5.3.1-web/webfonts/fa-solid-900.eot");src:url("fontawesome-pro-5.3.1-web/webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"),url("fontawesome-pro-5.3.1-web/webfonts/fa-solid-900.woff2") format("woff2"),url("fontawesome-pro-5.3.1-web/webfonts/fa-solid-900.woff") format("woff"),url("fontawesome-pro-5.3.1-web/webfonts/fa-solid-900.ttf") format("truetype"),url("fontawesome-pro-5.3.1-web/webfonts/fa-solid-900.svg#fontawesome") format("svg")}.fa,.fas{font-family:'Font Awesome 5 Pro';font-weight:900}body{font-family:georgia,serif}h1.title,h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{font-family:"Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif}button,.button{font-family:"Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif}input,textarea,select{font-family:"Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif}.cbp-hrmenu>ul,.cbp-hrmenu .cbp-hrsub-inner{margin:0 auto}.cbp-hrmenu>ul>li{display:inline-block}.cbp-hrmenu>ul>li>a{display:inline-block}.cbp-hrmenu .cbp-hrsub{background:#fff;display:none;position:absolute;z-index:10;width:100%;left:0}.cbp-hropen .cbp-hrsub{display:block}.cbp-hrmenu .cbp-hrsub-inner>div{width:33%;float:left;padding:0 1em 0}.cbp-hrmenu .cbp-hrsub-inner:before,.cbp-hrmenu .cbp-hrsub-inner:after{content:" ";display:table}.cbp-hrmenu .cbp-hrsub-inner:after{clear:both}.cbp-hrsub-inner button{background:#666;border:solid 2px #aaa;border-radius:3px}@media screen and (max-width: 768px){.cbp-hrmenu>ul,.cbp-hrmenu .cbp-hrsub-inner{width:100%;padding:0}.cbp-hrmenu .cbp-hrsub-inner>div{width:100%;float:none}.cbp-hrmenu>ul>li{display:block}.cbp-hrmenu>ul>li>a{display:block}.cbp-hrmenu .cbp-hrsub{position:relative}}#ublmenu{width:100%;border-bottom:1px solid #fff;background-color:#001158;font-family:"Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;overflow:hidden}#ublmenu nav ul{margin:0;padding:0;list-style-type:none}#ublmenu nav ul li a{font-family:"Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;font-weight:bold;font-size:16px;padding:0 15px;line-height:3.5rem;color:#eee}#ublmenu nav ul li a:hover{color:#fff}#ublmenu nav ul li a .fa{width:1.25rem;font-size:1.25rem}#ublmenu nav ul li.cbp-hropen a,#ublmenu nav ul li.cbp-hropen>a:hover{color:#fff;background:#7F88AB}#ublmenu nav ul li.cbp-hropen .cbp-hrsub{padding-bottom:3em;-moz-box-shadow:rgba(0,0,0,0.5) 0 2px 2px 0;-webkit-box-shadow:rgba(0,0,0,0.5) 0 2px 2px 0;box-shadow:rgba(0,0,0,0.5) 0 2px 2px 0}#ublmenu nav ul li .cbp-hrsub-inner>div a{line-height:2em}#ublmenu .cbp-hrsub{background:#7F88AB}#ublmenu .cbp-hrsub h4{color:#C9C9C9;padding:2em 0 0.6em;margin:0;font-size:160%;font-weight:300}#ublmenu .cbp-hrsub form label{display:block;color:white}#ublmenu .cbp-hrsub form>div{margin:.5em 0}#ublmenu .cbp-hrsub form [type='submit']{margin-top:1em}#ublmenu .cbp-placeholder::after{content:"";font-family:"Font Awesome 5 Pro";font-size:1em;font-style:normal;margin-left:.3em;vertical-align:middle;opacity:.7}@media screen and (max-width: 768px){#ublmenu nav{border:none}#ublmenu nav ul li{border-bottom:1px solid #7F88AB;min-height:3.5em}#ublmenu nav .cbp-hrsub h4{padding-top:0.6em}#ublmenu nav .cbp-hrsub-inner{padding:0 15px}#ublmenu nav .cbp-hrsub-inner>div{width:100%;float:none;padding:0 15px}#ublmenu .ubl-centercontent{padding:0}#ublmenu .ubl-menu-search{float:none}#ublmenu .ubl-menu-search form{padding-left:20px;padding-right:20px}}.ubl-menu-search{padding:0}.ubl-menu-search form{display:flex;height:100%;margin:0}.ubl-menu-search form div{display:inline-block;height:2rem;margin-top:auto;margin-bottom:auto;margin-right:2px}.ubl-menu-search form input,.ubl-menu-search form button,.ubl-menu-search form select{height:100%;border:none;min-height:0;padding:0 10px;line-height:2rem}.ubl-menu-search form input{-moz-border-radius:0 0 0 0;-webkit-border-radius:0;border-radius:0 0 0 0}.ubl-menu-search form input:-moz-placeholder{color:#999}.ubl-menu-search form input::-moz-placeholder{color:#999}.ubl-menu-search form input:-ms-input-placeholder{color:#999}.ubl-menu-search form input::-webkit-input-placeholder{color:#999}.ubl-menu-search form button{-moz-border-radius:0 3px 3px 0;-webkit-border-radius:0;border-radius:0 3px 3px 0;background-color:#999 !important;color:white !important}.ubl-menu-search form button .fa{line-height:1rem;font-size:1rem}.ubl-menu-search form select{width:150px;-moz-appearance:none;-webkit-appearance:none;-moz-border-radius:3px 0 0 3px;-webkit-border-radius:3px;border-radius:3px 0 0 3px;white-space:nowrap;overflow:hidden;-ms-text-overflow:ellipsis;-o-text-overflow:ellipsis;text-overflow:ellipsis;background:url("../img/selectbox_arrow.png") right center no-repeat #f8f8f8;padding-right:30px}
 
 
 * {
@@ -57,7 +58,7 @@
 }
 
 h1.title, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: vestula,arial,sans-serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 blockquote+h2, blockquote+h3, blockquote+h4, blockquote+h5, blockquote+h6, dl+h2, dl+h3, dl+h4, dl+h5, dl+h6, figure+h2, figure+h3, figure+h4, figure+h5, figure+h6, form+h2, form+h3, form+h4, form+h5, form+h6, hr+h2, hr+h3, hr+h4, hr+h5, hr+h6, ol+h2, ol+h3, ol+h4, ol+h5, ol+h6, p+h2, p+h3, p+h4, p+h5, p+h6, pre+h2, pre+h3, pre+h4, pre+h5, pre+h6, table+h2, table+h3, table+h4, table+h5, table+h6, ul+h2, ul+h3, ul+h4, ul+h5, ul+h6 {
@@ -195,7 +196,7 @@ body {
 
 .dc-content .content .field-name-body p:first-child {
   margin-bottom: 28px;
-  font-family: Vestula,Arial,Sans-Serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 120%;
 }
 
@@ -380,7 +381,7 @@ body {
 }
 
 .region-navigation #cbp-hrmenu {
-  font-family: Vestula, Arial, Sans-Serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-align: right;
 }
 .dc-menu-search #cbp-hrmenu li {
@@ -467,15 +468,15 @@ body {
 }
 
 h1.title, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: vestula,arial,sans-serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 button, .button {
-  font-family: vestula,arial,sans-serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 input, textarea, select {
-  font-family: vestula,arial,sans-serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 /* import modules 
@@ -554,7 +555,7 @@ input, textarea, select {
   margin-top: 20px;
   border-bottom: 1px solid #fff;
   background-color: #001158;
-  font-family: Vestula, Arial, Sans-Serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   overflow: hidden;
   /* sub-menu canvas */
 }
@@ -564,7 +565,7 @@ input, textarea, select {
   list-style-type: none;
 }
 #themenu nav ul li a {
-  font-family: Vestula, Arial, Sans-Serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bold;
   font-size: 16px;
   padding: 0 15px;
@@ -728,7 +729,7 @@ input, textarea, select {
 
 
 .block-islandora-solr * {
-  font-family: Vestula,Arial,Sans-Serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
   line-height: 20px;
 }
@@ -825,14 +826,14 @@ span.plusminus a.plus::after {
 }
 
 .dc-sidebar {
-  font-family: Vestula,Arial,Sans-Serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 20px;
 }
 
 .see-all-items {
   font-weight: bold;
-  font-family: Vestula, Arial, Sans-Serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .see-all-items::before {
@@ -845,7 +846,7 @@ span.plusminus a.plus::after {
 }
 
 .ubl-embargo {
-    font-family: Vestula, Arial, Sans-Serif;
+    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
     line-height: 20px;
     color: #999;
