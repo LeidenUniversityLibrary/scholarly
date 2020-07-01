@@ -441,6 +441,9 @@ function scholarly_preprocess_islandora_solr(&$variables) {
       }
       $variables['results'][$key]['embargo'] = array('value' => $displayvalue, 'class' => $displayclass);
     }
+    if (isset($displayvalue) && (($displayvalue === 'closed access' || substr($displayvalue, 0, 13) === 'under embargo'))) {
+      $variables['results'][$key]['thumbnail'] = str_replace(str_replace(':', '%3A', $result['thumbnail_url']), 'sites/all/themes/scholarly/img/closed_access.png', $result['thumbnail']);
+    }
   }
 }
 
@@ -551,8 +554,11 @@ function scholarly_preprocess_islandora_compound_prev_next(&$variables) {
 }
 
 function _scholarly_derive_embargodate($solrdoc, $fieldsep) {
-  if (isset($solrdoc['related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt'])) {
+  if (isset($solrdoc['related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt']['value'])) {
     $dates = $solrdoc['related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt']['value'];
+  }
+  elseif (isset($solrdoc['related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt'])) {
+    $dates = $solrdoc['related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt'];
   }
   elseif (isset($solrdoc['mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt'])) {
     $dates = $solrdoc['mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt'][0];
@@ -588,4 +594,63 @@ function _scholarly_query_collection_nodes($pid) {
   $result = $query->execute();
 
   return $result;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Adds embargo specific values to results array so embargo information can be
+ * displayed in the solr search results.
+ */
+function scholarly_preprocess_islandora_compound_object(&$variables) {
+  module_load_include('inc', 'islandora_solr', 'includes/utilities');
+  if (!isset($variables['islandora_object'])) {
+    return;
+  }
+  $is_closed = TRUE;
+  $islandora_object = $variables['islandora_object'];
+  $qp = new IslandoraSolrQueryProcessor();
+  $object_id = islandora_solr_lesser_escape($islandora_object->id);
+  $query = "PID:($object_id)";
+  $qp->buildQuery("*:*");
+  $qp->solrStart = 0;
+  $qp->solrParams['facet'] = 'false';
+  $qp->solrParams['fq'] = array($query);
+  $qp->executeQuery(FALSE);
+  if (isset($qp->islandoraSolrResult['response']['numFound']) && $qp->islandoraSolrResult['response']['numFound'] === 1) {
+    $fieldsep = variable_get('islandora_solr_search_field_value_separator', ', ');
+    $solrdoc = $qp->islandoraSolrResult['response']['objects'][0]['solr_doc'];
+    if (isset($solrdoc['related_mods_accessCondition_type_ms'])) {
+      $values = $solrdoc['related_mods_accessCondition_type_ms'];
+      $values = array_filter(array_unique($values), function($v) { return $v !== 'use and reproduction'; });
+      if (count($values) == 1) {
+          switch ($values[0]) {
+          case 'info:eu-repo/semantics/openAccess':
+            $is_closed = FALSE;
+            break;
+          case 'info:eu-repo/semantics/closedAccess':
+            break;
+          case 'info:eu-repo/semantics/embargoedAccess':
+            $embargodate = _scholarly_derive_embargodate($solrdoc, $fieldsep);
+            if ($embargodate === FALSE) {
+              $is_closed = FALSE;
+            }
+            break;
+        }
+      }
+      else {
+         $embargodate = _scholarly_derive_embargodate($solrdoc, $fieldsep);
+         if (in_array('info:eu-repo/semantics/openAccess', $values) === TRUE || $embargodate !== FALSE) {
+           $is_closed = FALSE;
+         }
+      }
+    }
+  }
+  if ($is_closed) {
+    $params = array(
+      'title' => $islandora_object->label,
+      'path' => 'sites/all/themes/scholarly/img/closed_access.png',
+    );
+    $variables['islandora_thumbnail_img'] = theme('image', $params);
+  }
 }
