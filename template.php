@@ -469,6 +469,11 @@ function scholarly_preprocess_islandora_compound_prev_next(&$variables) {
       unset($datastream);
       $variables['siblings_detailed'][$pid]['embargo_text'] = 'closed access'; 
       $variables['siblings_detailed'][$pid]['embargo_class'] = 'ubl-embargo-full-eternal'; 
+      if (isset($solrobj['solr_doc']['mods_accessCondition_use_and_reproduction_xlinkhref_ms'])) {
+        $licenseurl = $solrobj['solr_doc']['mods_accessCondition_use_and_reproduction_xlinkhref_ms'][0];
+        $licensetype = preg_replace('/^.*(license):(\d+)$/', '${1}_${2}', $licenseurl);
+        $licensetext = $solrobj['solr_doc']['mods_accessCondition_use_and_reproduction_s'];
+      }
       if (isset($solrobj['solr_doc']['mods_accessCondition_type_custom_ms'])) {
         if (in_array('info:eu-repo/semantics/closedAccess', $solrobj['solr_doc']['mods_accessCondition_type_custom_ms'])) {
           // this is the default...
@@ -478,6 +483,11 @@ function scholarly_preprocess_islandora_compound_prev_next(&$variables) {
           if ($embargodate === FALSE) {
             $variables['siblings_detailed'][$pid]['embargo_text'] = 'open access'; 
             $variables['siblings_detailed'][$pid]['embargo_class'] = 'ubl-embargo-none'; 
+            if (isset($licenseurl, $licensetype)) {
+              $variables['siblings_detailed'][$pid]['license_url'] = $licenseurl;
+              $variables['siblings_detailed'][$pid]['license_type'] = $licensetype;
+              $variables['siblings_detailed'][$pid]['license_text'] = $licensetext;
+            }
           }
           else {
             $variables['siblings_detailed'][$pid]['embargo_text'] = 'under embargo until ' . $embargodate; 
@@ -487,6 +497,11 @@ function scholarly_preprocess_islandora_compound_prev_next(&$variables) {
         elseif (in_array('info:eu-repo/semantics/openAccess', $solrobj['solr_doc']['mods_accessCondition_type_custom_ms'])) {
           $variables['siblings_detailed'][$pid]['embargo_text'] = 'open access'; 
           $variables['siblings_detailed'][$pid]['embargo_class'] = 'ubl-embargo-none'; 
+          if (isset($licenseurl, $licensetype)) {
+            $variables['siblings_detailed'][$pid]['license_url'] = $licenseurl;
+            $variables['siblings_detailed'][$pid]['license_type'] = $licensetype;
+            $variables['siblings_detailed'][$pid]['license_text'] = $licensetext;
+          }
         }
       }
       if (isset($solrobj['solr_doc']['mods_identifier_doi_s'])) {

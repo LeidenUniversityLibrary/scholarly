@@ -52,6 +52,16 @@
      <?php endif; ?>
      <li class="ubl-file-remarks ubl-embargo <?php print $sibling['embargo_class']; ?>">
        <?php print $sibling['embargo_text']; ?> 
+       <?php if (isset($sibling['license_url'])): ?>
+         <?php $options = array(
+                 'path' => '/sites/all/themes/scholarly/img/' . $sibling['license_type'] . '.png',
+                 'title' => $sibling['license_text'],
+                 'alt' => $sibling['license_type'],
+                 'attributes' => array('class' => 'ubl-file-license'),
+               ); ?>
+         <?php $licenseimg = theme('image', $options); ?>
+         <?php print l($licenseimg, $sibling['license_url'], array('html' => TRUE, 'external' => TRUE, 'attributes' => array('target' => '_blank'))); ?>
+       <?php endif; ?>
      </li>
      <?php if (isset($sibling['doi'], $sibling['doi_url'])): ?>
      <li class="ubl-file-doi">
