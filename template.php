@@ -564,7 +564,9 @@ function _scholarly_derive_embargodate($solrdoc, $fieldsep) {
     $dates = $solrdoc['mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt'][0];
   }
   if (isset($dates)) {
-    $dates = explode($fieldsep, trim($dates, " \t\n\r"));
+    if (is_string($dates)) {
+      $dates = explode($fieldsep, trim($dates, " \t\n\r"));
+    }
     rsort($dates);
     $date = preg_replace('/^(\d\d\d\d-\d\d-\d\d).*$/', '$1', $dates[0]);
     $today = date("Y-m-d");
