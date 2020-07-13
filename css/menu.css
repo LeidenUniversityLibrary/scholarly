@@ -53,7 +53,7 @@
 #page .dc-menu {
   width: 100%;
   border-bottom: 1px solid #fff;
-  font-family: "Vestula";
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 @media all and (min-width: 48em) {

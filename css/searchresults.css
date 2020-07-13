@@ -27,7 +27,7 @@ tr.islandora-solr-search-result {
   margin-top: 0;
   font-size: 18px;
   line-height: 28px;
-  font-family: vestula,arial,sans-serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
   color: #001158;
   text-rendering: optimizeLegibility;
@@ -38,7 +38,7 @@ tr.islandora-solr-search-result {
 
 dd.mods-origininfo-encoding-w3cdtf-keydate-yes-dateissued-s {
   margin-bottom: 0;
-  font-family: Vestula,Arial,Sans-Serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bold;
   font-size: 14px;
   line-height: 20px;
@@ -58,7 +58,7 @@ dd.mods-origininfo-encoding-w3cdtf-keydate-yes-dateissued-s::after {
 }
 
 dd.mods-genre-authority-local-s {
-  font-family: Vestula,Arial,Sans-Serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 20px;
   color: #999;
@@ -82,7 +82,7 @@ dd.mods-name-personal-authorrole-namepart-custom-ms {
 .mods-name-personal-authorrole-namepart-custom-ms {
   color: #B27F2B;
   margin-bottom: 8px;
-  font-family: Vestula,Arial,Sans-Serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bold;
   font-size: 14px;
   line-height: 20px;
@@ -164,7 +164,7 @@ dd.mods-name-personal-authorrole-namepart-custom-ms {
   margin: 0;
   font-size: 18px;
   line-height: 28px;
-  font-family: vestula,arial,sans-serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
   color: #001158;
   text-rendering: optimizeLegibility;
