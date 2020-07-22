@@ -656,3 +656,26 @@ function scholarly_preprocess_islandora_compound_object(&$variables) {
     $variables['islandora_thumbnail_img'] = theme('image', $params);
   }
 }
+
+function scholarly_filter_metadata($value, $allowlink = FALSE) {
+  $result = '';
+  if (!empty($value)) {
+    $filter = 'islandora_solr_metadata_filtered_html';
+    $matches = array();
+    if (preg_match('!^(<span class=[\'"]toggle-wrapper[\'"]><span>)(.*?)(<a href=[\'"]#[\'"] class=[\'"]toggler[\'"]>[^<]+</a></span><span>)(.*?)(<a href=[\'"]#[\'"] class=[\'"]toggler[\'"]>[^<]+</a></span></span>)$!', $value, $matches)) {
+       $result = $matches[1] . check_markup($matches[2], $filter) . $matches[3] . check_markup($matches[4], $filter) . $matches[5];
+    }
+    elseif ($allowlink && preg_match('!^(<a href="[^"]+">)(.*?)(</a>)$!', $value, $matches)) {
+       $result = $matches[1] . check_markup($matches[2], $filter) . $matches[3];
+    }
+    else {
+      $result = check_markup($value, $filter);
+      if (preg_match('/[\n\r]/', $value) === 0) {
+        if (preg_match('!^<p>(.*?)</p>$!', $result, $matches)) {
+          $result = $matches[1];
+        }
+      }
+    }
+  }
+  return $result;
+}
