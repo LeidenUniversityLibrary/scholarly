@@ -663,10 +663,24 @@ function scholarly_filter_metadata($value, $allowlink = FALSE) {
     $filter = 'islandora_solr_metadata_filtered_html';
     $matches = array();
     if (preg_match('!^(<span class=[\'"]toggle-wrapper[\'"]><span>)(.*?)(<a href=[\'"]#[\'"] class=[\'"]toggler[\'"]>[^<]+</a></span><span>)(.*?)(<a href=[\'"]#[\'"] class=[\'"]toggler[\'"]>[^<]+</a></span></span>)$!', $value, $matches)) {
-       $result = $matches[1] . check_markup($matches[2], $filter) . $matches[3] . check_markup($matches[4], $filter) . $matches[5];
+      list($m0, $m1, $m2, $m3, $m4, $m5) = $matches;
+      $m2 = check_markup($m2, $filter);
+      $m4 = check_markup($m4, $filter);
+      if (preg_match('!^<p>(.*?)</p>$!', $m2, $matches)) {
+        $m2 = $matches[1];
+      }
+      if (preg_match('!^<p>(.*?)</p>$!', $m4, $matches)) {
+        $m4 = $matches[1];
+      }
+      $result = $m1 . $m2 . $m3 . $m4 . $m5;
     }
     elseif ($allowlink && preg_match('!^(<a href="[^"]+">)(.*?)(</a>)$!', $value, $matches)) {
-       $result = $matches[1] . check_markup($matches[2], $filter) . $matches[3];
+      list ($m0, $m1, $m2, $m3) = $matches;
+      $m2 = check_markup($matches[2], $filter);
+      if (preg_match('!^<p>(.*?)</p>$!', $m2, $matches)) {
+        $m2 = $matches[1];
+      }
+      $result = $m1 . $m2 . $m3;
     }
     else {
       $result = check_markup($value, $filter);
