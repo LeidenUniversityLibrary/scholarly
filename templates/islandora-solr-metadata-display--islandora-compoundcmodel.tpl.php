@@ -29,6 +29,7 @@
               'mods_name_personal_AuthorRole_namePart_custom_ms' => !empty($solr_fields['mods_name_personal_AuthorRole_namePart_custom_ms']['value']) ? $solr_fields['mods_name_personal_AuthorRole_namePart_custom_ms']['value'] : NULL,
               'mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s' => !empty($solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value']) ? $solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value'] : NULL,
               'mods_titleInfo_title_custom_ms' => !empty($solr_fields['mods_titleInfo_title_custom_ms']['value']) ? $solr_fields['mods_titleInfo_title_custom_ms']['value'] : NULL,
+              'mods_titleInfo_subTitle_ms' => !empty($solr_fields['mods_titleInfo_subTitle_ms']['value']) ? $solr_fields['mods_titleInfo_subTitle_ms']['value'] : NULL,
               'mods_genre_authority_local_s' => !empty($solr_fields['mods_genre_authority_local_s']['value']) ? $solr_fields['mods_genre_authority_local_s']['value'] : NULL,
               'mods_name_personal_affiliation_department_ms' => !empty($solr_fields['mods_name_personal_affiliation_department_ms']['value']) ? $solr_fields['mods_name_personal_affiliation_department_ms']['value'] : NULL,
               'mods_abstract_ms' => !empty($solr_fields['mods_abstract_ms']['value']) ? $solr_fields['mods_abstract_ms']['value'] : NULL,
@@ -47,7 +48,16 @@
               <?php if (!empty($selection['mods_titleInfo_title_custom_ms'])): ?>
               <dd class="title">
                   <h3>
-                    <?php print check_markup(implode($variables['separator'], $selection['mods_titleInfo_title_custom_ms']), 'islandora_solr_metadata_filtered_html') ?>
+                    <?php $title = implode($variables['separator'], $selection['mods_titleInfo_title_custom_ms']) ?>
+                    <?php if (!empty($selection['mods_titleInfo_subTitle_ms'])): ?>
+                      <?php if (preg_match('/\w\s*$/', $title) === 1): ?>
+                        <?php $title .= ': '; ?>
+                      <?php else: ?>
+                        <?php $title .= ' '; ?>
+                      <?php endif; ?>
+                      <?php $title .= implode($variables['separator'], $selection['mods_titleInfo_subTitle_ms']) ?>
+                    <?php endif; ?>
+                    <?php print check_markup($title, 'islandora_solr_metadata_filtered_html'); ?>
                   </h3>
               </dd>
               <?php endif; ?>

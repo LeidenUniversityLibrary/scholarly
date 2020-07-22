@@ -37,6 +37,21 @@
                 <dd class="solr-value <?php print $value['class']; ?>"><?php print trim($value['value'], " \t\n\r"); print ' | '; print trim($result['solr_doc']['mods_name_personal_affiliation_department_ms']['value'], " \t\n\r"); ?></dd>
               <?php elseif ($key === 'mods_name_personal_affiliation_department_ms'): ?>
                 <?php // do not display the department here, did it above already ?>
+              <?php elseif ($key === 'mods_titleInfo_title_custom_ms'): ?>
+                <dd class="solr-value <?php print $value['class']; ?>">
+                  <?php $title = trim($value['value'], " \t\n\r"); ?>
+                  <?php if (!empty($result['solr_doc']['mods_titleInfo_subTitle_ms']['value'])): ?>
+                     <?php if (preg_match('/\w\s*$/', $title) === 1): ?>
+                       <?php $title .= ': '; ?>
+                     <?php else: ?>
+                       <?php $title .= ' '; ?>
+                     <?php endif; ?>
+                     <?php $title .= trim($result['solr_doc']['mods_titleInfo_subTitle_ms']['value'], " \t\n\r"); ?> 
+                  <?php endif; ?>
+                  <?php print $title; ?>
+                </dd>
+              <?php elseif ($key === 'mods_titleInfo_subTitle_ms'): ?>
+                <?php // do not display the subtitle here, did it above already ?>
               <?php else: ?>
                 <dd class="solr-value <?php print $value['class']; ?>"><?php print trim($value['value'], " \t\n\r"); ?></dd>
               <?php endif; ?>
