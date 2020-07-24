@@ -34,7 +34,12 @@
               <?php elseif ($key === 'related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt'): ?>
                 <dd style="display:none;"><?php print scholarly_filter_metadata(trim($value['value'], " \t\n\r")); ?></dd>
               <?php elseif ($key === 'mods_genre_authority_local_s'): ?>
-                <dd class="solr-value <?php print $value['class']; ?>"><?php print scholarly_filter_metadata(trim($value['value'], " \t\n\r")) . ' | ' . scholarly_filter_metadata(trim($result['solr_doc']['mods_name_personal_affiliation_department_ms']['value'], " \t\n\r")); ?></dd>
+                <dd class="solr-value <?php print $value['class']; ?>">
+                  <?php print scholarly_filter_metadata(trim($value['value'], " \t\n\r")); ?>
+                  <?php if (isset($result['solr_doc']['mods_name_personal_affiliation_department_ms']['value'])): ?>
+                     <?php print ' | ' . scholarly_filter_metadata(trim($result['solr_doc']['mods_name_personal_affiliation_department_ms']['value'], " \t\n\r")); ?>
+                  <?php endif; ?>
+                </dd>
               <?php elseif ($key === 'mods_name_personal_affiliation_department_ms'): ?>
                 <?php // do not display the department here, did it above already ?>
               <?php elseif ($key === 'mods_titleInfo_title_custom_ms'): ?>
