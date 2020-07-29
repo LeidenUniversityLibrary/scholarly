@@ -470,6 +470,9 @@ function scholarly_preprocess_islandora_compound_prev_next(&$variables) {
     foreach ($qp->islandoraSolrResult['response']['objects'] as $solrobj) {
       $pid = $solrobj['PID'];
       unset($datastream);
+      if (!isset($variables['siblings_detailed'][$pid])) {
+        continue;
+      }
       $variables['siblings_detailed'][$pid]['embargo_text'] = 'closed access'; 
       $variables['siblings_detailed'][$pid]['embargo_class'] = 'ubl-embargo-full-eternal'; 
       if (isset($solrobj['solr_doc']['mods_accessCondition_use_and_reproduction_xlinkhref_ms'])) {
