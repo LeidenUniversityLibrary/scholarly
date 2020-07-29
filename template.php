@@ -659,3 +659,40 @@ function scholarly_preprocess_islandora_compound_object(&$variables) {
     $variables['islandora_thumbnail_img'] = theme('image', $params);
   }
 }
+
+function scholarly_filter_metadata($value, $allowlink = FALSE) {
+  $result = '';
+  if (!empty($value)) {
+    $filter = 'islandora_solr_metadata_filtered_html';
+    $matches = array();
+    if (preg_match('!^(<span class=[\'"]toggle-wrapper[\'"]><span>)(.*?)(<a href=[\'"]#[\'"] class=[\'"]toggler[\'"]>[^<]+</a></span><span>)(.*?)(<a href=[\'"]#[\'"] class=[\'"]toggler[\'"]>[^<]+</a></span></span>)$!', $value, $matches)) {
+      list($m0, $m1, $m2, $m3, $m4, $m5) = $matches;
+      $m2 = check_markup($m2, $filter);
+      $m4 = check_markup($m4, $filter);
+      if (preg_match('!^<p>(.*?)</p>$!', $m2, $matches)) {
+        $m2 = $matches[1];
+      }
+      if (preg_match('!^<p>(.*?)</p>$!', $m4, $matches)) {
+        $m4 = $matches[1];
+      }
+      $result = $m1 . $m2 . $m3 . $m4 . $m5;
+    }
+    elseif ($allowlink && preg_match('!^(<a href="[^"]+">)(.*?)(</a>)$!', $value, $matches)) {
+      list ($m0, $m1, $m2, $m3) = $matches;
+      $m2 = check_markup($matches[2], $filter);
+      if (preg_match('!^<p>(.*?)</p>$!', $m2, $matches)) {
+        $m2 = $matches[1];
+      }
+      $result = $m1 . $m2 . $m3;
+    }
+    else {
+      $result = check_markup($value, $filter);
+      if (preg_match('/[\n\r]/', $value) === 0) {
+        if (preg_match('!^<p>(.*?)</p>$!', $result, $matches)) {
+          $result = $matches[1];
+        }
+      }
+    }
+  }
+  return $result;
+}

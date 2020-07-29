@@ -29,6 +29,7 @@
               'mods_name_personal_AuthorRole_namePart_custom_ms' => !empty($solr_fields['mods_name_personal_AuthorRole_namePart_custom_ms']['value']) ? $solr_fields['mods_name_personal_AuthorRole_namePart_custom_ms']['value'] : NULL,
               'mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s' => !empty($solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value']) ? $solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value'] : NULL,
               'mods_titleInfo_title_custom_ms' => !empty($solr_fields['mods_titleInfo_title_custom_ms']['value']) ? $solr_fields['mods_titleInfo_title_custom_ms']['value'] : NULL,
+              'mods_titleInfo_subTitle_ms' => !empty($solr_fields['mods_titleInfo_subTitle_ms']['value']) ? $solr_fields['mods_titleInfo_subTitle_ms']['value'] : NULL,
               'mods_genre_authority_local_s' => !empty($solr_fields['mods_genre_authority_local_s']['value']) ? $solr_fields['mods_genre_authority_local_s']['value'] : NULL,
               'mods_name_personal_affiliation_department_ms' => !empty($solr_fields['mods_name_personal_affiliation_department_ms']['value']) ? $solr_fields['mods_name_personal_affiliation_department_ms']['value'] : NULL,
               'mods_abstract_ms' => !empty($solr_fields['mods_abstract_ms']['value']) ? $solr_fields['mods_abstract_ms']['value'] : NULL,
@@ -38,24 +39,33 @@
               <?php if (!empty($selection['mods_name_personal_AuthorRole_namePart_custom_ms']) && !empty($selection['mods_name_personal_AuthorRole_namePart_custom_ms'])): ?>
               <dd class="first author">
                 <span class="name">
-                  <?php print check_markup(implode($variables['separator'], $selection['mods_name_personal_AuthorRole_namePart_custom_ms']), 'islandora_solr_metadata_filtered_html') ?>
+                  <?php print scholarly_filter_metadata(implode($variables['separator'], $selection['mods_name_personal_AuthorRole_namePart_custom_ms'])) ?>
                 </span>
-                  <span class="year">(<?php print substr(check_plain($selection['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s'][0]),0,4);?>)
+                  <span class="year"><?php $year = scholarly_filter_metadata($selection['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s'][0]); if (preg_match('!^(?:<p>)?(\d\d\d\d)-[0-9-]+(?:</p>)$!', $year, $matches)) { print '(' . $matches[1] . ')'; } ?>
                   </span>
               </dd>
               <?php endif; ?>
               <?php if (!empty($selection['mods_titleInfo_title_custom_ms'])): ?>
               <dd class="title">
                   <h3>
-                    <?php print check_markup(implode($variables['separator'], $selection['mods_titleInfo_title_custom_ms']), 'islandora_solr_metadata_filtered_html') ?>
+                    <?php $title = implode($variables['separator'], $selection['mods_titleInfo_title_custom_ms']) ?>
+                    <?php if (!empty($selection['mods_titleInfo_subTitle_ms'])): ?>
+                      <?php if (preg_match('/\w\s*$/', $title) === 1): ?>
+                        <?php $title .= ': '; ?>
+                      <?php else: ?>
+                        <?php $title .= ' '; ?>
+                      <?php endif; ?>
+                      <?php $title .= implode($variables['separator'], $selection['mods_titleInfo_subTitle_ms']) ?>
+                    <?php endif; ?>
+                    <?php print scholarly_filter_metadata($title); ?>
                   </h3>
               </dd>
               <?php endif; ?>
               <?php if (!empty($selection['mods_genre_authority_local_s'])): ?>
               <dd class="genre">
-                <?php $text = check_markup($selection['mods_genre_authority_local_s'][0], 'islandora_solr_metadata_filtered_html');
+                <?php $text = scholarly_filter_metadata($selection['mods_genre_authority_local_s'][0]);
                       $text .= ' | ';
-                      $text .= check_markup($selection['mods_name_personal_affiliation_department_ms'][0], 'islandora_solr_metadata_filtered_html');
+                      $text .= scholarly_filter_metadata($selection['mods_name_personal_affiliation_department_ms'][0]);
                       $text = preg_replace('!</?p[^>]*?>!i', '', $text); 
                       print $text;
                 ?>
@@ -63,14 +73,14 @@
                 <?php endif; ?>
                 <?php if (!empty($selection['mods_abstract_ms'])): ?>
               <dd class="abstract">
-                <?php print check_markup(implode($variables['separator'], $selection['mods_abstract_ms']), 'islandora_solr_metadata_filtered_html') ?>
+                <?php print scholarly_filter_metadata(implode($variables['separator'], $selection['mods_abstract_ms'])) ?>
               </dd>
             <?php endif; ?>
             <?php if (!empty($selection['mods_subject_topic_ms'])): ?>
                 <dd class="topics">
                 <?php
                   foreach ($selection['mods_subject_topic_ms'] as $tag) {
-                      print '<div class="tag">' . check_markup($tag, 'islandora_solr_metadata_filtered_html') . '</div>';
+                      print '<div class="tag">' . scholarly_filter_metadata($tag, TRUE) . '</div>';
                   }
                 ?>
               </dd>
@@ -84,9 +94,7 @@
               <?php if (!array_key_exists($solr_field, $selection)): ?>
                     <dl title="<?php print $value['display_label']; ?>" class="<?php print $solr_field; ?>">
                         <dt class="<?php print $row_field == 0 ? ' first' : ''; ?>"><?php print $value['display_label']; ?></dt>
-                        <dd class="<?php print $row_field == 0 ? ' first' : ''; ?>"><?php print check_markup(implode($variables['separator'],
-                            $value['value']),
-                            'islandora_solr_metadata_filtered_html'); ?></dd>
+                        <dd class="<?php print $row_field == 0 ? ' first' : ''; ?>"><?php print scholarly_filter_metadata(implode($variables['separator'], $value['value'])); ?></dd>
                       <?php $row_field++; ?>
                     </dl>
               <?php endif; ?>

@@ -42,20 +42,20 @@
      <?php if (isset($sibling['view_url'])): ?>
        <li class="ubl-file-download"><?php print l('Download', $sibling['download_url']); ?></li>
        <li class="ubl-file-view">
-         <?php print l($sibling['title'], $sibling['view_url'], array('attributes' => array('target' => '_blank'))); ?>
+         <?php print l(scholarly_filter_metadata($sibling['title']), $sibling['view_url'], array('attributes' => array('target' => '_blank'))); ?>
        </li> 
      <?php endif; ?>
      <?php if (!isset($sibling['view_url'])): ?>
        <li class="ubl-file-view ubl-not-accessible">
-         <?php print $sibling['title']; ?>
+         <?php print scholarly_filter_metadata($sibling['title']); ?>
        </li> 
      <?php endif; ?>
      <li class="ubl-file-remarks ubl-embargo <?php print $sibling['embargo_class']; ?>">
-       <?php print $sibling['embargo_text']; ?> 
+       <?php print scholarly_filter_metadata($sibling['embargo_text']); ?> 
        <?php if (isset($sibling['license_url'])): ?>
          <?php $options = array(
                  'path' => '/sites/all/themes/scholarly/img/' . $sibling['license_type'] . '.png',
-                 'title' => $sibling['license_text'],
+                 'title' => scholarly_filter_metadata($sibling['license_text']),
                  'alt' => $sibling['license_type'],
                  'attributes' => array('class' => 'ubl-file-license'),
                ); ?>
