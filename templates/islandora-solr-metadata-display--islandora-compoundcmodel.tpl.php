@@ -41,7 +41,7 @@
                 <span class="name">
                   <?php print scholarly_filter_metadata(implode($variables['separator'], $selection['mods_name_personal_AuthorRole_namePart_custom_ms'])) ?>
                 </span>
-                  <span class="year"><?php $year = scholarly_filter_metadata($selection['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s'][0]); if (preg_match('!^(?:<p>)?(\d\d\d\d)-[0-9-]+(?:</p>)$!', $year, $matches)) { print '(' . $matches[1] . ')'; } ?>
+                  <span class="year"><?php $year = scholarly_filter_metadata($selection['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s'][0]); if (preg_match('!(\d\d\d\d)-[0-9-]+!', $year, $matches)) { print '(' . $matches[1] . ')'; } ?>
                   </span>
               </dd>
               <?php endif; ?>
