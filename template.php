@@ -514,7 +514,7 @@ function scholarly_preprocess_islandora_compound_prev_next(&$variables) {
       if (isset($solrobj['solr_doc']['mods_identifier_doi_s'])) {
         $doi = $solrobj['solr_doc']['mods_identifier_doi_s']; 
         $variables['siblings_detailed'][$pid]['doi'] = $doi; 
-        $doi_url = preg_replace('!^\s*(?:doi:|https?://(?:dx\.)?doi.org/)(.*)$!', "https://doi.org/$1", $doi);
+        $doi_url = preg_replace('!^\s*(?:doi:|https?://(?:dx\.)?doi.org/|)(.*)$!', "https://doi.org/$1", $doi);
         $variables['siblings_detailed'][$pid]['doi_url'] = $doi_url; 
       }
       if (isset($solrobj['solr_doc']['RELS_EXT_hasModel_uri_ms'])) {
