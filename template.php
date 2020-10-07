@@ -404,7 +404,8 @@ function scholarly_preprocess_islandora_solr(&$variables) {
       $values = explode($fieldsep, trim($accessCondType, " \t\n\r"));
       $values = array_filter(array_unique($values), function($v) { return $v !== 'use and reproduction'; });
       if (count($values) == 1) {
-          switch ($values[0]) {
+        $value0 = reset($values);
+        switch ($value0) {
           case 'info:eu-repo/semantics/openAccess':
             $displayvalue = 'open access';
             $displayclass = 'ubl-embargo-none';
