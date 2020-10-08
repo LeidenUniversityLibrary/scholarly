@@ -478,7 +478,9 @@ function scholarly_preprocess_islandora_compound_prev_next(&$variables) {
       $variables['siblings_detailed'][$pid]['embargo_class'] = 'ubl-embargo-full-eternal'; 
       if (isset($solrobj['solr_doc']['mods_accessCondition_use_and_reproduction_xlinkhref_ms'])) {
         $licenseurl = $solrobj['solr_doc']['mods_accessCondition_use_and_reproduction_xlinkhref_ms'][0];
-        $licensetype = preg_replace('/^.*(license):(\d+)$/', '${1}_${2}', $licenseurl);
+        $patterns = array('!^https?://hdl.handle.net/1887/(license):(\d+)$!', '!^https?://creativecommons.org/([^/]+)/([^/]+)/([^/]+)/?$!', '!^.*$');
+        $replacements = array('${1}_${2}', '${1}_${2}_${3}', 'unknown');
+        $licensetype = preg_replace($patterns, $replacements, $licenseurl, 1);
         $licensetext = $solrobj['solr_doc']['mods_accessCondition_use_and_reproduction_s'];
       }
       if (isset($solrobj['solr_doc']['mods_accessCondition_type_custom_ms'])) {
