@@ -630,7 +630,8 @@ function scholarly_preprocess_islandora_compound_object(&$variables) {
       $values = $solrdoc['related_mods_accessCondition_type_ms'];
       $values = array_filter(array_unique($values), function($v) { return $v !== 'use and reproduction'; });
       if (count($values) == 1) {
-          switch ($values[0]) {
+        $value0 = reset($values);
+        switch ($value0) {
           case 'info:eu-repo/semantics/openAccess':
             $is_closed = FALSE;
             break;
