@@ -458,13 +458,25 @@ function scholarly_preprocess_islandora_compound_prev_next(&$variables) {
   module_load_include('inc', 'islandora_solr', 'includes/utilities');
   $qp = new IslandoraSolrQueryProcessor();
 
+  $usedsolrfields = array(
+                      'PID',
+                      'mods_accessCondition_use_and_reproduction_xlinkhref_ms',
+                      'mods_accessCondition_use_and_reproduction_s',
+                      'mods_accessCondition_type_custom_ms',
+                      'mods_identifier_doi_s',
+                      'RELS_EXT_hasModel_uri_ms',
+                      'mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt',
+                      'related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt',
+                    );
   $parent_id = islandora_solr_lesser_escape($variables['parent_pid']);
   $relcomp = variable_get('islandora_solr_compound_relationship_field', 'RELS_EXT_isConstituentOf_uri_ms');
   $query = "$relcomp:($parent_id) OR $relcomp:(" . islandora_solr_lesser_escape('info:fedora/') . "$parent_id)";
   $qp->buildQuery("*:*");
   $qp->solrStart = 0;
+  $qp->solrLimit = count($variables['siblings_detailed']) + 1;
   $qp->solrParams['facet'] = 'false';
   $qp->solrParams['fq'] = array($query);
+  $qp->solrParams['fl'] = implode(',', $usedsolrfields);
   $qp->executeQuery(FALSE);
   if (isset($qp->islandoraSolrResult['response']['numFound']) && $qp->islandoraSolrResult['response']['numFound'] > 0) {
     $fieldsep = variable_get('islandora_solr_search_field_value_separator', ', ');
