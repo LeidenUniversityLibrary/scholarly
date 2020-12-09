@@ -467,6 +467,7 @@ function scholarly_preprocess_islandora_compound_prev_next(&$variables) {
                       'RELS_EXT_hasModel_uri_ms',
                       'mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt',
                       'related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt',
+                      'mods_note_version_ms',
                     );
   $parent_id = islandora_solr_lesser_escape($variables['parent_pid']);
   $relcomp = variable_get('islandora_solr_compound_relationship_field', 'RELS_EXT_isConstituentOf_uri_ms');
@@ -533,6 +534,10 @@ function scholarly_preprocess_islandora_compound_prev_next(&$variables) {
         $variables['siblings_detailed'][$pid]['doi'] = $doi; 
         $doi_url = preg_replace('!^\s*(?:doi:|https?://(?:dx\.)?doi.org/|)(.*)$!', "https://doi.org/$1", $doi);
         $variables['siblings_detailed'][$pid]['doi_url'] = $doi_url; 
+      }
+      if (isset($solrobj['solr_doc']['mods_note_version_ms'])) {
+        $version = implode(',', $solrobj['solr_doc']['mods_note_version_ms']); 
+        $variables['siblings_detailed'][$pid]['version'] = $version; 
       }
       if (isset($solrobj['solr_doc']['RELS_EXT_hasModel_uri_ms'])) {
         $object = islandora_object_load($pid);

@@ -50,6 +50,11 @@
          <?php print scholarly_filter_metadata($sibling['title']); ?>
        </li> 
      <?php endif; ?>
+     <?php if (isset($sibling['version'])): ?>
+     <li class="ubl-file-version">
+         <?php print scholarly_filter_metadata($sibling['version']); ?>
+     </li>
+     <?php endif; ?>
      <li class="ubl-file-remarks ubl-embargo <?php print $sibling['embargo_class']; ?>">
        <?php print scholarly_filter_metadata($sibling['embargo_text']); ?> 
        <?php if (isset($sibling['license_url'])): ?>
