@@ -64,7 +64,9 @@
               <?php if (!empty($selection['mods_genre_authority_local_s'])): ?>
               <dd class="genre">
                 <?php $text = scholarly_filter_metadata($selection['mods_genre_authority_local_s'][0]);
-                      $text .= ' | ';
+                      if ($text !== NULL && strlen($text) > 0 && $selection['mods_name_personal_affiliation_department_ms'][0] !== NULL && strlen($selection['mods_name_personal_affiliation_department_ms'][0]) > 0) {
+                        $text .= ' | ';
+                      }
                       $text .= scholarly_filter_metadata($selection['mods_name_personal_affiliation_department_ms'][0]);
                       $text = preg_replace('!</?p[^>]*?>!i', '', $text); 
                       print $text;

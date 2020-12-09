@@ -65,6 +65,15 @@
                 </dd>
               <?php elseif ($key === 'mods_titleInfo_subTitle_ms'): ?>
                 <?php // do not display the subtitle here, did it above already ?>
+              <?php elseif ($key === 'mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s'): ?>
+                <?php // do not display the issue date here, doing it below already ?>
+              <?php elseif ($key === 'mods_name_personal_AuthorRole_namePart_custom_ms'): ?>
+                <dd class="solr-value <?php print $value['class']; ?>">
+                  <?php print scholarly_filter_metadata(trim($value['value'], " \t\n\r")); ?>
+                  <?php if (isset($result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value'])): ?>
+                     <span class="solr-value <?php print $result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['class']; ?>"><?php print scholarly_filter_metadata(trim($result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value'], " \t\n\r")); ?></span>
+                  <?php endif; ?>
+                </dd>
               <?php else: ?>
                 <dd class="solr-value <?php print $value['class']; ?>"><?php print scholarly_filter_metadata(trim($value['value'], " \t\n\r")); ?></dd>
               <?php endif; ?>

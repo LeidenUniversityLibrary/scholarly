@@ -36,7 +36,7 @@ tr.islandora-solr-search-result {
   width: auto;
 }
 
-dd.mods-origininfo-encoding-w3cdtf-keydate-yes-dateissued-s {
+dd span.mods-origininfo-encoding-w3cdtf-keydate-yes-dateissued-s {
   margin-bottom: 0;
   font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bold;
@@ -49,11 +49,11 @@ dd.mods-origininfo-encoding-w3cdtf-keydate-yes-dateissued-s {
   white-space: nowrap;
 }
 
-dd.mods-origininfo-encoding-w3cdtf-keydate-yes-dateissued-s::before {
-  content: "(";
+dd span.mods-origininfo-encoding-w3cdtf-keydate-yes-dateissued-s::before {
+  content: " (";
 }
 
-dd.mods-origininfo-encoding-w3cdtf-keydate-yes-dateissued-s::after {
+dd span.mods-origininfo-encoding-w3cdtf-keydate-yes-dateissued-s::after {
   content: ")";
 }
 
