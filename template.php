@@ -720,3 +720,10 @@ function scholarly_filter_metadata($value, $allowlink = FALSE) {
   }
   return $result;
 }
+
+function scholarly_authors_apa6($separator, $authors) {
+  if (count($authors) > 7) {
+    array_splice($authors, 6, -1, '... ');
+  }
+  return implode($separator, $authors);
+}

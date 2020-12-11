@@ -27,6 +27,7 @@
             <?php
             $selection = [
               'mods_name_personal_AuthorRole_namePart_custom_ms' => !empty($solr_fields['mods_name_personal_AuthorRole_namePart_custom_ms']['value']) ? $solr_fields['mods_name_personal_AuthorRole_namePart_custom_ms']['value'] : NULL,
+              'mods_name_personal_EditorRole_namePart_custom_ms' => !empty($solr_fields['mods_name_personal_EditorRole_namePart_custom_ms']['value']) ? $solr_fields['mods_name_personal_EditorRole_namePart_custom_ms']['value'] : NULL,
               'mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s' => !empty($solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value']) ? $solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value'] : NULL,
               'mods_titleInfo_title_custom_ms' => !empty($solr_fields['mods_titleInfo_title_custom_ms']['value']) ? $solr_fields['mods_titleInfo_title_custom_ms']['value'] : NULL,
               'mods_titleInfo_subTitle_ms' => !empty($solr_fields['mods_titleInfo_subTitle_ms']['value']) ? $solr_fields['mods_titleInfo_subTitle_ms']['value'] : NULL,
@@ -36,13 +37,20 @@
               'mods_subject_topic_ms' => !empty($solr_fields['mods_subject_topic_ms']['value']) ? $solr_fields['mods_subject_topic_ms']['value'] : NULL,
             ];
             ?>
-              <?php if (!empty($selection['mods_name_personal_AuthorRole_namePart_custom_ms']) && !empty($selection['mods_name_personal_AuthorRole_namePart_custom_ms'])): ?>
+              <?php if (!empty($selection['mods_name_personal_AuthorRole_namePart_custom_ms']) || !empty($selection['mods_name_personal_EditorRole_namePart_custom_ms'])): ?>
               <dd class="first author">
+                <?php if (!empty($selection['mods_name_personal_AuthorRole_namePart_custom_ms'])): ?>
                 <span class="name">
-                  <?php print scholarly_filter_metadata(implode($variables['separator'], $selection['mods_name_personal_AuthorRole_namePart_custom_ms'])) ?>
+                  <?php print scholarly_authors_apa6($variables['separator'], $selection['mods_name_personal_AuthorRole_namePart_custom_ms']) ?>
                 </span>
-                  <span class="year"><?php $year = scholarly_filter_metadata($selection['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s'][0]); if (preg_match('!(\d\d\d\d)-[0-9-]+!', $year, $matches)) { print '(' . $matches[1] . ')'; } ?>
-                  </span>
+                <?php elseif (!empty($selection['mods_name_personal_EditorRole_namePart_custom_ms'])): ?>
+                <span class="name">
+                  <?php print scholarly_authors_apa6($variables['separator'], $selection['mods_name_personal_EditorRole_namePart_custom_ms']) ?>
+                </span>
+                <?php endif; ?>
+                <span class="year">
+                  <?php $year = scholarly_filter_metadata($selection['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s'][0]); if (preg_match('!(\d\d\d\d)-[0-9-]+!', $year, $matches)) { print '(' . $matches[1] . ')'; } ?>
+                </span>
               </dd>
               <?php endif; ?>
               <?php if (!empty($selection['mods_titleInfo_title_custom_ms'])): ?>
@@ -72,13 +80,13 @@
                       print $text;
                 ?>
               </dd>
-                <?php endif; ?>
-                <?php if (!empty($selection['mods_abstract_ms'])): ?>
+              <?php endif; ?>
+              <?php if (!empty($selection['mods_abstract_ms'])): ?>
               <dd class="abstract">
                 <?php print scholarly_filter_metadata(implode($variables['separator'], $selection['mods_abstract_ms'])) ?>
               </dd>
-            <?php endif; ?>
-            <?php if (!empty($selection['mods_subject_topic_ms'])): ?>
+              <?php endif; ?>
+              <?php if (!empty($selection['mods_subject_topic_ms'])): ?>
                 <dd class="topics">
                 <?php
                   foreach ($selection['mods_subject_topic_ms'] as $tag) {
@@ -86,7 +94,8 @@
                   }
                 ?>
               </dd>
-            <?php endif; ?>
+              <?php endif; ?>
+              
             <?php
             // Loop though all other fields and print values.
             ?>
