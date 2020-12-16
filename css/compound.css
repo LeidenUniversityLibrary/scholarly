@@ -227,7 +227,8 @@
   display: flex;
 }
 
-.islandora-compound-object-object .author .name {
+.islandora-compound-object-object .author .name,
+.islandora-compound-object-object .author .name A {
   color: #B27F2B;
 }
 
@@ -330,3 +331,6 @@ h3 {
   clear: both;
 }
 
+.islandora-metadata .title {
+  display: flex;
+}

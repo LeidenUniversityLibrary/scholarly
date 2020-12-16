@@ -69,7 +69,8 @@
                 <?php // do not display the issue date here, doing it below already ?>
               <?php elseif ($key === 'mods_name_personal_AuthorRole_namePart_custom_ms'): ?>
                 <dd class="solr-value <?php print $value['class']; ?>">
-                  <?php print scholarly_filter_metadata(trim($value['value'], " \t\n\r")); ?>
+                  <?php $authors = preg_split('/\\s*;\\s*/', trim($value['value'], " \t\n\r"));
+                        print scholarly_authors_apa6('; ', $authors); ?>
                   <?php if (isset($result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value'])): ?>
                      <span class="solr-value <?php print $result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['class']; ?>"><?php print scholarly_filter_metadata(trim($result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value'], " \t\n\r")); ?></span>
                   <?php endif; ?>
