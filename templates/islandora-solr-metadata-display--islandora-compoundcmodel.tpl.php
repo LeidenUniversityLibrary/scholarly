@@ -64,6 +64,7 @@
               'mods_identifier_uri_ms' => !empty($solr_fields['mods_identifier_uri_ms']['value']) ? $solr_fields['mods_identifier_uri_ms']['value'] : NULL,
               'mods_identifier_uriDataset_ms' => !empty($solr_fields['mods_identifier_uriDataset_ms']['value']) ? $solr_fields['mods_identifier_uriDataset_ms']['value'] : NULL,
               'mods_relatedItem_series_titleInfo_title_ms' => !empty($solr_fields['mods_relatedItem_series_titleInfo_title_ms']['value']) ? $solr_fields['mods_relatedItem_series_titleInfo_title_ms']['value'] : NULL,
+              'mods_relatedItem_host_part_detail_series_number_ms' => !empty($solr_fields['mods_relatedItem_host_part_detail_series_number_ms']['value']) ? $solr_fields['mods_relatedItem_host_part_detail_series_number_ms']['value'] : NULL,
               'mods_relatedItem_host_titleInfo_partNumber_ms' => !empty($solr_fields['mods_relatedItem_host_titleInfo_partNumber_ms']['value']) ? $solr_fields['mods_relatedItem_host_titleInfo_partNumber_ms']['value'] : NULL,
               'mods_note_coverageCourt_ms' => !empty($solr_fields['mods_note_coverageCourt_ms']['value']) ? $solr_fields['mods_note_coverageCourt_ms']['value'] : NULL,
               'mods_part_date_ms' => !empty($solr_fields['mods_part_date_ms']['value']) ? $solr_fields['mods_part_date_ms']['value'] : NULL,
@@ -296,12 +297,13 @@
               <?php scholarly_display_label_and_value($solr_fields, 'mods_relatedItem_original_name_personal_aut_namePart_ms', $variables['separator']); ?>
               <?php scholarly_display_label_and_value($solr_fields, 'mods_relatedItem_original_name_corporate_aut_namePart_ms', $variables['separator']); ?>
             <?php endif; ?>
-            <?php if (isset($selection['mods_relatedItem_reviewOf_titleInfo_title_ms']) || isset($selection['mods_relatedItem_reviewOf_name_personal_aut_namePart_family_ms']) || isset($selection['mods_relatedItem_reviewOf_originInfo_dateIssued_ms']) || isset($selection['mods_relatedItem_reviewOf_relatedItem_series_titleInfo_title_ms']) || isset($selection['mods_relatedItem_reviewOf_originInfo_place_placeTerm_text_ms']) || isset($selection['mods_relatedItem_reviewOf_originInfo_publisher_ms'])): ?>
+            <?php if (isset($selection['mods_relatedItem_reviewOf_titleInfo_title_ms']) || isset($selection['mods_relatedItem_reviewOf_name_personal_aut_namePart_family_ms']) || isset($selection['mods_relatedItem_reviewOf_originInfo_dateIssued_ms']) || isset($selection['mods_relatedItem_reviewOf_relatedItem_series_titleInfo_title_ms']) || isset($selection['mods_relatedItem_host_part_detail_series_number_ms']) || isset($selection['mods_relatedItem_reviewOf_originInfo_place_placeTerm_text_ms']) || isset($selection['mods_relatedItem_reviewOf_originInfo_publisher_ms'])): ?>
               <H4>Review of</H4>
               <?php scholarly_display_label_and_value($solr_fields, 'mods_relatedItem_reviewOf_titleInfo_title_ms', $variables['separator']); ?>
               <?php scholarly_display_label_and_value($solr_fields, 'mods_relatedItem_reviewOf_name_personal_aut_namePart_family_ms', $variables['separator']); ?>
               <?php scholarly_display_label_and_value($solr_fields, 'mods_relatedItem_reviewOf_originInfo_dateIssued_ms', $variables['separator']); ?>
               <?php scholarly_display_label_and_value($solr_fields, 'mods_relatedItem_reviewOf_relatedItem_series_titleInfo_title_ms', $variables['separator']); ?>
+              <?php scholarly_display_label_and_value($solr_fields, 'mods_relatedItem_host_part_detail_series_number_ms', $variables['separator']); ?>
               <?php if (isset($selection['mods_relatedItem_reviewOf_originInfo_place_placeTerm_text_ms'][0]) || isset($selection['mods_relatedItem_reviewOf_originInfo_publisher_ms'][0])): ?>
                 <dl title="Publisher" class="mods_relatedItem_reviewOf_originInfo_place_placeTerm_text_ms mods_relatedItem_reviewOf_originInfo_publisher_ms">
                   <dt>Publisher</dt>
