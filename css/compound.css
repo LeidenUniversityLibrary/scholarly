@@ -234,7 +234,7 @@
 
 .islandora-compound-object-object .author .year {
   padding-left: 0.3rem;
-  min-width: 3em;
+  min-width: 4em;
 }
 .islandora-compound-object-object .author .year P {
   display: inline-block;
