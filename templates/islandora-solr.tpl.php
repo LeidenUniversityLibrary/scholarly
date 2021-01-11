@@ -28,9 +28,7 @@
           <div class="col col-9 solr-fields islandora-inline-metadata">
             <?php foreach($result['solr_doc'] as $key => $value): ?>
               <?php if ($key === 'related_mods_accessCondition_type_ms'): ?>
-                <?php if (isset($result['embargo'])): ?>
-                  <dd class="solr-value <?php print $value['class']; ?> ubl-embargo <?php print $result['embargo']['class']; ?>"><?php print scholarly_filter_metadata($result['embargo']['value']); ?></dd>
-                <?php endif; ?>
+                <?php // do not display the access condition here, do it below genre / department ?>
               <?php elseif ($key === 'related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt'): ?>
                 <dd style="display:none;"><?php print scholarly_filter_metadata(trim($value['value'], " \t\n\r")); ?></dd>
               <?php elseif ($key === 'mods_genre_authority_local_s'): ?>
@@ -40,6 +38,9 @@
                      <?php print ' | ' . scholarly_filter_metadata(trim($result['solr_doc']['mods_name_personal_affiliation_department_ms']['value'], " \t\n\r")); ?>
                   <?php endif; ?>
                 </dd>
+                <?php if (isset($result['embargo'])): ?>
+                  <dd class="solr-value <?php print $value['class']; ?> ubl-embargo <?php print $result['embargo']['class']; ?>"><?php print scholarly_filter_metadata($result['embargo']['value']); ?></dd>
+                <?php endif; ?>
               <?php elseif ($key === 'mods_name_personal_affiliation_department_ms'): ?>
                 <?php // do not display the department here, did it above already ?>
               <?php elseif ($key === 'mods_titleInfo_title_custom_ms'): ?>

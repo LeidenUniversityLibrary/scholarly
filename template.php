@@ -397,10 +397,10 @@ function scholarly_preprocess_islandora_solr(&$variables) {
   }
   $fieldsep = variable_get('islandora_solr_search_field_value_separator', ', ');
   foreach ($variables['results'] as $key => $result) {
+    $displayvalue = 'closed access';
+    $displayclass = 'ubl-embargo-full-eternal';
     if (isset($result['solr_doc']['related_mods_accessCondition_type_ms']['value'])) {
       $accessCondType = $result['solr_doc']['related_mods_accessCondition_type_ms']['value'];
-      $displayvalue = 'closed access';
-      $displayclass = 'ubl-embargo-full-eternal';
       $values = explode($fieldsep, trim($accessCondType, " \t\n\r"));
       $values = array_filter(array_unique($values), function($v) { return $v !== 'use and reproduction'; });
       if (count($values) == 1) {
@@ -440,8 +440,8 @@ function scholarly_preprocess_islandora_solr(&$variables) {
            $displayvalue .= ' until ' . $embargodate;
          }
       }
-      $variables['results'][$key]['embargo'] = array('value' => $displayvalue, 'class' => $displayclass);
     }
+    $variables['results'][$key]['embargo'] = array('value' => $displayvalue, 'class' => $displayclass);
     if (isset($displayvalue) && (($displayvalue === 'closed access' || substr($displayvalue, 0, 13) === 'under embargo'))) {
       $variables['results'][$key]['thumbnail'] = str_replace(str_replace(':', '%3A', $result['thumbnail_url']), 'sites/all/themes/scholarly/img/closed_access.png', $result['thumbnail']);
     }
