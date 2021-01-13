@@ -444,11 +444,6 @@ function scholarly_preprocess_islandora_solr(&$variables) {
            $displayclass = 'ubl-embargo-none';
          }
          elseif (in_array('info:eu-repo/semantics/closedAccess', $values) === FALSE && is_array($embargodates)) {
-           $today = date("Y-m-d");
-           if (strcmp(end($embargodates), $today) > 0) {
-             $displayvalue = 'under embargo';
-             $displayclass = 'ubl-embargo-full-temporary';
-           }
            $displayvalue .= ' until ' . $embargodates[0];
          }
       }
