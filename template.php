@@ -415,15 +415,22 @@ function scholarly_preprocess_islandora_solr(&$variables) {
             $displayclass = 'ubl-embargo-full-eternal';
             break;
           case 'info:eu-repo/semantics/embargoedAccess':
-            $embargodate = _scholarly_derive_embargodate($result['solr_doc'], $fieldsep);
-            if ($embargodate === FALSE) {
+            $embargodates = _scholarly_derive_embargodate($result['solr_doc'], $fieldsep, TRUE);
+            if ($embargodates === FALSE) {
               $displayvalue = 'open access';
               $displayclass = 'ubl-embargo-none';
             }
             else {
-              $displayvalue = 'under embargo';
-              $displayclass = 'ubl-embargo-full-temporary';
-              $displayvalue .= ' until ' . $embargodate;
+              $today = date("Y-m-d");
+              if (count($embargodates) > 1 && strcmp(end($embargodates), $today) < 0) {
+                $displayvalue = 'some documents under embargo';
+                $displayclass = 'ubl-embargo-partial-eternal';
+              }
+              else {
+                $displayvalue = 'under embargo';
+                $displayclass = 'ubl-embargo-full-temporary';
+              }
+              $displayvalue .= ' until ' . $embargodates[0];
             }
             break;
         }
@@ -431,13 +438,18 @@ function scholarly_preprocess_islandora_solr(&$variables) {
       else {
          $displayvalue = 'some documents under embargo';
          $displayclass = 'ubl-embargo-partial-eternal';
-         $embargodate = _scholarly_derive_embargodate($result['solr_doc'], $fieldsep);
-         if (in_array('info:eu-repo/semantics/closedAccess', $values) === FALSE && $embargodate === FALSE) {
+         $embargodates = _scholarly_derive_embargodate($result['solr_doc'], $fieldsep, TRUE);
+         if (in_array('info:eu-repo/semantics/closedAccess', $values) === FALSE && $embargodates === FALSE) {
            $displayvalue = 'open access';
            $displayclass = 'ubl-embargo-none';
          }
-         elseif (in_array('info:eu-repo/semantics/closedAccess', $values) === FALSE && $embargodate !== FALSE) {
-           $displayvalue .= ' until ' . $embargodate;
+         elseif (in_array('info:eu-repo/semantics/closedAccess', $values) === FALSE && is_array($embargodates)) {
+           $today = date("Y-m-d");
+           if (strcmp(end($embargodates), $today) > 0) {
+             $displayvalue = 'under embargo';
+             $displayclass = 'ubl-embargo-full-temporary';
+           }
+           $displayvalue .= ' until ' . $embargodates[0];
          }
       }
     }
@@ -579,7 +591,7 @@ function scholarly_preprocess_islandora_compound_prev_next(&$variables) {
   }
 }
 
-function _scholarly_derive_embargodate($solrdoc, $fieldsep) {
+function _scholarly_derive_embargodate($solrdoc, $fieldsep, $returnall = FALSE) {
   if (isset($solrdoc['related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt']['value'])) {
     $dates = $solrdoc['related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt']['value'];
   }
@@ -594,10 +606,16 @@ function _scholarly_derive_embargodate($solrdoc, $fieldsep) {
       $dates = explode($fieldsep, trim($dates, " \t\n\r"));
     }
     rsort($dates);
-    $date = preg_replace('/^(\d\d\d\d-\d\d-\d\d).*$/', '$1', $dates[0]);
+    $dates = preg_replace('/^(\d\d\d\d-\d\d-\d\d).*$/', '$1', $dates);
+    $date = $dates[0];
     $today = date("Y-m-d");
     if (strcmp($date, $today) > 0) {
-      return $date;
+      if ($returnall) {
+        return $dates;
+      }
+      else {
+        return $date;
+      }
     }
   }
   return FALSE;
