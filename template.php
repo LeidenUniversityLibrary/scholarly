@@ -1,6 +1,23 @@
 <?php
 
 /**
+ * hook preprocess_html
+ *
+ * Add viewport meta tag.
+ */
+function scholarly_preprocess_html(&$vars) {
+  $viewport = array(
+    '#tag' => 'meta', 
+    '#attributes' => array(
+      'name' => 'viewport', 
+      'content' => 'width=device-width, initial-scale=1',
+    ),
+  );
+ 
+  drupal_add_html_head($viewport, 'viewport');
+}
+
+/**
  * Theme override for theme_menu_link()
  */
 function scholarly_menu_link($variables) {
@@ -447,6 +464,10 @@ function scholarly_preprocess_islandora_solr(&$variables) {
            $displayvalue .= ' until ' . $embargodates[0];
          }
       }
+    }
+    else {
+      $displayvalue = 'metadata only';
+      $displayclass = 'ubl-metadata-only';
     }
     $variables['results'][$key]['embargo'] = array('value' => $displayvalue, 'class' => $displayclass);
     if (isset($displayvalue) && (($displayvalue === 'closed access' || substr($displayvalue, 0, 13) === 'under embargo'))) {

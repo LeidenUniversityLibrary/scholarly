@@ -334,3 +334,9 @@ h3 {
 .islandora-metadata .title {
   display: flex;
 }
+
+@media screen and (max-width: 768px) {
+  .islandora-compound-object-content-wrapper {
+    float: none;
+  }
+}

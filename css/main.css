@@ -375,7 +375,7 @@ body {
 }
 #theheader h1 em {
   display: block;
-  font-size: 200%;
+  font-size: 180%;
   font-style: normal;
   color: #000;
 }
@@ -538,10 +538,6 @@ input, textarea, select {
     float: none;
   }
 
-  .cbp-hrmenu > ul > li {
-    display: block;
-  }
-
   .cbp-hrmenu > ul > li > a {
     display: block;
   }
@@ -625,10 +621,6 @@ input, textarea, select {
   #themenu nav {
     border: none;
   }
-  #themenu nav ul li {
-    border-bottom: 1px solid #8088AC;
-    min-height: 3.5em;
-  }
   #themenu nav .cbp-hrsub h4 {
     padding-top: 0.6em;
   }
@@ -647,8 +639,33 @@ input, textarea, select {
     float: none;
   }
   #themenu .dc-menu-search form {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  #cbp-hrmenu ul.menu li.dc-menu-search {
+    float: left;
+  }
+  FORM#islandora-collection-search-form .form-item-collection-select SELECT {
+    width: 120px;
+  }
+  FORM#islandora-collection-search-form .form-item-islandora-simple-search-query INPUT {
+    width: 120px;
+  }
+
+  /* Top of page */
+  #thetitle .dc-logo {
+    margin: 0 0 -30px 0;
+    float: right;
+    padding: 0;
+  }
+  #thetitle .dc-logo IMG {
+    height: 50px;
+  }
+  #themenu {
+    margin-top: 0;
+  }
+  #themenu nav ul li a {
+    line-height: 2.5rem;
   }
 }
 
@@ -892,6 +909,12 @@ span.plusminus a.plus::after {
 .ubl-embargo.ubl-embargo-none:before {
     color: #35beb1;
     content: '\f058';
+    font-weight: 900
+}
+
+.ubl-embargo.ubl-metadata-only:before {
+    color: #999999;
+    content: '\f056';
     font-weight: 900
 }
 

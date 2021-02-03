@@ -93,3 +93,13 @@
 .pager-first a::before {
   content: "\f100";
 }
+
+@media screen and (max-width: 768px) {
+  .pager span,
+  .pager a {
+    padding: 8px 5px;
+  }
+  .item-list .pager {
+    text-align: initial;
+  }
+}

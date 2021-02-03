@@ -206,3 +206,14 @@ A.toggler.truncation-toggle-processed::before {
 A.toggler.truncation-toggle-processed::after {
   content: ']';
 }
+
+@media (max-width: 768px) {
+  .islandora-solr-search-results .islandora-inline-metadata dd {
+    padding-left: 0px;
+    display: block;
+    width: 100%;
+  }
+  .dc-searchresults-tools {
+    display: none;
+  }
+}
