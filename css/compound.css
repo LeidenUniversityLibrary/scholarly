@@ -62,7 +62,7 @@
   margin-right: 8px;
 }
 
-@media (min-width: 48em) {
+@media screen and (min-width: 767px) {
   .dc-sidebar #block-islandora-compound-object-compound-navigation,
   .dc-sidebar #block-islandora-in-collections-block-islandora-in-collections {
     margin: 16px 24px;
@@ -335,7 +335,7 @@ h3 {
   display: flex;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .islandora-compound-object-content-wrapper {
     float: none;
   }

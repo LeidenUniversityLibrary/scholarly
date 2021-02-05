@@ -12,26 +12,6 @@
   height: auto;
 }
 
-@media (min-width: 48em) {
-  .ubl-hero img {
-    display: none;
-  }
-}
-
-@media (min-width: 48em) {
-  .ubl-hero .ubl-centercontent {
-    min-height: 400px;
-  }
-}
-
-@media (min-width: 48em) {
-  .ubl-centercontent {
-    max-width: 1140px;
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-}
-
 .ubl-centercontent {
   overflow: hidden;
   zoom: 1;
@@ -40,7 +20,23 @@
   margin-right: auto;
 }
 
-@media (min-width: 48em) {
+.ubl-hero .ubl-hero-lead h1 {
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+@media screen and (min-width: 767px) {
+  .ubl-hero img {
+    display: none;
+  }
+  .ubl-hero .ubl-centercontent {
+    min-height: 400px;
+  }
+  .ubl-centercontent {
+    max-width: 1140px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
   .ubl-hero .ubl-hero-lead {
     margin: 5% 0 0 24px;
     width: 40%;
@@ -49,36 +45,19 @@
     padding: 1px 24px;
     color: #ccc;
   }
-}
-
-.ubl-hero .ubl-hero-lead h1 {
-  font-size: 1.25rem;
-  line-height: 1.2;
-}
-
-@media (min-width: 48em) {
   .ubl-hero .ubl-hero-lead h1 {
     color: #fff;
     font-size: 1.675rem;
     line-height: 1.2;
   }
-}
-
-@media (min-width: 48em) {
   .ubl-hero .ubl-hero-lead a {
     color: white;
     opacity: .8;
   }
-}
-
-@media (min-width: 48em) {
   .ubl-hero .ubl-hero-lead i {
     display: block;
     font-style: normal;
   }
-}
-
-@media (min-width: 48em) {
   .ubl-hero .ubl-hero-lead i::before {
     content: "";
     font-family: "Font Awesome 5 Pro";

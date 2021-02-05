@@ -207,13 +207,36 @@ A.toggler.truncation-toggle-processed::after {
   content: ']';
 }
 
-@media (max-width: 768px) {
+.islandora-solr-search-results .islandora-inline-metadata dd {
+  width: 100%;
+}
+
+@media screen and (max-width: 499px) {
+  .islandora-solr-search-results .row.islandora-solr-search-result {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
   .islandora-solr-search-results .islandora-inline-metadata dd {
     padding-left: 0px;
     display: block;
-    width: 100%;
   }
   .dc-searchresults-tools {
     display: none;
+  }
+  .islandora-solr-search-results .row .col {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+@media screen and (min-width: 500px) {
+  .islandora-solr-search-results .row.islandora-solr-search-result {
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  .islandora-solr-search-results .row .col-3 {
+    width: 150px;
+  }
+  .islandora-solr-search-results .row .col-9 {
+    width: calc(100% - 150px);
   }
 }

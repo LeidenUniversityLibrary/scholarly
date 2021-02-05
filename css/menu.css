@@ -56,7 +56,7 @@
   font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-@media all and (min-width: 48em) {
+@media all and (min-width: 768px) {
   #edit-islandora-simple-search-query {
     width: 180px;
   }

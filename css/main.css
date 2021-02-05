@@ -65,7 +65,7 @@ blockquote+h2, blockquote+h3, blockquote+h4, blockquote+h5, blockquote+h6, dl+h2
   margin-top: 24px;
 }
 
-@media all and (min-width: 48em) {
+@media all and (min-width: 768px) {
   .dc-centercontent {
     max-width: 1140px;
     padding-left: 15px;
@@ -110,7 +110,7 @@ body {
   line-height: 24px;
 }
 
-@media (min-width: 48em) {
+@media all and (min-width: 768px) {
   .ubl-hero .ubl-hero-lead {
     margin: 5% 0 0 24px;
     width: 40%;
@@ -148,14 +148,12 @@ body {
   clear: both;
 }
 
-@media (min-width: 48em) {
+@media all and (min-width: 768px) {
   .front .dc-content {
     margin-top: -60px;
     z-index: 6;
     position: relative;
   }
-}
-@media all and (min-width: 48em) {
   .dc-centercontent {
     max-width: 1140px;
     padding-left: 15px;
@@ -200,7 +198,7 @@ body {
   font-size: 120%;
 }
 
-@media all and (min-width: 48em) {
+@media all and (min-width: 768px) {
   .dc-content {
     padding-left: 3em;
     padding-right: 3em;
@@ -210,8 +208,6 @@ body {
     box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 3px 1px;
     border-bottom: none;
   }
-}
-@media all and (min-width: 63.75em) {
   .dc-sidebar ~ .dc-content {
     width: calc(75% - 40px);
   }
@@ -221,14 +217,9 @@ body {
   .dc-sidebar-left ~ .dc-content {
     float: right;
   }
-}
-
-@media (min-width: 63.75em) {
   .dc-sidebar-right ~ .dc-content, .dc-content.has-sidebar-right {
     float: left;
   }
-}
-@media (min-width: 63.75em) {
   .dc-sidebar ~ .dc-content, .dc-content.has-sidebar {
     width: calc(75% - 40px);
   }
@@ -246,7 +237,7 @@ body {
   display: table;
   clear: both;
 }
-@media all and (min-width: 63.75em) {
+@media all and (min-width: 768px) {
   .dc-sidebar {
     padding-top: 0;
     padding-bottom: 120px;
@@ -287,7 +278,7 @@ body {
   border-bottom: solid 1px #ddd;
 }
 
-@media (min-width: 63.75em) {
+@media all and (min-width: 768px) {
   .dc-sidebar.dc-sidebar-right {
     float: right;
   }
@@ -303,7 +294,7 @@ body {
   display: table;
   clear: both;
 }
-@media all and (min-width: 63.75em) {
+@media all and (min-width: 768px) {
   .dc-sidebox {
     width: calc(30% - 40px);
   }
@@ -400,6 +391,22 @@ body {
   padding: 28px 15px 60px 15px;
   background: #D9D9D9;
   text-align: center;
+}
+
+#block-menu-menu-footer-menu ul {
+  text-align: inherit;
+  margin: 0 0 16px 0;
+  padding: 0;
+}
+#block-menu-menu-footer-menu li {
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#block-menu-menu-footer-menu li:not(.last):after {
+  content: ' | ';
 }
 
 .ubl-friend a {
@@ -526,7 +533,7 @@ input, textarea, select {
   clear: both;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .cbp-hrmenu > ul,
   .cbp-hrmenu .cbp-hrsub-inner {
     width: 100%;
@@ -617,7 +624,7 @@ input, textarea, select {
   vertical-align: middle;
   color: #7F88AB;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   #themenu nav {
     border: none;
   }
@@ -651,6 +658,10 @@ input, textarea, select {
   FORM#islandora-collection-search-form .form-item-islandora-simple-search-query INPUT {
     width: 120px;
   }
+  .dc-sidebar {
+    margin-top: 0;
+    padding: 5px 20px;
+  }
 
   /* Top of page */
   #thetitle .dc-logo {
@@ -666,6 +677,11 @@ input, textarea, select {
   }
   #themenu nav ul li a {
     line-height: 2.5rem;
+  }
+}
+@media screen and (max-width: 767px) {
+  .ubl-hide-mobile {
+    display: none;
   }
 }
 
