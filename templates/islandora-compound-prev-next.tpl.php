@@ -37,26 +37,26 @@
    <?php $query_params = drupal_get_query_parameters(); ?>
    <ul class="dc-grid dc-grid-compound dc-compound-items islandora-compound">
    <?php foreach ($siblings_detailed as $pid => $sibling): ?>
-     <li class="<?php print $sibling['view_class']; ?>">
+     <li class="<?php if (isset($sibling['view_class'])) { print $sibling['view_class']; } ?>">
      <ul>
      <?php if (isset($sibling['view_url'])): ?>
        <li class="ubl-file-download"><?php print l('Download', $sibling['download_url']); ?></li>
        <li class="ubl-file-view">
          <?php print l(scholarly_filter_metadata($sibling['title']), $sibling['view_url'], array('attributes' => array('target' => '_blank'))); ?>
-       </li> 
+       </li>
      <?php endif; ?>
      <?php if (!isset($sibling['view_url'])): ?>
        <li class="ubl-file-view ubl-not-accessible">
          <?php print scholarly_filter_metadata($sibling['title']); ?>
-       </li> 
+       </li>
      <?php endif; ?>
      <?php if (isset($sibling['version'])): ?>
      <li class="ubl-file-version">
          <?php print scholarly_filter_metadata($sibling['version']); ?>
      </li>
      <?php endif; ?>
-     <li class="ubl-file-remarks ubl-embargo <?php print $sibling['embargo_class']; ?>">
-       <?php print scholarly_filter_metadata($sibling['embargo_text']); ?> 
+     <li class="ubl-file-remarks ubl-embargo <?php if (isset($sibling['embargo_class'])) { print $sibling['embargo_class']; } ?>">
+       <?php if (isset($sibling['embargo_text'])) { print scholarly_filter_metadata($sibling['embargo_text']); } ?>
        <?php if (isset($sibling['license_url'])): ?>
          <?php $options = array(
                  'path' => '/sites/all/themes/scholarly/img/' . $sibling['license_type'] . '.png',
