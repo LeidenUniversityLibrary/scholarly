@@ -671,7 +671,7 @@ function scholarly_preprocess_islandora_compound_object(&$variables) {
   }
   $is_closed = TRUE;
   $islandora_object = $variables['islandora_object'];
-  $usedsolrfields = array('related_mods_accessCondition_type_ms', 'related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt', 'mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt');
+  $usedsolrfields = array('PID', 'related_mods_accessCondition_type_ms', 'related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt', 'mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt');
   $qp = new IslandoraSolrQueryProcessor();
   $object_id = islandora_solr_lesser_escape($islandora_object->id);
   $query = "PID:($object_id)";
