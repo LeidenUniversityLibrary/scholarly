@@ -164,7 +164,7 @@
               <?php if (isset($selection['mods_genre_authority_local_s'][0]) && preg_match('/>?Doctoral Thesis<?/', $selection['mods_genre_authority_local_s'][0])): ?>
                 <dl title="Qualification" class="mods_genre_authority_local_s">
                   <dt>Qualification</dt>
-                  <dd>Doctor of Philosophy (Ph.D.)</dd>
+                  <dd>Doctor (dr.)</dd>
                 </dl>
               <?php endif; ?>
               <?php if (isset($selection['mods_name_corporate_dgg_affiliation_institution_ms']) || isset($selection['mods_name_corporate_dgg_affiliation_faculty_ms']) || isset($selection['mods_name_corporate_DegreegrantinginstitutionRole_namePart_custom_ms'])): ?>
