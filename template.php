@@ -496,10 +496,11 @@ function scholarly_preprocess_islandora_compound_prev_next(&$variables) {
                       'mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt',
                       'related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt',
                       'mods_note_version_ms',
+                      'mods_genre_ms',
                     );
   $parent_id = islandora_solr_lesser_escape($variables['parent_pid']);
   $relcomp = variable_get('islandora_solr_compound_relationship_field', 'RELS_EXT_isConstituentOf_uri_ms');
-  $query = "$relcomp:($parent_id) OR $relcomp:(" . islandora_solr_lesser_escape('info:fedora/') . "$parent_id)";
+  $query = "PID:$parent_id OR $relcomp:($parent_id) OR $relcomp:(" . islandora_solr_lesser_escape('info:fedora/') . "$parent_id)";
   $qp->buildQuery("*:*");
   $qp->solrStart = 0;
   $qp->solrLimit = $variables['child_count'] + 1;
@@ -509,10 +510,16 @@ function scholarly_preprocess_islandora_compound_prev_next(&$variables) {
   $qp->executeQuery(FALSE);
   if (isset($qp->islandoraSolrResult['response']['numFound']) && $qp->islandoraSolrResult['response']['numFound'] > 0) {
     $fieldsep = variable_get('islandora_solr_search_field_value_separator', ', ');
+    $variables['show_version'] = TRUE;
     foreach ($qp->islandoraSolrResult['response']['objects'] as $solrobj) {
       $pid = $solrobj['PID'];
       unset($datastream);
       if (!isset($variables['siblings_detailed'][$pid])) {
+        if ($pid === $variables['parent_pid']) {
+          if (isset($solrobj['solr_doc']['mods_genre_ms']) && count(array_intersect($solrobj['solr_doc']['mods_genre_ms'], array('Doctoral Thesis', 'info:eu-repo/semantics/doctoralThesis'))) > 0) {
+            $variables['show_version'] = FALSE;
+          }
+        }
         continue;
       }
       $variables['siblings_detailed'][$pid]['embargo_text'] = 'closed access'; 

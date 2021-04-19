@@ -50,7 +50,7 @@
          <?php print scholarly_filter_metadata($sibling['title']); ?>
        </li>
      <?php endif; ?>
-     <?php if (isset($sibling['version'])): ?>
+     <?php if (isset($sibling['version']) && $show_version): ?>
      <li class="ubl-file-version">
          <?php print scholarly_filter_metadata($sibling['version']); ?>
      </li>
