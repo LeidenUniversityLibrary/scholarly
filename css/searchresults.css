@@ -65,7 +65,8 @@ dd.mods-genre-authority-local-s {
   font-weight: bold;
 }
 
-dd.mods-name-personal-authorrole-namepart-custom-ms {
+dd.mods-name-authorrole-namepart-custom-ms,
+dd.mods-name-editorrole-namepart-custom-ms {
   width: auto;
 }
 
@@ -79,7 +80,8 @@ dd.mods-name-personal-authorrole-namepart-custom-ms {
   margin: 0 0 16px 0;
 }
 
-.mods-name-personal-authorrole-namepart-custom-ms {
+.mods-name-authorrole-namepart-custom-ms,
+.mods-name-editorrole-namepart-custom-ms {
   color: #B27F2B;
   margin-bottom: 8px;
   font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;

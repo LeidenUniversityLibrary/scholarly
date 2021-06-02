@@ -22,8 +22,4 @@
  * the view is modified.
  */
 ?>
-<?php if (isset($row->mods_name_personal_AuthorRole_namePart_custom_ms)): ?>
-<?php print scholarly_authors_apa6('; ', $row->mods_name_personal_AuthorRole_namePart_custom_ms); ?>
-<?php else: ?>
-<?php print $output; ?>
-<?php endif; ?>
+<?php /* Do not show editor here, but instead of author if the author does not exist. */ ?>
