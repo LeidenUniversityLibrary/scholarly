@@ -934,8 +934,7 @@ span.plusminus a.plus::after {
     font-weight: 900
 }
 
-
-
-
-
-
+.xml-form-elements-tags INPUT[type=image] {
+  width: auto;
+  height: auto;
+}
