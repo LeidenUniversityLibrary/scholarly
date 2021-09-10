@@ -115,10 +115,10 @@
                   <h3>
                     <?php $title = implode($variables['separator'], $selection['mods_titleInfo_title_custom_ms']) ?>
                     <?php if (!empty($selection['mods_titleInfo_subTitle_ms'])): ?>
-                      <?php if (preg_match('/\w\s*$/', $title) === 1): ?>
-                        <?php $title .= ': '; ?>
-                      <?php else: ?>
+                      <?php if (preg_match('#[.!?,:;()\\[\\]\'"/…—-]\s*$#', $title) === 1): ?>
                         <?php $title .= ' '; ?>
+                      <?php else: ?>
+                        <?php $title .= ': '; ?>
                       <?php endif; ?>
                       <?php $title .= implode($variables['separator'], $selection['mods_titleInfo_subTitle_ms']) ?>
                     <?php endif; ?>
