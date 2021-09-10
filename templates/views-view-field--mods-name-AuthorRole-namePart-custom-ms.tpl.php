@@ -24,8 +24,10 @@
 ?>
 <?php if (isset($row->mods_name_AuthorRole_namePart_custom_ms)): ?>
 <?php print scholarly_authors_apa6('; ', $row->mods_name_AuthorRole_namePart_custom_ms); ?>
+<?php if (isset($row->mods_name_personal_aut_etal_ms[0])): print ' ' . $row->mods_name_personal_aut_etal_ms[0]; endif; ?>
 <?php elseif (isset($row->mods_name_EditorRole_namePart_custom_ms)): ?>
 <?php print scholarly_authors_apa6('; ', $row->mods_name_EditorRole_namePart_custom_ms); ?>
+<?php if (isset($row->mods_name_personal_edt_etal_ms[0])): print ' ' . $row->mods_name_personal_edt_etal_ms[0]; endif; ?>
 <?php else: ?>
 <?php print $output; ?>
 <?php endif; ?>

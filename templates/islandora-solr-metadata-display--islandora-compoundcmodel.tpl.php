@@ -28,6 +28,8 @@
             $selection = [
               'mods_name_AuthorRole_namePart_custom_ms' => !empty($solr_fields['mods_name_AuthorRole_namePart_custom_ms']['value']) ? $solr_fields['mods_name_AuthorRole_namePart_custom_ms']['value'] : (!empty($solr_fields['mods_name_personal_AuthorRole_namePart_custom_ms']['value']) ? $solr_fields['mods_name_personal_AuthorRole_namePart_custom_ms']['value'] : NULL),
               'mods_name_EditorRole_namePart_custom_ms' => !empty($solr_fields['mods_name_EditorRole_namePart_custom_ms']['value']) ? $solr_fields['mods_name_EditorRole_namePart_custom_ms']['value'] : NULL,
+              'mods_name_personal_aut_etal_ms' => !empty($solr_fields['mods_name_personal_aut_etal_ms']['value'][0]) ? $solr_fields['mods_name_personal_aut_etal_ms']['value'][0] : NULL,
+              'mods_name_personal_edt_etal_ms' => !empty($solr_fields['mods_name_personal_edt_etal_ms']['value'][0]) ? $solr_fields['mods_name_personal_edt_etal_ms']['value'][0] : NULL,
               'mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s' => !empty($solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value']) ? $solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value'] : NULL,
               'mods_titleInfo_title_custom_ms' => !empty($solr_fields['mods_titleInfo_title_custom_ms']['value']) ? $solr_fields['mods_titleInfo_title_custom_ms']['value'] : NULL,
               'mods_titleInfo_subTitle_ms' => !empty($solr_fields['mods_titleInfo_subTitle_ms']['value']) ? $solr_fields['mods_titleInfo_subTitle_ms']['value'] : NULL,
@@ -91,10 +93,16 @@
                 <?php if (!empty($selection['mods_name_AuthorRole_namePart_custom_ms'])): ?>
                 <span class="name">
                   <?php print scholarly_authors_apa6($variables['separator'], $selection['mods_name_AuthorRole_namePart_custom_ms']) ?>
+                  <?php if (!empty($selection['mods_name_personal_aut_etal_ms'])): ?>
+                    <?php print $selection['mods_name_personal_aut_etal_ms']; ?>
+                  <?php endif; ?>
                 </span>
                 <?php elseif (!empty($selection['mods_name_EditorRole_namePart_custom_ms'])): ?>
                 <span class="name">
                   <?php print scholarly_authors_apa6($variables['separator'], $selection['mods_name_EditorRole_namePart_custom_ms']) ?>
+                  <?php if (!empty($selection['mods_name_personal_edt_etal_ms'])): ?>
+                    <?php print $selection['mods_name_personal_edt_etal_ms']; ?>
+                  <?php endif; ?>
                 </span>
                 <?php endif; ?>
                 <span class="year">

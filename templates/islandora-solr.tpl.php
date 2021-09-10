@@ -68,6 +68,10 @@
                 <?php // do not display the subtitle here, did it above already ?>
               <?php elseif ($key === 'mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s'): ?>
                 <?php // do not display the issue date here, doing it below already ?>
+              <?php elseif ($key === 'mods_name_personal_aut_etal_ms'): ?>
+                <?php // do not display the issue date here, doing it below already ?>
+              <?php elseif ($key === 'mods_name_personal_edt_etal_ms'): ?>
+                <?php // do not display the issue date here, doing it below already ?>
               <?php elseif ($key === 'mods_name_AuthorRole_namePart_custom_ms' || $key === 'mods_name_EditorRole_namePart_custom_ms'): ?>
                 <?php if ($key === 'mods_name_EditorRole_namePart_custom_ms' && isset($result['solr_doc']['mods_name_AuthorRole_namePart_custom_ms'])):
                          continue;
@@ -76,6 +80,12 @@
                   <?php $authorsString = isset($result['solr_doc']['mods_name_AuthorRole_namePart_custom_ms']['value']) ? $result['solr_doc']['mods_name_AuthorRole_namePart_custom_ms']['value'] : $result['solr_doc']['mods_name_EditorRole_namePart_custom_ms']['value'];
                         $authors = preg_split('/\\s*;\\s*/', trim($authorsString, " \t\n\r"));
                         print scholarly_authors_apa6('; ', $authors); ?>
+                  <?php if (isset($result['solr_doc']['mods_name_personal_aut_etal_ms']['value'])):
+                          print $result['solr_doc']['mods_name_personal_aut_etal_ms']['value'];
+                        elseif (isset($result['solr_doc']['mods_name_personal_edt_etal_ms']['value']) && $key === 'mods_name_EditorRole_namePart_custom_ms'):
+                          print $result['solr_doc']['mods_name_personal_edt_etal_ms']['value'];
+                        endif;
+                  ?>
                   <?php if (isset($result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value'])): ?>
                      <span class="solr-value <?php print $result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['class']; ?>"><?php print scholarly_filter_metadata(trim($result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value'], " \t\n\r")); ?></span>
                   <?php endif; ?>
