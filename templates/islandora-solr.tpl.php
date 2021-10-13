@@ -66,7 +66,7 @@
                 </dd>
               <?php elseif ($key === 'mods_titleInfo_subTitle_ms'): ?>
                 <?php // do not display the subtitle here, did it above already ?>
-              <?php elseif ($key === 'mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_ms' || $key === 'mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s'): ?>
+              <?php elseif ($key === 'mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_year_custom_ms' || $key === 'mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s'): ?>
                 <?php // do not display the issue date here, doing it below already ?>
               <?php elseif ($key === 'mods_name_personal_aut_etal_ms'): ?>
                 <?php // do not display the issue date here, doing it below already ?>
@@ -87,7 +87,7 @@
                         endif;
                   ?>
                   <?php if (isset($result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_ms']['value'])): ?>
-                     <span class="solr-value <?php print $result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_ms']['class']; ?>"><?php print scholarly_filter_metadata(trim($result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_ms']['value'], " \t\n\r")); ?></span>
+                     <span class="solr-value <?php print $result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_year_custom_ms']['class']; ?>"><?php print scholarly_filter_metadata(trim($result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_year_custom_ms']['value'], " \t\n\r")); ?></span>
                   <?php elseif (isset($result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value'])): ?>
                      <span class="solr-value <?php print $result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['class']; ?>"><?php print scholarly_filter_metadata(trim($result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value'], " \t\n\r")); ?></span>
                   <?php endif; ?>
