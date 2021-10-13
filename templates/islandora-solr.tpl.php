@@ -29,9 +29,9 @@
             <?php foreach($result['solr_doc'] as $key => $value): ?>
               <?php if ($key === 'related_mods_accessCondition_type_ms'): ?>
                 <?php // do not display the access condition here, do it below genre / department ?>
-              <?php elseif ($key === 'related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt'): ?>
+              <?php elseif ($key === 'related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt' || $key === 'related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_ms'): ?>
                 <dd style="display:none;"><?php print scholarly_filter_metadata(trim($value['value'], " \t\n\r")); ?></dd>
-              <?php elseif ($key === 'mods_genre_authority_local_s'): ?>
+              <?php elseif ($key === 'mods_genre_authority_local_ms' || $key === 'mods_genre_authority_local_s'): ?>
                 <dd class="solr-value <?php print $value['class']; ?>">
                   <?php print scholarly_filter_metadata(trim($value['value'], " \t\n\r")); ?>
                   <?php if (isset($result['solr_doc']['mods_name_personal_affiliation_department_ms']['value'])): ?>
@@ -66,7 +66,7 @@
                 </dd>
               <?php elseif ($key === 'mods_titleInfo_subTitle_ms'): ?>
                 <?php // do not display the subtitle here, did it above already ?>
-              <?php elseif ($key === 'mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s'): ?>
+              <?php elseif ($key === 'mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_ms' || $key === 'mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s'): ?>
                 <?php // do not display the issue date here, doing it below already ?>
               <?php elseif ($key === 'mods_name_personal_aut_etal_ms'): ?>
                 <?php // do not display the issue date here, doing it below already ?>
@@ -86,7 +86,9 @@
                           print $result['solr_doc']['mods_name_personal_edt_etal_ms']['value'];
                         endif;
                   ?>
-                  <?php if (isset($result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value'])): ?>
+                  <?php if (isset($result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_ms']['value'])): ?>
+                     <span class="solr-value <?php print $result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_ms']['class']; ?>"><?php print scholarly_filter_metadata(trim($result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_ms']['value'], " \t\n\r")); ?></span>
+                  <?php elseif (isset($result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value'])): ?>
                      <span class="solr-value <?php print $result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['class']; ?>"><?php print scholarly_filter_metadata(trim($result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value'], " \t\n\r")); ?></span>
                   <?php endif; ?>
                 </dd>

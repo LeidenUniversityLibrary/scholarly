@@ -489,11 +489,14 @@ function scholarly_preprocess_islandora_compound_prev_next(&$variables) {
   $usedsolrfields = array(
                       'PID',
                       'mods_accessCondition_use_and_reproduction_xlinkhref_ms',
+                      'mods_accessCondition_use_and_reproduction_ms',
                       'mods_accessCondition_use_and_reproduction_s',
                       'mods_accessCondition_type_custom_ms',
+                      'mods_identifier_doi_ms',
                       'mods_identifier_doi_s',
                       'RELS_EXT_hasModel_uri_ms',
-                      'mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt',
+                      'mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_ms',
+                      'related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_ms',
                       'related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt',
                       'mods_note_version_ms',
                       'mods_genre_ms',
@@ -532,7 +535,7 @@ function scholarly_preprocess_islandora_compound_prev_next(&$variables) {
         if ($licensetype === $licenseurl) {
           $licensetype = 'unknown';
         }
-        $licensetext = $solrobj['solr_doc']['mods_accessCondition_use_and_reproduction_s'];
+        $licensetext = isset($solrobj['solr_doc']['mods_accessCondition_use_and_reproduction_ms'][0]) ? $solrobj['solr_doc']['mods_accessCondition_use_and_reproduction_ms'][0] : $solrobj['solr_doc']['mods_accessCondition_use_and_reproduction_s'];
       }
       if (isset($solrobj['solr_doc']['mods_accessCondition_type_custom_ms'])) {
         if (in_array('info:eu-repo/semantics/closedAccess', $solrobj['solr_doc']['mods_accessCondition_type_custom_ms'])) {
@@ -564,11 +567,11 @@ function scholarly_preprocess_islandora_compound_prev_next(&$variables) {
           }
         }
       }
-      if (isset($solrobj['solr_doc']['mods_identifier_doi_s'])) {
-        $doi = $solrobj['solr_doc']['mods_identifier_doi_s']; 
-        $variables['siblings_detailed'][$pid]['doi'] = $doi; 
+      if (isset($solrobj['solr_doc']['mods_identifier_doi_ms']) || isset($solrobj['solr_doc']['mods_identifier_doi_s'])) {
+        $doi = isset($solrobj['solr_doc']['mods_identifier_doi_ms'][0]) ? $solrobj['solr_doc']['mods_identifier_doi_ms'][0] : $solrobj['solr_doc']['mods_identifier_doi_s'];
+        $variables['siblings_detailed'][$pid]['doi'] = $doi;
         $doi_url = preg_replace('!^\s*(?:doi:|https?://(?:dx\.)?doi.org/|)(.*)$!', "https://doi.org/$1", $doi);
-        $variables['siblings_detailed'][$pid]['doi_url'] = $doi_url; 
+        $variables['siblings_detailed'][$pid]['doi_url'] = $doi_url;
       }
       if (isset($solrobj['solr_doc']['mods_note_version_ms'])) {
         $version = implode(',', $solrobj['solr_doc']['mods_note_version_ms']); 
@@ -615,14 +618,20 @@ function scholarly_preprocess_islandora_compound_prev_next(&$variables) {
 }
 
 function _scholarly_derive_embargodate($solrdoc, $fieldsep, $returnall = FALSE) {
-  if (isset($solrdoc['related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt']['value'])) {
+  if (isset($solrdoc['related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_ms']['value'])) {
+    $dates = $solrdoc['related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_ms']['value'];
+  }
+  elseif (isset($solrdoc['related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_ms'])) {
+    $dates = $solrdoc['related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_ms'];
+  }
+  elseif (isset($solrdoc['related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt']['value'])) {
     $dates = $solrdoc['related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt']['value'];
   }
   elseif (isset($solrdoc['related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt'])) {
     $dates = $solrdoc['related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt'];
   }
-  elseif (isset($solrdoc['mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt'])) {
-    $dates = $solrdoc['mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt'][0];
+  elseif (isset($solrdoc['mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_ms'])) {
+    $dates = $solrdoc['mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_ms'][0];
   }
   if (isset($dates)) {
     if (is_string($dates)) {
@@ -678,7 +687,7 @@ function scholarly_preprocess_islandora_compound_object(&$variables) {
   }
   $is_closed = TRUE;
   $islandora_object = $variables['islandora_object'];
-  $usedsolrfields = array('PID', 'related_mods_accessCondition_type_ms', 'related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt', 'mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt');
+  $usedsolrfields = array('PID', 'related_mods_accessCondition_type_ms', 'related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_ms', 'related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt', 'mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_ms');
   $qp = new IslandoraSolrQueryProcessor();
   $object_id = islandora_solr_lesser_escape($islandora_object->id);
   $query = "PID:($object_id)";
