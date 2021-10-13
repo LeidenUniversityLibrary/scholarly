@@ -86,7 +86,7 @@
                           print $result['solr_doc']['mods_name_personal_edt_etal_ms']['value'];
                         endif;
                   ?>
-                  <?php if (isset($result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_ms']['value'])): ?>
+                  <?php if (isset($result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_year_custom_ms']['value'])): ?>
                      <span class="solr-value <?php print $result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_year_custom_ms']['class']; ?>"><?php print scholarly_filter_metadata(trim($result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_year_custom_ms']['value'], " \t\n\r")); ?></span>
                   <?php elseif (isset($result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value'])): ?>
                      <span class="solr-value <?php print $result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['class']; ?>"><?php print scholarly_filter_metadata(trim($result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value'], " \t\n\r")); ?></span>
