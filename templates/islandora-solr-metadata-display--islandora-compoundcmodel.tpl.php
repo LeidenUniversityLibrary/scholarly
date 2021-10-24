@@ -71,6 +71,7 @@
               'mods_relatedItem_host_titleInfo_partNumber_ms' => !empty($solr_fields['mods_relatedItem_host_titleInfo_partNumber_ms']['value']) ? $solr_fields['mods_relatedItem_host_titleInfo_partNumber_ms']['value'] : NULL,
               'mods_note_coverageCourt_ms' => !empty($solr_fields['mods_note_coverageCourt_ms']['value']) ? $solr_fields['mods_note_coverageCourt_ms']['value'] : NULL,
               'mods_part_date_ms' => !empty($solr_fields['mods_part_date_ms']['value']) ? $solr_fields['mods_part_date_ms']['value'] : NULL,
+              'mods_part_encoding_w3cdtf_date_ms' => !empty($solr_fields['mods_part_encoding_w3cdtf_date_ms']['value']) ? $solr_fields['mods_part_encoding_w3cdtf_date_ms']['value'] : NULL,
               'mods_part_detail_caseNumber_number_ms' => !empty($solr_fields['mods_part_detail_caseNumber_number_ms']['value']) ? $solr_fields['mods_part_detail_caseNumber_number_ms']['value'] : NULL,
               'mods_identifier_ecli_ms' => !empty($solr_fields['mods_identifier_ecli_ms']['value']) ? $solr_fields['mods_identifier_ecli_ms']['value'] : NULL,
               'mods_relatedItem_original_titleInfo_title_ms' => !empty($solr_fields['mods_relatedItem_original_titleInfo_title_ms']['value']) ? $solr_fields['mods_relatedItem_original_titleInfo_title_ms']['value'] : NULL,
@@ -299,10 +300,14 @@
               <?php scholarly_display_label_and_value($solr_fields, 'mods_relatedItem_series_titleInfo_title_ms', $variables['separator']); ?>
               <?php scholarly_display_label_and_value($solr_fields, 'mods_relatedItem_host_titleInfo_partNumber_ms', $variables['separator']); ?>
             <?php endif; ?>
-            <?php if (isset($selection['mods_note_coverageCourt_ms']) || isset($selection['mods_part_date_ms']) || isset($selection['mods_part_detail_caseNumber_number_ms']) || isset($selection['mods_identifier_ecli_ms'])): ?>
+            <?php if (isset($selection['mods_note_coverageCourt_ms']) || isset($selection['mods_part_date_ms']) || isset($selection['mods_part_encoding_w3cdtf_date_ms']) || isset($selection['mods_part_detail_caseNumber_number_ms']) || isset($selection['mods_identifier_ecli_ms'])): ?>
               <H4>Juridical information</H4>
               <?php scholarly_display_label_and_value($solr_fields, 'mods_note_coverageCourt_ms', $variables['separator']); ?>
+              <?php if ($selection['mods_part_encoding_w3cdtf_date_ms']): ?>
+              <?php scholarly_display_label_and_value($solr_fields, 'mods_part_encoding_w3cdtf_date_ms', $variables['separator']); ?>
+              <?php else: ?>
               <?php scholarly_display_label_and_value($solr_fields, 'mods_part_date_ms', $variables['separator']); ?>
+              <?php endif; ?>
               <?php scholarly_display_label_and_value($solr_fields, 'mods_part_detail_caseNumber_number_ms', $variables['separator']); ?>
               <?php scholarly_display_label_and_value($solr_fields, 'mods_identifier_ecli_ms', $variables['separator']); ?>
             <?php endif; ?>
