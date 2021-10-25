@@ -35,6 +35,7 @@
               'mods_titleInfo_title_custom_ms' => !empty($solr_fields['mods_titleInfo_title_custom_ms']['value']) ? $solr_fields['mods_titleInfo_title_custom_ms']['value'] : NULL,
               'mods_titleInfo_subTitle_ms' => !empty($solr_fields['mods_titleInfo_subTitle_ms']['value']) ? $solr_fields['mods_titleInfo_subTitle_ms']['value'] : NULL,
               'mods_genre_authority_local_s' => !empty($solr_fields['mods_genre_authority_local_s']['value']) ? $solr_fields['mods_genre_authority_local_s']['value'] : NULL,
+              'mods_genre_authority_local_ms' => !empty($solr_fields['mods_genre_authority_local_ms']['value']) ? $solr_fields['mods_genre_authority_local_ms']['value'] : NULL,
               'mods_name_personal_affiliation_department_ms' => !empty($solr_fields['mods_name_personal_affiliation_department_ms']['value']) ? $solr_fields['mods_name_personal_affiliation_department_ms']['value'] : NULL,
               'mods_abstract_ms' => !empty($solr_fields['mods_abstract_ms']['value']) ? $solr_fields['mods_abstract_ms']['value'] : NULL,
               'mods_subject_topic_ms' => !empty($solr_fields['mods_subject_topic_ms']['value']) ? $solr_fields['mods_subject_topic_ms']['value'] : NULL,
@@ -132,9 +133,10 @@
                   </h3>
               </dd>
               <?php endif; ?>
-              <?php if (!empty($selection['mods_genre_authority_local_s'])): ?>
+              <?php if (!empty($selection['mods_genre_authority_local_s']) || !empty($selection['mods_genre_authority_local_ms'])): ?>
               <dd class="genre">
-                <?php $text = scholarly_filter_metadata($selection['mods_genre_authority_local_s'][0]);
+                <?php $text = !empty($selection['mods_genre_authority_local_s']) ? $selection['mods_genre_authority_local_s'][0] : $selection['mods_genre_authority_local_ms'][0];
+                      $text = scholarly_filter_metadata($text);
                       if ($text !== NULL && strlen($text) > 0 && $selection['mods_name_personal_affiliation_department_ms'][0] !== NULL && strlen($selection['mods_name_personal_affiliation_department_ms'][0]) > 0) {
                         $text .= ' | ';
                       }
@@ -175,11 +177,14 @@
               <?php scholarly_display_label_and_value($solr_fields, 'mods_name_ThesisadvisorRole_namePart_custom_ms', $variables['separator']); ?> 
               <?php scholarly_display_label_and_value($solr_fields, 'mods_name_CommitteememberRole_namePart_custom_ms', $variables['separator']); ?> 
               <?php scholarly_display_label_and_value($solr_fields, 'mods_name_InterviewerRole_namePart_custom_ms', $variables['separator']); ?> 
-              <?php if (isset($selection['mods_genre_authority_local_s'][0]) && preg_match('/>?Doctoral Thesis<?/', $selection['mods_genre_authority_local_s'][0])): ?>
+              <?php if (isset($selection['mods_genre_authority_local_s'][0]) || isset($selection['mods_genre_authority_local_ms'][0])): ?>
+                <?php $genre = isset($selection['mods_genre_authority_local_s'][0]) ? $selection['mods_genre_authority_local_s'][0] : $selection['mods_genre_authority_local_ms'][0]; ?>
+                <?php if (preg_match('/>?Doctoral Thesis<?/', $genre)): ?>
                 <dl title="Qualification" class="mods_genre_authority_local_s">
                   <dt>Qualification</dt>
                   <dd>Doctor (dr.)</dd>
                 </dl>
+                <?php endif; ?>
               <?php endif; ?>
               <?php if (isset($selection['mods_name_corporate_dgg_affiliation_institution_ms']) || isset($selection['mods_name_corporate_dgg_affiliation_faculty_ms']) || isset($selection['mods_name_corporate_DegreegrantinginstitutionRole_namePart_custom_ms'])): ?>
                 <dl title="Awarding Institution" class="mods_genre_authority_local_s">
@@ -211,7 +216,7 @@
                 <?php unset($selection['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']); ?>
               <?php endif; ?>
               <?php if (isset($selection['mods_relatedItem_host_titleInfo_title_ms'])): ?>
-                <?php $label = preg_match('!>?(?:Annotation|Article / Letter to editor)<?!i', $selection['mods_genre_authority_local_s'][0]) ? 'Journal' : 'Title of host publication'; ?>
+                <?php $label = preg_match('!>?(?:Annotation|Article / Letter to editor)<?!i', $genre) ? 'Journal' : 'Title of host publication'; ?>
                 <dl title="<?php print $label; ?>" class="mods_relatedItem_host_titleInfo_title_ms">
                   <dt><?php print $label; ?></dt>
                   <dd>
