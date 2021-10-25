@@ -496,6 +496,7 @@ function scholarly_preprocess_islandora_compound_prev_next(&$variables) {
                       'mods_identifier_doi_s',
                       'RELS_EXT_hasModel_uri_ms',
                       'mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_ms',
+                      'mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_dt',
                       'related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_ms',
                       'related_mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_mdt',
                       'mods_note_version_ms',
@@ -632,6 +633,9 @@ function _scholarly_derive_embargodate($solrdoc, $fieldsep, $returnall = FALSE) 
   }
   elseif (isset($solrdoc['mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_ms'])) {
     $dates = $solrdoc['mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_ms'][0];
+  }
+  elseif (isset($solrdoc['mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_dt'])) {
+    $dates = $solrdoc['mods_originInfo_encoding_w3cdtf_type_embargo_dateOther_dt'];
   }
   if (isset($dates)) {
     if (is_string($dates)) {
