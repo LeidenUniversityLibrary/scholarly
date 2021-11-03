@@ -60,7 +60,8 @@ dd span.mods-origininfo-encoding-w3cdtf-keydate-yes-dateissued-year-custom-ms::a
   content: ")";
 }
 
-dd.mods-genre-authority-local-s {
+dd.mods-genre-authority-local-s,
+dd.mods-genre-authority-local-ms {
   font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 20px;
