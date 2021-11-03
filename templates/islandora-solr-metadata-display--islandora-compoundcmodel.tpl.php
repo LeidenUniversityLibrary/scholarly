@@ -346,7 +346,7 @@
                       $solr_fields['mods_relatedItem_host_name_conference_namePart_ms']['value'] = array($solr_fields['mods_relatedItem_host_name_conference_namePart_ms']['value'][0]);
                     } ?>
               <?php scholarly_display_label_and_value($solr_fields, 'mods_relatedItem_host_name_conference_namePart_ms', $variables['separator']); ?>
-              <?php scholarly_display_label_and_value($solr_fields, 'mods_relatedItem_host_name_conference_type_date_namePart_ms', $variables['separator']); ?>
+              <?php scholarly_display_label_and_value($solr_fields, 'mods_relatedItem_host_name_conference_type_date_namePart_ms', ' - '); ?>
               <?php scholarly_display_label_and_value($solr_fields, 'mods_relatedItem_host_name_conference_description_ms', $variables['separator']); ?>
             <?php endif; ?>
             <?php if (isset($selection['mods_note_sponsorship_ms']) || isset($selection['mods_note_sponsorshipCode_ms'])): ?>
