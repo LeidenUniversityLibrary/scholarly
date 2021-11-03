@@ -32,6 +32,7 @@
               'mods_name_personal_edt_etal_ms' => !empty($solr_fields['mods_name_personal_edt_etal_ms']['value'][0]) ? $solr_fields['mods_name_personal_edt_etal_ms']['value'][0] : NULL,
               'mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s' => !empty($solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value']) ? $solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value'] : NULL,
               'mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_year_custom_ms' => !empty($solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_year_custom_ms']['value']) ? $solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_year_custom_ms']['value'] : NULL,
+              'mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_ms' => !empty($solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_ms']['value']) ? $solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_ms']['value'] : NULL,
               'mods_titleInfo_title_custom_ms' => !empty($solr_fields['mods_titleInfo_title_custom_ms']['value']) ? $solr_fields['mods_titleInfo_title_custom_ms']['value'] : NULL,
               'mods_titleInfo_subTitle_ms' => !empty($solr_fields['mods_titleInfo_subTitle_ms']['value']) ? $solr_fields['mods_titleInfo_subTitle_ms']['value'] : NULL,
               'mods_genre_authority_local_s' => !empty($solr_fields['mods_genre_authority_local_s']['value']) ? $solr_fields['mods_genre_authority_local_s']['value'] : NULL,
@@ -208,7 +209,9 @@
                   </dd>
                 </dl>
               <?php endif; ?>
-              <?php if (isset($selection['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_year_custom_ms']) && preg_match('/issue/i', $solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_year_custom_ms']['display_label']) !== 1): ?>
+              <?php if (isset($selection['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_ms']) && preg_match('/issue/i', $solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_ms']['display_label']) !== 1): ?>
+                <?php scholarly_display_label_and_value($solr_fields, 'mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_ms', $variables['separator']); ?>
+              <?php elseif (isset($selection['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_year_custom_ms']) && preg_match('/issue/i', $solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_year_custom_ms']['display_label']) !== 1): ?>
                 <?php scholarly_display_label_and_value($solr_fields, 'mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_year_custom_ms', $variables['separator']); ?>
               <?php elseif (isset($selection['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']) && preg_match('/issue/i', $solr_fields['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['display_label']) !== 1): ?>
                 <?php scholarly_display_label_and_value($solr_fields, 'mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s', $variables['separator']); ?> 
