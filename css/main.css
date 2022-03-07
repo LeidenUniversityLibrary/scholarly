@@ -961,3 +961,8 @@ DIV.ubl_matomo_reports_button {
     width: 100%;
     text-align: center;
 }
+
+.ubl_altmetrics {
+  text-align: center;
+  padding-top: 1.5em;
+}
