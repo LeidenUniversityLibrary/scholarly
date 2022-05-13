@@ -92,7 +92,7 @@
                      <span class="solr-value <?php print $result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['class']; ?>"><?php print scholarly_filter_metadata(trim($result['solr_doc']['mods_originInfo_encoding_w3cdtf_keyDate_yes_dateIssued_s']['value'], " \t\n\r")); ?></span>
                   <?php endif; ?>
                 </dd>
-              <?php else: ?>
+              <?php elseif ($key === 'mods_abstract_ms'): ?>
                 <dd class="solr-value <?php print $value['class']; ?>"><?php print scholarly_filter_metadata(trim($value['value'], " \t\n\r")); ?></dd>
               <?php endif; ?>
             <?php endforeach; ?>
