@@ -54,6 +54,7 @@
               'mods_relatedItem_host_originInfo_edition_ms' => !empty($solr_fields['mods_relatedItem_host_originInfo_edition_ms']['value']) ? $solr_fields['mods_relatedItem_host_originInfo_edition_ms']['value'] : NULL,
               'mods_relatedItem_host_part_detail_volume_number_ms' => !empty($solr_fields['mods_relatedItem_host_part_detail_volume_number_ms']['value']) ? $solr_fields['mods_relatedItem_host_part_detail_volume_number_ms']['value'] : NULL,
               'mods_relatedItem_host_part_detail_issue_number_ms' => !empty($solr_fields['mods_relatedItem_host_part_detail_issue_number_ms']['value']) ? $solr_fields['mods_relatedItem_host_part_detail_issue_number_ms']['value'] : NULL,
+              'mods_relatedItem_host_part_detail_articleNumber_number_ms' => !empty($solr_fields['mods_relatedItem_host_part_detail_articleNumber_number_ms']['value']) ? $solr_fields['mods_relatedItem_host_part_detail_articleNumber_number_ms']['value'] : NULL,
               'mods_relatedItem_host_part_detail_section_title_ms' => !empty($solr_fields['mods_relatedItem_host_part_detail_section_title_ms']['value']) ? $solr_fields['mods_relatedItem_host_part_detail_section_title_ms']['value'] : NULL,
               'mods_note_patentNumber_ms' => !empty($solr_fields['mods_note_patentNumber_ms']['value']) ? $solr_fields['mods_note_patentNumber_ms']['value'] : NULL,
               'mods_relatedItem_host_part_extent_start_ms' => !empty($solr_fields['mods_relatedItem_host_part_extent_start_ms']['value']) ? $solr_fields['mods_relatedItem_host_part_extent_start_ms']['value'] : NULL,
@@ -233,6 +234,7 @@
               <?php scholarly_display_label_and_value($solr_fields, 'mods_relatedItem_host_part_detail_issue_number_ms', $variables['separator']); ?>
               <?php scholarly_display_label_and_value($solr_fields, 'mods_relatedItem_host_part_detail_section_title_ms', $variables['separator']); ?>
               <?php scholarly_display_label_and_value($solr_fields, 'mods_note_patentNumber_ms', $variables['separator']); ?>
+              <?php scholarly_display_label_and_value($solr_fields, 'mods_relatedItem_host_part_detail_articleNumber_number_ms', $variables['separator']); ?>
               <?php if (isset($selection['mods_relatedItem_host_part_extent_start_ms'][0]) || isset($selection['mods_relatedItem_host_part_extent_end_ms'][0])): ?>
                 <dl title="Pages" class="mods_relatedItem_host_part_extent_start_ms mods_relatedItem_host_part_extent_end_ms">
                   <dt>Pages</dt>
