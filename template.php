@@ -744,7 +744,6 @@ function scholarly_preprocess_islandora_compound_object(&$variables) {
 function scholarly_filter_metadata($value, $allowlink = NULL, $filter = NULL) {
   $result = '';
   if (!empty($value)) {
-    $filter = 'islandora_solr_metadata_filtered_html';
     if (is_null($allowlink)) {
       $allowlink = FALSE;
     }
