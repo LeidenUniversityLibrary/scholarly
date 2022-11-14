@@ -741,10 +741,16 @@ function scholarly_preprocess_islandora_compound_object(&$variables) {
   }
 }
 
-function scholarly_filter_metadata($value, $allowlink = FALSE) {
+function scholarly_filter_metadata($value, $allowlink = NULL, $filter = NULL) {
   $result = '';
   if (!empty($value)) {
     $filter = 'islandora_solr_metadata_filtered_html';
+    if (is_null($allowlink)) {
+      $allowlink = FALSE;
+    }
+    if (is_null($filter)) {
+      $filter = 'islandora_solr_metadata_filtered_html';
+    }
     $matches = array();
     if (preg_match('!^(<span class=[\'"]toggle-wrapper[\'"]><span>)(.*?)(<a href=[\'"]#[\'"] class=[\'"]toggler[\'"]>[^<]+</a></span><span>)(.*?)(<a href=[\'"]#[\'"] class=[\'"]toggler[\'"]>[^<]+</a></span></span>)$!', $value, $matches)) {
       list($m0, $m1, $m2, $m3, $m4, $m5) = $matches;

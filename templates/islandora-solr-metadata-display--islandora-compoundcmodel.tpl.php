@@ -162,12 +162,12 @@
                 ?>
               </dd>
               <?php endif; ?>
-              <?php function scholarly_display_label_and_value($solr_fields, $solr_field_name, $separator) {
+              <?php function scholarly_display_label_and_value($solr_fields, $solr_field_name, $separator, $filter = NULL) {
                       if (!empty($solr_fields[$solr_field_name]['value'])): ?>
                         <?php $solr_field = $solr_fields[$solr_field_name]; ?>
                         <dl title="<?php print $solr_field['display_label']; ?>" class="<?php print $solr_field_name; ?>">
                           <dt><?php print $solr_field['display_label']; ?></dt>
-                          <dd><?php print scholarly_filter_metadata(implode($separator, $solr_field['value'])) ?></dd>
+                          <dd><?php print scholarly_filter_metadata(implode($separator, $solr_field['value']), NULL, $filter) ?></dd>
                         </dl>
                       <?php endif;
                     } ?>
@@ -289,8 +289,8 @@
                 </dl>
               <?php endif; ?>
               <?php scholarly_display_label_and_value($solr_fields, 'mods_language_languageTerm_text_ms', $variables['separator']); ?>
-              <?php scholarly_display_label_and_value($solr_fields, 'mods_identifier_uri_ms', $variables['separator']); ?>
-              <?php scholarly_display_label_and_value($solr_fields, 'mods_identifier_uriDataset_ms', $variables['separator']); ?>
+              <?php scholarly_display_label_and_value($solr_fields, 'mods_identifier_uri_ms', $variables['separator'], 'islandora_solr_metadata_filtered_link_html'); ?>
+              <?php scholarly_display_label_and_value($solr_fields, 'mods_identifier_uriDataset_ms', $variables['separator'], 'islandora_solr_metadata_filtered_link_html'); ?>
 
             <?php
             // Loop though all other fields and print values.
