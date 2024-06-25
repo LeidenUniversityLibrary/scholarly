@@ -171,7 +171,7 @@
                         </dl>
                       <?php endif;
                     } ?>
-              <?php scholarly_display_label_and_value($solr_fields, 'mods_note_reasonInauguralAddress_m', $variables['separator']); ?> 
+              <?php scholarly_display_label_and_value($solr_fields, 'mods_note_reasonInauguralAddress_ms', $variables['separator']); ?>
               <?php scholarly_display_label_and_value($solr_fields, 'mods_name_AuthorRole_namePart_custom_ms', $variables['separator']); ?> 
               <?php scholarly_display_label_and_value($solr_fields, 'mods_name_EditorRole_namePart_custom_ms', $variables['separator']); ?> 
               <?php scholarly_display_label_and_value($solr_fields, 'mods_note_editorship_ms', $variables['separator']); ?> 
@@ -261,19 +261,19 @@
                 </dl>
               <?php endif; ?>
               <?php scholarly_display_label_and_value($solr_fields, 'mods_language_languageTerm_text_ms', $variables['separator']); ?>
-              <?php if (isset($selection['mods_identifier_isbn_ms']) || isset($selection['mods_identifier_eisbn_ms'])): ?>
-                <dl title="ISBN" class="mods_identifier_isbn_ms mods_identifier_eisbn_ms">
-                  <dt>ISBN</dt>
+              <?php if (isset($selection['mods_identifier_isbn_ms'])): ?>
+                <dl title="ISBN" class="mods_identifier_isbn_ms">
+                  <dt>ISBN (print)</dt>
                   <dd>
-                    <?php if (isset($selection['mods_identifier_isbn_ms'])): ?>
-                      <?php print scholarly_filter_metadata(implode($variables['separator'], $selection['mods_identifier_isbn_ms'])); ?>
-                    <?php endif; ?>
-                    <?php if (isset($selection['mods_identifier_isbn_ms']) && isset($selection['mods_identifier_eisbn_ms'])): ?>
-                      <?php print $variables['separator']; ?>
-                    <?php endif; ?>
-                    <?php if (isset($selection['mods_identifier_eisbn_ms'])): ?>
-                      <?php print scholarly_filter_metadata(implode($variables['separator'], $selection['mods_identifier_eisbn_ms'])); ?>
-                    <?php endif; ?>
+                     <?php print scholarly_filter_metadata(implode($variables['separator'], $selection['mods_identifier_isbn_ms'])); ?>
+                  </dd>
+                </dl>
+              <?php endif; ?>
+              <?php if (isset($selection['mods_identifier_eisbn_ms'])): ?>
+                <dl title="ISBN" class="mods_identifier_eisbn_ms">
+                  <dt>ISBN (electronic)</dt>
+                  <dd>
+                    <?php print scholarly_filter_metadata(implode($variables['separator'], $selection['mods_identifier_eisbn_ms'])); ?>
                   </dd>
                 </dl>
               <?php endif; ?>
