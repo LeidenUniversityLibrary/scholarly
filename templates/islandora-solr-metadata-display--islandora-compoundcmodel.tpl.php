@@ -171,7 +171,7 @@
                         </dl>
                       <?php endif;
                     } ?>
-              <?php scholarly_display_label_and_value($solr_fields, 'mods_note_reasonInauguralAddress_m', $variables['separator']); ?> 
+              <?php scholarly_display_label_and_value($solr_fields, 'mods_note_reasonInauguralAddress_ms', $variables['separator']); ?>
               <?php scholarly_display_label_and_value($solr_fields, 'mods_name_AuthorRole_namePart_custom_ms', $variables['separator']); ?> 
               <?php scholarly_display_label_and_value($solr_fields, 'mods_name_EditorRole_namePart_custom_ms', $variables['separator']); ?> 
               <?php scholarly_display_label_and_value($solr_fields, 'mods_note_editorship_ms', $variables['separator']); ?> 
