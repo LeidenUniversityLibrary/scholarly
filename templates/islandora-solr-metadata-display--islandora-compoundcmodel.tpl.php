@@ -192,21 +192,23 @@
                 <dl title="Awarding Institution" class="mods_genre_authority_local_s">
                   <dt>Awarding Institution</dt>
                   <dd>
-                    <?php if (isset($selection['mods_name_corporate_dgg_affiliation_institution_ms'][0])): ?>
-                      <?php print scholarly_filter_metadata($selection['mods_name_corporate_dgg_affiliation_institution_ms'][0]); ?>
-                      <?php if (isset($selection['mods_name_corporate_dgg_affiliation_faculty_ms'][0]) || isset($selection['mods_name_corporate_DegreegrantinginstitutionRole_namePart_custom_ms'][0])): ?>
-                        <?php print ', '; ?>
-                      <?php endif; ?>
-                    <?php endif; ?>
-                    <?php if (isset($selection['mods_name_corporate_dgg_affiliation_faculty_ms'][0]) ): ?>
-                      <?php print scholarly_filter_metadata($selection['mods_name_corporate_dgg_affiliation_faculty_ms'][0]); ?>
-                      <?php if (isset($selection['mods_name_corporate_DegreegrantinginstitutionRole_namePart_custom_ms'][0])): ?>
-                        <?php print ', '; ?>
-                      <?php endif; ?>
-                    <?php endif; ?>
-                    <?php if (isset($selection['mods_name_corporate_DegreegrantinginstitutionRole_namePart_custom_ms'][0])): ?>
-                      <?php print scholarly_filter_metadata($selection['mods_name_corporate_DegreegrantinginstitutionRole_namePart_custom_ms'][0]); ?>
-                    <?php endif; ?>
+                    <?php
+                      if (isset($selection['mods_name_corporate_dgg_affiliation_institution_ms'][0])):
+                        print scholarly_filter_metadata($selection['mods_name_corporate_dgg_affiliation_institution_ms'][0]);
+                        if (isset($selection['mods_name_corporate_dgg_affiliation_faculty_ms'][0]) || isset($selection['mods_name_corporate_DegreegrantinginstitutionRole_namePart_custom_ms'][0])):
+                          print ', ';
+                        endif;
+                      endif;
+                      if (isset($selection['mods_name_corporate_dgg_affiliation_faculty_ms'][0]) ):
+                        print scholarly_filter_metadata($selection['mods_name_corporate_dgg_affiliation_faculty_ms'][0]);
+                        if (isset($selection['mods_name_corporate_DegreegrantinginstitutionRole_namePart_custom_ms'][0])):
+                          print ', ';
+                        endif;
+                      endif;
+                      if (isset($selection['mods_name_corporate_DegreegrantinginstitutionRole_namePart_custom_ms'][0])):
+                        print scholarly_filter_metadata($selection['mods_name_corporate_DegreegrantinginstitutionRole_namePart_custom_ms'][0]);
+                      endif;
+                    ?>
                   </dd>
                 </dl>
               <?php endif; ?>
